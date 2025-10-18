@@ -90,7 +90,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
           >
             <Icon
               icon="solar:magnifer-linear"
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-main-light-text/60 w-6 h-6"
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-main-light-text/60 w-5 h-5"
             />
             <input
               value={input}
@@ -104,7 +104,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
                   ? "Search by token name or paste address..."
                   : "Paste token address or search by name..."
               }
-              className="w-full pl-14 pr-40 py-4 bg-transparent text-main-text placeholder-main-light-text/60 font-display text-base focus:outline-none"
+              className="w-full pl-14 pr-40 py-4 bg-transparent text-main-text placeholder:text-base placeholder-main-light-text/60 font-display text-base focus:outline-none"
             />
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
               <button
@@ -122,10 +122,8 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
             </div>
           </div>
 
-          {/* Search Suggestions Dropdown */}
           {showSuggestions && (
             <>
-              {/* Blur Background Overlay */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -135,7 +133,6 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
                 onClick={onCloseSuggestions}
               />
 
-              {/* Dropdown */}
               <motion.div
                 initial={{ opacity: 0, y: -10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}

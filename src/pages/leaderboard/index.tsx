@@ -24,7 +24,7 @@ const LeaderboardPage: React.FC = () => {
 
         const params = {
           page: pageNumber,
-          limit: 20, // Reduced from 30 to 20 for better performance
+          limit: 20,
           timeFilter: timeFilter === "all" ? undefined : timeFilter,
         };
 
@@ -33,7 +33,6 @@ const LeaderboardPage: React.FC = () => {
         if (response && response.data) {
           setKols(response.data);
 
-          // Set total pages from response metadata
           if (response.meta) {
             setTotalPages(response.meta.totalPages || 1);
           } else {
@@ -58,7 +57,6 @@ const LeaderboardPage: React.FC = () => {
 
   const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-    // Scroll to top when changing pages
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
