@@ -157,7 +157,7 @@ const KOLTraction: React.FC<KOLTractionProps> = ({
               Top KOL Investors
             </div>
             <div className="space-y-2">
-              {kolData.top.slice(0, 4).map((kol, index) => (
+              {kolData.top.slice(0, 4).map((kol) => (
                 <div
                   key={kol.name}
                   className="flex items-center justify-between p-2 bg-[#161616] rounded"

@@ -191,7 +191,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
               Top Developer Tokens
             </div>
             <div className="space-y-2">
-              {devTokens.slice(0, 4).map((token, index) => (
+              {devTokens.slice(0, 4).map((token) => (
                 <div
                   key={token.address + token.name}
                   className="flex items-center justify-between p-2 bg-[#161616] rounded"
