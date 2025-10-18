@@ -43,7 +43,7 @@ const SolanaWalletProvider: React.FC<SolanaWalletProviderProps> = ({
     registerMwa({
       appIdentity: {
         uri: getUriForAppIdentity(),
-        name: "Cherry KOLs",
+        name: "Token Find",
       },
       authorizationCache: createDefaultAuthorizationCache(),
       chains: ["solana:mainnet"],

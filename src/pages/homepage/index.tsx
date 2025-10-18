@@ -307,28 +307,21 @@ const HomePage: React.FC = () => {
     return () => observer.disconnect();
   }, [scanned]);
 
-  // Scroll detection for sticky navigation
   useEffect(() => {
     if (!scanned || !navRef.current) return;
 
-    // Store the original position of the navigation
     const originalNavTop = navRef.current.offsetTop;
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-
-      // Only make sticky when we've scrolled past the navigation's original position
-      // This ensures it starts as normal flow and only becomes sticky when needed
       setIsNavSticky(scrollTop > originalNavTop);
     };
 
     window.addEventListener("scroll", handleScroll);
-    // Don't call handleScroll() initially - let it start as normal flow
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scanned]);
 
-  // Check if input looks like an EVM address (0x followed by 40 hex chars)
   const isValidAddress = (str: string) => {
     return /^0x[a-fA-F0-9]{40}$/.test(str);
   };
@@ -337,7 +330,6 @@ const HomePage: React.FC = () => {
     setInput(value);
 
     if (value.trim().length > 1 && !isValidAddress(value.trim())) {
-      // Show suggestions for non-address searches
       const filtered = MOCK_SUGGESTIONS.filter(
         (token) =>
           token.name.toLowerCase().includes(value.toLowerCase()) ||
