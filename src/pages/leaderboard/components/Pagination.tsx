@@ -73,7 +73,7 @@ const Pagination: React.FC<PaginationProps> = ({
         className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm transition-all duration-300 ${
           currentPage === 1 || loading
             ? "bg-white/[0.02] border border-white/[0.05] text-main-light-text/40 cursor-not-allowed"
-            : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
+            : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
         }`}
       >
         <Icon icon="mingcute:left-line" className="w-4 h-4" />
@@ -97,7 +97,7 @@ const Pagination: React.FC<PaginationProps> = ({
                     ? "bg-main-accent/15 border border-main-accent/50 text-main-accent shadow-main-accent/20 cursor-pointer"
                     : loading
                     ? "bg-white/[0.02] border border-white/[0.05] text-main-light-text/40 cursor-not-allowed"
-                    : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
+                    : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
                 }`}
               >
                 <span className="font-tiktok">{page}</span>
@@ -114,7 +114,7 @@ const Pagination: React.FC<PaginationProps> = ({
         className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm transition-all duration-300 ${
           currentPage === totalPages || loading
             ? "bg-white/[0.02] border border-white/[0.05] text-main-light-text/40 cursor-not-allowed"
-            : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
+            : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
         }`}
       >
         <span className="font-tiktok hidden sm:inline">Next</span>

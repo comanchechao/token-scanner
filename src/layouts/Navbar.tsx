@@ -108,7 +108,7 @@ const Navbar: React.FC = React.memo(() => {
 
             {/* Theme Toggle */}
             <div className="flex items-center">
-              <div className="flex items-center gap-1 px-2 py-2 rounded-xl bg-white/[0.03] border border-white/[0.1]">
+              <div className="flex items-center gap-1 px-2 py-2 rounded-sm bg-[#161616]  border border-white/[0.1]">
                 {(["cyan", "violet", "emerald", "amber"] as const).map((a) => (
                   <button
                     key={a}
@@ -139,7 +139,7 @@ const Navbar: React.FC = React.memo(() => {
             <div className="md:hidden flex items-center">
               <button
                 onClick={toggleMobileMenu}
-                className="outline-none p-2 rounded-lg   bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                className="outline-none p-2 rounded-lg   bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
                 aria-label="Menu"
               >
                 <svg

@@ -332,11 +332,11 @@ const Holdings: React.FC = () => {
               key={i}
               width="100%"
               height={120}
-              className="rounded-2xl"
+              className="rounded-sm"
             />
           ))}
         </div>
-        <Skeleton width="100%" height={100} className="rounded-xl" />
+        <Skeleton width="100%" height={100} className="rounded-sm" />
       </div>
     );
   }
@@ -344,7 +344,7 @@ const Holdings: React.FC = () => {
   if (error) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-red-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <div className="w-16 h-16 bg-red-500/20 rounded-sm flex items-center justify-center mx-auto mb-4">
           <Icon
             icon="material-symbols:error"
             className="w-8 h-8 text-red-400"
@@ -353,7 +353,7 @@ const Holdings: React.FC = () => {
         <p className="text-red-400 font-tiktok mb-4">{error}</p>
         <button
           onClick={fetchUserData}
-          className="px-6 py-3 bg-main-accent hover:bg-main-highlight text-main-bg font-tiktok rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/20"
+          className="px-6 py-3 bg-main-accent hover:bg-main-highlight text-main-bg font-tiktok rounded-sm transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/20"
         >
           Retry
         </button>
@@ -364,7 +364,7 @@ const Holdings: React.FC = () => {
   if (!userData?.result) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-main-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <div className="w-16 h-16 bg-main-accent/20 rounded-sm flex items-center justify-center mx-auto mb-4">
           <Icon
             icon="material-symbols:account-balance-wallet"
             className="w-8 h-8 text-main-accent"
@@ -388,12 +388,12 @@ const Holdings: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* User Info Section */}
-      <div className="  bg-white/[0.03] border border-white/[0.1] rounded-2xl p-6">
+      <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-algance text-xl text-main-text">User Profile</h3>
           <button
             onClick={fetchUserData}
-            className="flex items-center cursor-pointer gap-2 px-4 py-2 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 rounded-xl transition-all duration-300"
+            className="flex items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 rounded-sm transition-all duration-300"
           >
             <Icon
               icon="material-symbols:refresh"
@@ -409,7 +409,7 @@ const Holdings: React.FC = () => {
           {/* SNIPER Wallet Address */}
           {sniperAddress && (
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-yellow-500/20 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-yellow-500/20 rounded-sm flex items-center justify-center">
                 <Icon
                   icon="material-symbols:account-balance-wallet"
                   className="w-6 h-6 text-yellow-400"
@@ -433,7 +433,7 @@ const Holdings: React.FC = () => {
 
       {/* Wallet Balances Section */}
       {userData.result && userData.result.length > 0 && (
-        <div className="  bg-white/[0.03] border border-white/[0.1] rounded-2xl p-6">
+        <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-6">
           <h3 className="font-algance text-xl text-main-text mb-4">
             Wallet Balances ({userData.result.length})
           </h3>
@@ -442,12 +442,12 @@ const Holdings: React.FC = () => {
             {userData.result.map((balance, index) => (
               <div
                 key={index}
-                className="flex flex-col justify-around   p-4 bg-white/[0.03] rounded-xl border border-white/[0.1] space-y-3"
+                className="flex flex-col justify-around   p-4 bg-[#161616]  rounded-sm border border-white/[0.1] space-y-3"
               >
                 {/* Balance Info Row */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center overflow-hidden">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-sm flex items-center justify-center overflow-hidden">
                       <span className="font-bold text-white text-sm">
                         {normalizeTokenSymbol(balance.token?.symbol)
                           ?.slice(0, 2)

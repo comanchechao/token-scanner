@@ -43,12 +43,12 @@ interface TokensResponse {
 
 const TokenCardSkeleton: React.FC = () => {
   return (
-    <div className="  bg-white/[0.03] border border-white/[0.1] rounded-3xl p-6">
+    <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-6">
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-4">
           {/* Token Icon Skeleton */}
-          <Skeleton width={48} height={48} className="rounded-2xl" />
+          <Skeleton width={48} height={48} className="rounded-sm" />
 
           {/* Token Info Skeleton */}
           <div>
@@ -59,7 +59,7 @@ const TokenCardSkeleton: React.FC = () => {
 
       {/* Stats Skeleton */}
       <div className="grid grid-cols-1 gap-4 mb-3">
-        <div className="  bg-white/[0.03] rounded-xl p-2 border border-white/[0.05]">
+        <div className="  bg-[#161616]  rounded-sm p-2 border border-white/[0.05]">
           <div className="flex items-center gap-2 mb-1">
             <Skeleton width={16} height={16} className="rounded" />
             <Skeleton width={60} height={12} className="rounded" />
@@ -85,7 +85,7 @@ const TokenCardSkeleton: React.FC = () => {
         {[...Array(6)].map((_, index) => (
           <div
             key={index}
-            className="flex items-center justify-between p-2 rounded-xl   bg-white/[0.02] border border-white/[0.05]"
+            className="flex items-center justify-between p-2 rounded-sm   bg-white/[0.02] border border-white/[0.05]"
           >
             <div className="flex items-center gap-2">
               <Skeleton width={40} height={24} className="rounded-md" />
@@ -101,9 +101,9 @@ const TokenCardSkeleton: React.FC = () => {
 
       {/* Action Buttons Skeleton */}
       <div className="flex gap-2">
-        <Skeleton width="100%" height={40} className="rounded-xl" />
-        <Skeleton width="100%" height={40} className="rounded-xl" />
-        <Skeleton width={40} height={40} className="rounded-xl" />
+        <Skeleton width="100%" height={40} className="rounded-sm" />
+        <Skeleton width="100%" height={40} className="rounded-sm" />
+        <Skeleton width={40} height={40} className="rounded-sm" />
       </div>
     </div>
   );

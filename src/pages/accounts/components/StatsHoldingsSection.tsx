@@ -197,7 +197,7 @@ const StatsHoldingsSection: React.FC<StatsHoldingsSectionProps> = ({
   }, [holdings, holdingsPage, holdingsPerPage]);
 
   return (
-    <div className="backdrop-blur-lg min-h-auto overflow-y-auto bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
+    <div className="backdrop-blur-lg min-h-auto overflow-y-auto bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
       {/* Tab Headers */}
       <div className="flex mb-6 border-b border-white/[0.08]">
         <button

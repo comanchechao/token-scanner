@@ -36,7 +36,7 @@ const BottomStatusMenu: React.FC = React.memo(() => {
       <div className="flex items-center space-x-3 backdrop-blur-xl bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.15] hover:border-main-accent/40 px-6 py-2  transition-all duration-500 shadow-2xl shadow-black/20">
         {/* SOL Price */}
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8   rounded-xl flex items-center justify-center">
+          <div className="w-8 h-8   rounded-sm flex items-center justify-center">
             <Icon
               icon="token-branded:solana"
               className="text-main-bg w-4 h-4"

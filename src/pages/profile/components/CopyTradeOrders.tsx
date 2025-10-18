@@ -307,7 +307,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
           />
         </div>
       ) : orders.length === 0 ? (
-        <div className="  bg-white/[0.03] border border-white/[0.1] rounded-xl p-8 text-center">
+        <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-8 text-center">
           <Icon
             icon="mingcute:aiming-2-line"
             width={48}
@@ -329,7 +329,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
               orders.map((order) => (
                 <div
                   key={order?.id || Math.random()}
-                  className="  bg-white/[0.03] border border-white/[0.1] hover:border-white/[0.2] rounded-xl p-4 transition-all duration-300"
+                  className="  bg-[#161616]  border border-white/[0.1] hover:border-white/[0.2] rounded-sm p-4 transition-all duration-300"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -353,7 +353,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
-                    <div className="  bg-white/[0.03] border border-white/[0.1] rounded-lg p-3">
+                    <div className="  bg-[#161616]  border border-white/[0.1] rounded-lg p-3">
                       <p className="font-tiktok text-xs text-main-light-text/70 mb-1">
                         Target Wallet
                       </p>
@@ -361,7 +361,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
                         {order.targetWallet}
                       </div>
                     </div>
-                    <div className="  bg-white/[0.03] border border-white/[0.1] rounded-lg p-3">
+                    <div className="  bg-[#161616]  border border-white/[0.1] rounded-lg p-3">
                       <p className="font-tiktok text-xs text-main-light-text/70 mb-1">
                         Buy Method
                       </p>
@@ -369,7 +369,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
                         {getBuyMethodLabel(order)}
                       </div>
                     </div>
-                    <div className="  bg-white/[0.03] border border-white/[0.1] rounded-lg p-3">
+                    <div className="  bg-[#161616]  border border-white/[0.1] rounded-lg p-3">
                       <p className="font-tiktok text-xs text-main-light-text/70 mb-1">
                         Sell Method
                       </p>
@@ -386,7 +386,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
                       <button
                         onClick={() => handlePauseCopyTrade(order.id)}
                         disabled={pausingOrderId === order.id}
-                        className="  cursor-pointer bg-white/[0.03] border border-yellow-400/20 hover:bg-yellow-400/10 hover:border-yellow-400/30 rounded-lg p-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="  cursor-pointer bg-[#161616]  border border-yellow-400/20 hover:bg-yellow-400/10 hover:border-yellow-400/30 rounded-lg p-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {pausingOrderId === order.id ? (
                           <Icon
@@ -408,7 +408,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
                       <button
                         onClick={() => handleResumeCopyTrade(order.id)}
                         disabled={resumingOrderId === order.id}
-                        className="  cursor-pointer bg-white/[0.03] border border-green-400/20 hover:bg-green-400/10 hover:border-green-400/30 rounded-lg p-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="  cursor-pointer bg-[#161616]  border border-green-400/20 hover:bg-green-400/10 hover:border-green-400/30 rounded-lg p-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {resumingOrderId === order.id ? (
                           <Icon
@@ -432,7 +432,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
                     <button
                       onClick={() => handleCloseCopyTrade(order.id)}
                       disabled={closingOrderId === order.id}
-                      className="  cursor-pointer bg-white/[0.03] border border-red-400/20 hover:bg-red-400/10 hover:border-red-400/30 rounded-lg p-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="  cursor-pointer bg-[#161616]  border border-red-400/20 hover:bg-red-400/10 hover:border-red-400/30 rounded-lg p-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {closingOrderId === order.id ? (
                         <Icon
@@ -461,7 +461,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
               <button
                 onClick={() => handlePageChange(pagination.pageNumber - 1)}
                 disabled={pagination.pageNumber === 1}
-                className="  bg-white/[0.03] border border-white/[0.1] hover:bg-white/[0.08] hover:border-white/[0.2] rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                className="  bg-[#161616]  border border-white/[0.1] hover:bg-white/[0.08] hover:border-white/[0.2] rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
               >
                 <Icon
                   icon="mingcute:left-line"
@@ -476,7 +476,7 @@ const CopyTradeOrders: React.FC<CopyTradeOrdersProps> = ({
               <button
                 onClick={() => handlePageChange(pagination.pageNumber + 1)}
                 disabled={pagination.isLastPage}
-                className="  bg-white/[0.03] border border-white/[0.1] hover:bg-white/[0.08] hover:border-white/[0.2] rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                className="  bg-[#161616]  border border-white/[0.1] hover:bg-white/[0.08] hover:border-white/[0.2] rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
               >
                 <Icon
                   icon="mingcute:right-line"

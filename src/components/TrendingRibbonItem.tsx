@@ -140,7 +140,7 @@ const TrendingRibbonItem: React.FC<TrendingRibbonItemProps> = React.memo(
     ]);
 
     return (
-      <div className="flex-shrink-0 bg-white/[0.03] border border-white/[0.08] rounded-xl p-3 hover:bg-white/[0.06] hover:border-main-accent/30 transition-all duration-300 min-w-[400px] mx-2">
+      <div className="flex-shrink-0 bg-[#161616]  border border-white/[0.08] rounded-sm p-3 hover:bg-white/[0.06] hover:border-main-accent/30 transition-all duration-300 min-w-[400px] mx-2">
         <div className="flex items-center justify-between">
           {/* Token Info */}
           <div className="flex items-center space-x-3 flex-1 min-w-0">

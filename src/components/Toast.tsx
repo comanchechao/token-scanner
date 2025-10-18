@@ -117,17 +117,17 @@ const Toast: React.FC<ToastProps> = ({
 
   return (
     <div
-      className={`relative backdrop-blur-xl bg-white/[0.03] border ${
+      className={`relative backdrop-blur-xl bg-[#161616]  border ${
         styles.borderColor
       } shadow-2xl ${
         styles.accentColor
-      } rounded-xl lg:rounded-2xl flex items-center gap-3 lg:gap-4 p-3 lg:p-4 transition-all duration-500 transform w-full
+      } rounded-sm lg:rounded-sm flex items-center gap-3 lg:gap-4 p-3 lg:p-4 transition-all duration-500 transform w-full
         ${
           visible
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 -translate-y-10 scale-95 pointer-events-none"
         }
-        before:absolute before:inset-0 before:rounded-xl lg:before:rounded-2xl before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
+        before:absolute before:inset-0 before:rounded-sm lg:before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
     >
       {/* Icon Container */}
       <div
@@ -170,7 +170,7 @@ const Toast: React.FC<ToastProps> = ({
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="p-1.5 lg:p-2 rounded-lg   bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/30 transition-all duration-300 group flex-shrink-0 cursor-pointer"
+        className="p-1.5 lg:p-2 rounded-lg   bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/30 transition-all duration-300 group flex-shrink-0 cursor-pointer"
       >
         <Icon
           icon="mingcute:close-line"

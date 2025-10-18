@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import Navbar from "../../layouts/Navbar";
 import Footer from "../../layouts/Footer";
+import ActivityFeed from "./components/ActivityFeed";
 import "../../css/index.css";
 
 type KolBuyer = {
@@ -203,6 +204,100 @@ const MOCK_DATA = {
   ] as DevToken[],
 };
 
+// Mock activity data for the activity feed
+const MOCK_ACTIVITIES = [
+  {
+    id: "1",
+    name: "AlphaWhale",
+    avatar: "/okxlogo.webp",
+    action: "bought",
+    amount: "47.2K",
+    token: "NEURAL",
+    price: "$0.0847",
+    timestamp: "2m ago",
+    type: "buy" as const,
+    walletAddress: "0x742d35Cc6634C0532925a3b8D4C2C4e0a5c2F8B1",
+    tokenAddress: "0x742d35Cc6634C0532925a3b8D4C2C4e0a5c2F8B1",
+    transactionHash: "0x1234567890abcdef1234567890abcdef12345678",
+    solSpent: "3.2 SOL",
+  },
+  {
+    id: "2",
+    name: "CryptoSensei",
+    avatar: "/dogLogo.webp",
+    action: "sold",
+    amount: "12.8K",
+    token: "AGENT",
+    price: "$0.0234",
+    timestamp: "5m ago",
+    type: "sell" as const,
+    walletAddress: "0x9f8e7d6c5b4a39281f0e1d2c3b4a5968778899aa",
+    tokenAddress: "0x9f8e7d6c5b4a39281f0e1d2c3b4a5968778899aa",
+    transactionHash: "0xabcdef1234567890abcdef1234567890abcdef12",
+    solSpent: "1.8 SOL",
+  },
+  {
+    id: "3",
+    name: "DeFiNinja",
+    avatar: "/goldenCoinLogo.webp",
+    action: "bought",
+    amount: "28.4K",
+    token: "SIGX",
+    price: "$0.0156",
+    timestamp: "8m ago",
+    type: "buy" as const,
+    walletAddress: "0x5a4b3c2d1e0f9876543210fedcba0987654321ab",
+    tokenAddress: "0x5a4b3c2d1e0f9876543210fedcba0987654321ab",
+    transactionHash: "0x567890abcdef1234567890abcdef1234567890ab",
+    solSpent: "2.4 SOL",
+  },
+  {
+    id: "4",
+    name: "MoonChaser",
+    avatar: "/HosicoLogo.webp",
+    action: "bought",
+    amount: "19.7K",
+    token: "LNET",
+    price: "$0.0089",
+    timestamp: "12m ago",
+    type: "buy" as const,
+    walletAddress: "0x7c8d9e0f1a2b3c4d5e6f7890abcdef1234567890",
+    tokenAddress: "0x7c8d9e0f1a2b3c4d5e6f7890abcdef1234567890",
+    transactionHash: "0xcdef1234567890abcdef1234567890abcdef1234",
+    solSpent: "1.7 SOL",
+  },
+  {
+    id: "5",
+    name: "SignalMaster",
+    avatar: "/uselessLogo.webp",
+    action: "sold",
+    amount: "35.1K",
+    token: "DEEP",
+    price: "$0.0312",
+    timestamp: "15m ago",
+    type: "sell" as const,
+    walletAddress: "0x3e4f5a6b7c8d9e0f1a2b3c4d5e6f7890abcdef12",
+    tokenAddress: "0x3e4f5a6b7c8d9e0f1a2b3c4d5e6f7890abcdef12",
+    transactionHash: "0xef1234567890abcdef1234567890abcdef123456",
+    solSpent: "2.9 SOL",
+  },
+  {
+    id: "6",
+    name: "WhaleTracker",
+    avatar: "/bonkKOLsLogo.webp",
+    action: "bought",
+    amount: "52.3K",
+    token: "QNTM",
+    price: "$0.0445",
+    timestamp: "18m ago",
+    type: "buy" as const,
+    walletAddress: "0x8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c",
+    tokenAddress: "0x8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c",
+    transactionHash: "0x234567890abcdef1234567890abcdef1234567890",
+    solSpent: "4.1 SOL",
+  },
+];
+
 const cardVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: (i: number) => ({
@@ -251,6 +346,8 @@ const HomePage: React.FC = () => {
   const [isNavSticky, setIsNavSticky] = useState(false);
 
   const data = useMemo(() => MOCK_DATA, []);
+  const activities = useMemo(() => MOCK_ACTIVITIES, []);
+  const activityFeedRef = useRef<HTMLDivElement>(null);
 
   const sections = [
     {
@@ -356,6 +453,13 @@ const HomePage: React.FC = () => {
     }
   };
 
+  const handleBackToList = () => {
+    setScanned(false);
+    setInput("");
+    setShowSuggestions(false);
+    setSuggestions([]);
+  };
+
   const handlePaste = async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -374,7 +478,7 @@ const HomePage: React.FC = () => {
       {/* Hero + Search */}
       <section
         className={`relative z-10 flex-1 flex flex-col justify-center transition-all duration-500 ${
-          !scanned ? "pt-32 pb-32" : "pt-16 pb-8"
+          !scanned ? "pt-32 pb-10" : "pt-16 pb-8"
         }`}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -416,12 +520,12 @@ const HomePage: React.FC = () => {
           {/* Search Input - shown in both states */}
           <div
             className={`${
-              !scanned ? "max-w-2xl w-full mx-auto" : "max-w-3xl mx-auto"
+              !scanned ? "max-w-4xl w-full mx-auto" : "max-w-3xl mx-auto"
             }`}
           >
             <div
               className={`relative bg-[#161616] hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 transition-all duration-300 ${
-                !scanned ? "rounded-lg" : "rounded-sm"
+                !scanned ? "rounded-sm" : "rounded-sm"
               }`}
             >
               <Icon
@@ -494,10 +598,32 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Activity Feed - Show when not scanned */}
+      {!scanned && (
+        <section className="relative z-10 pb-20 flex-1">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ActivityFeed activities={activities} feedRef={activityFeedRef} />
+          </div>
+        </section>
+      )}
+
       {/* Results - Only show after search */}
       {scanned && (
         <section className="relative z-10 pb-20 flex-1">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Back to List Button */}
+            <div className="mb-6">
+              <button
+                onClick={handleBackToList}
+                className="flex items-center gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
+              >
+                <Icon icon="material-symbols:arrow-back" className="w-5 h-5" />
+                <span className="font-display text-sm">
+                  Back to Live Activity
+                </span>
+              </button>
+            </div>
+
             {/* Mobile Navigation Toggle */}
             <div className="lg:hidden mb-6">
               <button

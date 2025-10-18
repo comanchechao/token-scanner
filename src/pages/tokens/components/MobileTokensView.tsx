@@ -134,10 +134,10 @@ const MobileTokensView: React.FC<MobileTokensViewProps> = ({
   const filteredTokens = filterTokens(currentTokens);
 
   const TokenCardSkeleton: React.FC = () => (
-    <div className="bg-white/[0.03] border border-white/[0.1] rounded-3xl p-4 mb-4">
+    <div className="bg-[#161616]  border border-white/[0.1] rounded-sm p-4 mb-4">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
-          <Skeleton width={40} height={40} className="rounded-2xl" />
+          <Skeleton width={40} height={40} className="rounded-sm" />
           <div>
             <Skeleton width={70} height={20} className="mb-1 rounded-lg" />
             <Skeleton width={50} height={14} className="rounded" />
@@ -145,15 +145,15 @@ const MobileTokensView: React.FC<MobileTokensViewProps> = ({
         </div>
       </div>
       <div className="space-y-2 mb-4">
-        <div className="bg-white/[0.03] rounded-xl p-2 border border-white/[0.05]">
+        <div className="bg-[#161616]  rounded-sm p-2 border border-white/[0.05]">
           <Skeleton width={60} height={12} className="rounded mb-1" />
           <Skeleton width={80} height={14} className="rounded" />
         </div>
       </div>
       <div className="flex gap-2">
-        <Skeleton width="100%" height={36} className="rounded-xl" />
-        <Skeleton width="100%" height={36} className="rounded-xl" />
-        <Skeleton width={36} height={36} className="rounded-xl" />
+        <Skeleton width="100%" height={36} className="rounded-sm" />
+        <Skeleton width="100%" height={36} className="rounded-sm" />
+        <Skeleton width={36} height={36} className="rounded-sm" />
       </div>
     </div>
   );
@@ -177,12 +177,12 @@ const MobileTokensView: React.FC<MobileTokensViewProps> = ({
       {/* Header with bracket indicator */}
       <div className="flex-shrink-0 bg-gradient-to-b from-main-bg to-transparent pb-4 pt-4">
         <div className="flex items-center justify-center mb-4">
-          <div className="flex items-center gap-2 bg-white/[0.05] border border-white/[0.1] rounded-2xl px-3 py-2">
+          <div className="flex items-center gap-2 bg-white/[0.05] border border-white/[0.1] rounded-sm px-3 py-2">
             {brackets.map((bracket) => (
               <button
                 key={bracket.key}
                 onClick={() => setCurrentBracket(bracket.key)}
-                className={`flex items-center gap-1 px-2 py-1 rounded-xl transition-all duration-300 ${
+                className={`flex items-center gap-1 px-2 py-1 rounded-sm transition-all duration-300 ${
                   currentBracket === bracket.key
                     ? "bg-main-accent text-main-bg"
                     : "text-main-light-text hover:text-main-text"

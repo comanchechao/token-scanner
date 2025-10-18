@@ -83,7 +83,7 @@ const LeaderboardPage: React.FC = () => {
         {loading && currentPage === 1 ? (
           <div className="space-y-3">
             {[...Array(5)].map((_, index) => (
-              <Skeleton key={index} className="h-24 w-full rounded-2xl" />
+              <Skeleton key={index} className="h-24 w-full rounded-sm" />
             ))}
           </div>
         ) : error ? (

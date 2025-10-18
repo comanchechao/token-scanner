@@ -315,7 +315,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
   };
 
   return (
-    <div className="  bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-2xl p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
+    <div className="  bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -360,7 +360,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
           {orders.map((order) => (
             <div
               key={order?.id || Math.random()}
-              className="bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-xl p-3 transition-all duration-300"
+              className="bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-sm p-3 transition-all duration-300"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
@@ -435,7 +435,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                   <button
                     onClick={() => handlePauseCopyTrade(order.id)}
                     disabled={pausingOrderId === order.id}
-                    className="  cursor-pointer bg-white/[0.03] border border-yellow-400/20 hover:bg-yellow-400/10 hover:border-yellow-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+                    className="  cursor-pointer bg-[#161616]  border border-yellow-400/20 hover:bg-yellow-400/10 hover:border-yellow-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
                   >
                     {pausingOrderId === order.id ? (
                       <Icon
@@ -460,7 +460,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                   <button
                     onClick={() => handleResumeCopyTrade(order.id)}
                     disabled={resumingOrderId === order.id}
-                    className="  cursor-pointer bg-white/[0.03] border border-green-400/20 hover:bg-green-400/10 hover:border-green-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+                    className="  cursor-pointer bg-[#161616]  border border-green-400/20 hover:bg-green-400/10 hover:border-green-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
                   >
                     {resumingOrderId === order.id ? (
                       <Icon
@@ -487,7 +487,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                 <button
                   onClick={() => handleCloseCopyTrade(order.id)}
                   disabled={closingOrderId === order.id}
-                  className="  cursor-pointer bg-white/[0.03] border border-red-400/20 hover:bg-red-400/10 hover:border-red-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+                  className="  cursor-pointer bg-[#161616]  border border-red-400/20 hover:bg-red-400/10 hover:border-red-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
                 >
                   {closingOrderId === order.id ? (
                     <Icon

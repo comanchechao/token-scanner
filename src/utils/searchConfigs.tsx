@@ -35,7 +35,7 @@ export function createTokenSearchConfig(
         onClick={() => onResultClick?.(result)}
       >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-main-accent/20 to-main-highlight/20 rounded-xl flex items-center justify-center">
+          <div className="w-10 h-10 bg-gradient-to-br from-main-accent/20 to-main-highlight/20 rounded-sm flex items-center justify-center">
             <Icon
               icon="material-symbols:token"
               className="w-5 h-5 text-main-accent"

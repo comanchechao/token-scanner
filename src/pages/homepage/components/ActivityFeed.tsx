@@ -105,7 +105,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = React.memo(
     }, []);
 
     return (
-      <div className="relative   bg-white/[0.03] border border-white/[0.1] rounded-3xl py-4 px-6 transition-all duration-500">
+      <div className="relative   bg-[#161616]  border border-white/[0.1] rounded-sm py-4 px-6 transition-all duration-500">
         <div className="flex items-center justify-between mb-4 relative z-10">
           <h2 className="font-algance text-xl text-main-text">
             Live KOL Activity
@@ -126,7 +126,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = React.memo(
         <div className="text-center flex justify-center mt-8 relative z-10">
           <Link
             to="/leaderboard"
-            className="relative overflow-hidden w-fit   px-4 py-3 ml-4 z-50 transition-all flex gap-2 items-center ease-in shadow-2xl shadow-main-accent border border-main-accent/50 text-main-accent text-sm rounded-xl duration-300 cursor-pointer  "
+            className="relative overflow-hidden w-fit   px-4 py-3 ml-4 z-50 transition-all flex gap-2 items-center ease-in shadow-2xl shadow-main-accent border border-main-accent/50 text-main-accent text-sm rounded-sm duration-300 cursor-pointer  "
           >
             <span className="flex gap-2 items-center">
               View Full Leaderboard

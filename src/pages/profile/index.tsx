@@ -162,9 +162,9 @@ const ProfilePage: React.FC = () => {
 
           {/* Holdings Section */}
           <div className="mb-8">
-            <div className="  bg-white/[0.03] border border-white/[0.1] rounded-2xl p-6">
+            <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-main-accent to-main-highlight rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-main-accent to-main-highlight rounded-sm flex items-center justify-center">
                   <Icon
                     icon="material-symbols:account-balance-wallet"
                     className="text-main-text"
@@ -187,10 +187,10 @@ const ProfilePage: React.FC = () => {
 
           {/* Copy Trade Orders Section */}
           <div className="mb-8">
-            <div className="  bg-white/[0.03] border border-white/[0.1] rounded-2xl p-6">
+            <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-6">
               <div className="flex items-center justify-between gap-3 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-main-accent to-main-highlight rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-main-accent to-main-highlight rounded-sm flex items-center justify-center">
                     <Icon
                       icon="mingcute:aiming-2-line"
                       className="text-main-text"
@@ -212,7 +212,7 @@ const ProfilePage: React.FC = () => {
                   <button
                     onClick={handlePauseAllCopyTrades}
                     disabled={isPausingAll}
-                    className="  bg-white/[0.05] border border-yellow-400/40 hover:border-yellow-400/60 rounded-xl px-4 py-2 flex items-center gap-2 hover:bg-yellow-400/10 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="  bg-white/[0.05] border border-yellow-400/40 hover:border-yellow-400/60 rounded-sm px-4 py-2 flex items-center gap-2 hover:bg-yellow-400/10 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isPausingAll ? (
                       <Icon
@@ -238,7 +238,7 @@ const ProfilePage: React.FC = () => {
                   <button
                     onClick={handleResumeAllCopyTrades}
                     disabled={isResumingAll}
-                    className="  bg-white/[0.05] border border-green-400/40 hover:border-green-400/60 rounded-xl px-4 py-2 flex items-center gap-2 hover:bg-green-400/10 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="  bg-white/[0.05] border border-green-400/40 hover:border-green-400/60 rounded-sm px-4 py-2 flex items-center gap-2 hover:bg-green-400/10 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isResumingAll ? (
                       <Icon
@@ -264,7 +264,7 @@ const ProfilePage: React.FC = () => {
                   <button
                     onClick={handleCloseAllCopyTrades}
                     disabled={isClosingAll}
-                    className="  bg-white/[0.05] border border-red-400/40 hover:border-red-400/60 rounded-xl px-4 py-2 flex items-center gap-2 hover:bg-red-400/10 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="  bg-white/[0.05] border border-red-400/40 hover:border-red-400/60 rounded-sm px-4 py-2 flex items-center gap-2 hover:bg-red-400/10 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isClosingAll ? (
                       <Icon
@@ -289,7 +289,7 @@ const ProfilePage: React.FC = () => {
                   {/* New Copy Trade Button */}
                   <button
                     onClick={() => setCopyTradeModalOpen(true)}
-                    className="  bg-white/[0.05] border border-[var(--color-main-accent)]/40 hover:border-[var(--color-main-accent)]/60 rounded-xl px-4 py-2 flex items-center gap-2 hover:bg-white/[0.08] transition-all duration-300 group cursor-pointer"
+                    className="  bg-white/[0.05] border border-[var(--color-main-accent)]/40 hover:border-[var(--color-main-accent)]/60 rounded-sm px-4 py-2 flex items-center gap-2 hover:bg-white/[0.08] transition-all duration-300 group cursor-pointer"
                   >
                     <Icon
                       icon="mingcute:add-line"

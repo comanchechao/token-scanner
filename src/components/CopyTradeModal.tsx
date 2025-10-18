@@ -263,10 +263,10 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
   }) => (
     <button
       onClick={onClick}
-      className={`relative overflow-hidden flex-1   border   rounded-xl px-3 py-2 transition-all duration-300 group cursor-pointer ${
+      className={`relative overflow-hidden flex-1   border   rounded-sm px-3 py-2 transition-all duration-300 group cursor-pointer ${
         active
           ? "border-[var(--color-main-accent)]/60 bg-white/[0.08]"
-          : "border-white/[0.2] bg-white/[0.03] hover:bg-white/[0.06] hover:border-[var(--color-main-accent)]/30"
+          : "border-white/[0.2] bg-[#161616]  hover:bg-white/[0.06] hover:border-[var(--color-main-accent)]/30"
       }`}
     >
       <div className="flex items-center justify-center gap-2">
@@ -310,9 +310,9 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
 
       {/* Modal */}
       <div
-        className={`relative w-full max-w-md lg:max-w-4xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.1] shadow-2xl rounded-2xl flex flex-col transition-all duration-300 transform 
+        className={`relative w-full max-w-md lg:max-w-4xl backdrop-blur-xl bg-[#161616]  border border-white/[0.1] shadow-2xl rounded-sm flex flex-col transition-all duration-300 transform 
           ${open ? "modal-content-show" : "opacity-0 scale-95 translate-y-8"}
-          before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
+          before:absolute before:inset-0 before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
         style={{ minWidth: 400, maxHeight: "85vh" }}
       >
         {/* Header */}
@@ -332,7 +332,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg   bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer"
+            className="p-2 rounded-lg   bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer"
           >
             <Icon
               icon="mingcute:close-line"
@@ -353,7 +353,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                 <label className="block font-tiktok text-sm text-main-light-text mb-2">
                   Copy From
                 </label>
-                <div className="flex items-center gap-3 p-3   bg-white/[0.03] border border-white/[0.1] rounded-xl">
+                <div className="flex items-center gap-3 p-3   bg-[#161616]  border border-white/[0.1] rounded-sm">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--color-main-accent)]/20 to-[var(--color-main-highlight)]/20 flex-shrink-0 overflow-hidden">
                     <img
                       src={walletData.profileImage}
@@ -380,7 +380,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                   Tag
                 </label>
                 <input
-                  className="w-full   placeholder:text-xs bg-white/[0.03] border border-white/[0.1] rounded-xl px-3 py-2.5 text-main-text font-tiktok text-sm placeholder:text-main-light-text/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-main-accent)]/50 focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                  className="w-full   placeholder:text-xs bg-[#161616]  border border-white/[0.1] rounded-sm px-3 py-2.5 text-main-text font-tiktok text-sm placeholder:text-main-light-text/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-main-accent)]/50 focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                   placeholder="Enter tag (max 50 chars)"
                   value={formData.tag}
                   onChange={(e) => handleInputChange("tag", e.target.value)}
@@ -415,7 +415,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                   />
                 </div>
                 <input
-                  className="w-full   placeholder:text-xs bg-white/[0.03] border border-white/[0.1] rounded-xl px-3 py-2.5 text-main-text font-tiktok text-sm placeholder:text-main-light-text/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-main-accent)]/50 focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                  className="w-full   placeholder:text-xs bg-[#161616]  border border-white/[0.1] rounded-sm px-3 py-2.5 text-main-text font-tiktok text-sm placeholder:text-main-light-text/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-main-accent)]/50 focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                   placeholder={
                     buyMethod === "maxBuy"
                       ? "Percentage of balance"
@@ -514,7 +514,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                   }`}
                 >
                   <input
-                    className="col-span-1   !placeholder:text-xs bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                    className="col-span-1   !placeholder:text-xs bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                     placeholder="Market Cap Min"
                     value={formData.minMarketCap}
                     onChange={(e) =>
@@ -522,7 +522,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                     }
                   />
                   <input
-                    className="col-span-1   !placeholder:text-xs bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                    className="col-span-1   !placeholder:text-xs bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                     placeholder="Market Cap Max"
                     value={formData.maxMarketCap}
                     onChange={(e) =>
@@ -530,7 +530,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                     }
                   />
                   <input
-                    className="col-span-1   !placeholder:text-xs bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                    className="col-span-1   !placeholder:text-xs bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                     placeholder="Liq Min"
                     value={formData.minLiquidity}
                     onChange={(e) =>
@@ -538,7 +538,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                     }
                   />
                   <input
-                    className="col-span-1   !placeholder:text-xs bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                    className="col-span-1   !placeholder:text-xs bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                     placeholder="Copy Buy Min"
                     value={formData.minBuyAmount}
                     onChange={(e) =>
@@ -546,7 +546,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                     }
                   />
                   <input
-                    className="col-span-1   bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                    className="col-span-1   bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1.5 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                     placeholder="Copy Buy Max"
                     value={formData.maxBuyAmount}
                     onChange={(e) =>
@@ -576,7 +576,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                       </span>
                     </button>
                     <input
-                      className="flex-1   bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                      className="flex-1   bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                       placeholder="%"
                       value={formData.slippage}
                       onChange={(e) =>
@@ -591,7 +591,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                       Priority Fee (SOL)
                     </span>
                     <input
-                      className="w-20   bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                      className="w-20   bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                       placeholder="0.005"
                       value={formData.priorityFee}
                       onChange={(e) =>
@@ -606,7 +606,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                       Tip (SOL)
                     </span>
                     <input
-                      className="w-20   bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                      className="w-20   bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                       placeholder="0.005"
                       value={formData.bribeAmount}
                       onChange={(e) =>
@@ -621,7 +621,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                       Max Fee (SOL)
                     </span>
                     <input
-                      className="w-20   bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                      className="w-20   bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                       placeholder="0.01"
                       value={formData.maxFee}
                       onChange={(e) =>
@@ -634,13 +634,13 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                   <div className="col-span-2 flex items-center gap-2">
                     <input
                       type="checkbox"
-                      className="w-4 h-4 rounded border-white/[0.2] bg-white/[0.03] text-main-accent focus:ring-main-accent focus:ring-2"
+                      className="w-4 h-4 rounded border-white/[0.2] bg-[#161616]  text-main-accent focus:ring-main-accent focus:ring-2"
                     />
                     <span className="font-tiktok text-xs text-main-light-text">
                       Anti-MEV RPC
                     </span>
                     <input
-                      className="flex-1   bg-white/[0.03] border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                      className="flex-1   bg-[#161616]  border border-white/[0.1] rounded-lg px-2 py-1 text-main-text font-tiktok text-xs placeholder:text-main-light-text/50 focus:outline-none focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                       placeholder="Custom RPC"
                       value={formData.serviceConfig}
                       onChange={(e) =>
@@ -658,7 +658,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                 </label>
                 <div className="flex gap-2">
                   <input
-                    className="flex-1   placeholder:text-xs bg-white/[0.03] border border-white/[0.1] rounded-xl px-3 py-2 text-main-text font-tiktok text-sm placeholder:text-main-light-text/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-main-accent)]/50 focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
+                    className="flex-1   placeholder:text-xs bg-[#161616]  border border-white/[0.1] rounded-sm px-3 py-2 text-main-text font-tiktok text-sm placeholder:text-main-light-text/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-main-accent)]/50 focus:border-[var(--color-main-accent)]/50 transition-all duration-300"
                     placeholder="Enter Token CA"
                     value={formData.blacklistInput}
                     onChange={(e) =>
@@ -666,7 +666,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                     }
                   />
                   <button
-                    className="  bg-white/[0.05] border border-[var(--color-main-accent)]/40 rounded-xl px-4 py-1 flex items-center gap-2 hover:bg-white/[0.08] hover:border-[var(--color-main-accent)]/60 transition-all duration-300 group cursor-pointer"
+                    className="  bg-white/[0.05] border border-[var(--color-main-accent)]/40 rounded-sm px-4 py-1 flex items-center gap-2 hover:bg-white/[0.08] hover:border-[var(--color-main-accent)]/60 transition-all duration-300 group cursor-pointer"
                     onClick={addToBlacklist}
                   >
                     <Icon
@@ -686,7 +686,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
                     {formData.mintBlackList.map((item, index) => (
                       <div
                         key={index}
-                        className="flex items-center gap-2 p-2   bg-white/[0.03] border border-white/[0.1] rounded-lg"
+                        className="flex items-center gap-2 p-2   bg-[#161616]  border border-white/[0.1] rounded-lg"
                       >
                         <span className="font-tiktok text-xs text-main-light-text flex-1 truncate">
                           {item}
@@ -712,7 +712,7 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
             {/* Confirm Button - spans full width on large screens */}
             <div className="lg:col-span-2">
               <button
-                className="w-full   bg-white/[0.05] hover:bg-white/[0.08] border border-[var(--color-main-accent)]/40 hover:border-[var(--color-main-accent)]/60 rounded-xl px-6 py-3 flex items-center justify-center gap-3 transition-all duration-300 group hover:shadow-lg hover:shadow-[var(--color-main-accent)]/20 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="w-full   bg-white/[0.05] hover:bg-white/[0.08] border border-[var(--color-main-accent)]/40 hover:border-[var(--color-main-accent)]/60 rounded-sm px-6 py-3 flex items-center justify-center gap-3 transition-all duration-300 group hover:shadow-lg hover:shadow-[var(--color-main-accent)]/20 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
               >

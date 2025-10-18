@@ -178,7 +178,7 @@ const TrendingRibbon: React.FC = React.memo(() => {
           {Array.from({ length: 5 }).map((_, index) => (
             <div
               key={index}
-              className="flex-shrink-0 bg-white/[0.03] border border-white/[0.08] rounded-xl p-3 min-w-[400px] mx-2"
+              className="flex-shrink-0 bg-[#161616]  border border-white/[0.08] rounded-sm p-3 min-w-[400px] mx-2"
             >
               <div className="flex items-center justify-between">
                 {/* Token Info Skeleton */}

@@ -35,10 +35,10 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
             <button
               key={filter.key}
               onClick={() => onTimeFilterChange(filter.key)}
-              className={`group relative   border rounded-xl px-4 py-2.5 hover:shadow-lg cursor-pointer ${
+              className={`group relative   border rounded-sm px-4 py-2.5 hover:shadow-lg cursor-pointer ${
                 selectedFilter === filter.key
                   ? "bg-main-accent/15 border-main-accent/50 text-main-accent shadow-main-accent/20"
-                  : "bg-white/[0.03] hover:bg-white/[0.06] border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent"
+                  : "bg-[#161616]  hover:bg-white/[0.06] border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent"
               }`}
             >
               <div className="flex items-center gap-2">

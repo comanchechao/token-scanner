@@ -130,7 +130,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
 
       {/* Modal Content */}
       <div
-        className="relative w-full max-w-md bg-[var(--color-main-bg)]/95 border border-white/[0.15] rounded-2xl shadow-2xl shadow-[var(--color-main-accent)]/10 p-4 z-50"
+        className="relative w-full max-w-md bg-[var(--color-main-bg)]/95 border border-white/[0.15] rounded-sm shadow-2xl shadow-[var(--color-main-accent)]/10 p-4 z-50"
         style={{
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
@@ -138,7 +138,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
         }}
       >
         {/* Overlay for additional blur effect */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.08] to-transparent opacity-100 transition-opacity duration-500 -z-10"></div>
+        <div className="absolute inset-0 rounded-sm bg-gradient-to-br from-white/[0.08] to-transparent opacity-100 transition-opacity duration-500 -z-10"></div>
 
         {/* Close Button */}
         <button
@@ -169,7 +169,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
         {/* Wallet Address Section */}
         {user?.walletAddress ? (
           <div className="mb-4">
-            <div className="p-3 bg-white/[0.03] border border-white/[0.1] rounded-xl">
+            <div className="p-3 bg-[#161616]  border border-white/[0.1] rounded-sm">
               <p className="text-xs text-main-light-text mb-1">
                 Your Wallet Address:
               </p>
@@ -179,7 +179,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
         ) : (
-          <div className="mb-4 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
+          <div className="mb-4 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-sm">
             <p className="text-sm text-yellow-400">
               Please connect your wallet to view deposit address
             </p>
@@ -188,7 +188,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
 
         {/* QR Code for Solana Wallet Address */}
         <div className="mb-4 flex justify-center">
-          <div className="p-3 bg-white/[0.05] border border-white/[0.1] rounded-xl flex flex-col items-center justify-center">
+          <div className="p-3 bg-white/[0.05] border border-white/[0.1] rounded-sm flex flex-col items-center justify-center">
             {user?.walletAddress ? (
               <>
                 <p className="text-xs text-main-light-text mb-2">
@@ -242,7 +242,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
 
         {/* Warning Note */}
         <div className="mb-4">
-          <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+          <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-sm">
             <div className="flex items-center justify-center gap-2">
               <Icon
                 icon="mdi:alert-circle"
@@ -261,8 +261,8 @@ const DepositModal: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
           className={`w-full py-3 px-4 ${
             copySuccess
               ? "bg-green-500/20 border-green-500/30 text-green-400"
-              : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-text hover:text-main-accent"
-          } rounded-xl transition-all duration-300 font-tiktok text-sm flex items-center justify-center gap-2`}
+              : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-text hover:text-main-accent"
+          } rounded-sm transition-all duration-300 font-tiktok text-sm flex items-center justify-center gap-2`}
         >
           <Icon
             icon={copySuccess ? "mdi:check" : "mdi:content-copy"}

@@ -178,7 +178,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
     return (
       <div
         key={activity.id}
-        className={`relative bg-white/[0.03] border border-white/[0.08] rounded-2xl p-2 transition-all duration-300 ${
+        className={`relative bg-[#111111]  border border-white/[0.08] rounded-sm p-2 transition-all duration-300 ${
           activity.timestamp === "now" ? "animate-slideInLeft" : ""
         } ${
           isFirst

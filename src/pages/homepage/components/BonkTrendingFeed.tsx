@@ -242,7 +242,7 @@ const BonkTrendingFeed: React.FC<BonkTrendingFeedProps> = React.memo(
     }, []);
 
     return (
-      <div className="relative   bg-white/[0.03] border border-white/[0.1] rounded-3xl h-fit py-4 px-6 transition-all duration-500">
+      <div className="relative   bg-[#161616]  border border-white/[0.1] rounded-sm h-fit py-4 px-6 transition-all duration-500">
         <div className="flex flex-col gap-4 mb-4 relative z-10">
           <div className="flex items-center justify-between">
             <h2 className="font-algance text-xl text-main-text">
@@ -288,7 +288,7 @@ const BonkTrendingFeed: React.FC<BonkTrendingFeedProps> = React.memo(
                       ? "bg-main-accent/15 border border-main-accent/50 text-main-accent shadow-main-accent/20"
                       : loading
                       ? "bg-white/[0.02] border border-white/[0.05] text-main-light-text/40 cursor-not-allowed"
-                      : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
+                      : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
                   }`}
                 >
                   <Icon icon={timeframe.icon} className="w-3 h-3" />
@@ -319,7 +319,7 @@ const BonkTrendingFeed: React.FC<BonkTrendingFeedProps> = React.memo(
             <p className="text-red-400 font-tiktok mb-4">{error}</p>
             <button
               onClick={() => fetchTrendingProjects(true, selectedTimeframe)}
-              className="px-6 py-2 bg-main-accent hover:bg-main-highlight text-main-bg font-tiktok rounded-xl transition-all duration-300"
+              className="px-6 py-2 bg-main-accent hover:bg-main-highlight text-main-bg font-tiktok rounded-sm transition-all duration-300"
             >
               Retry
             </button>
@@ -356,7 +356,7 @@ const BonkTrendingFeed: React.FC<BonkTrendingFeedProps> = React.memo(
                   className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm transition-all duration-300 ${
                     currentPage === 1 || isTransitioning
                       ? "bg-white/[0.02] border border-white/[0.05] text-main-light-text/40 cursor-not-allowed"
-                      : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
+                      : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
                   }`}
                 >
                   <Icon icon="mingcute:left-line" className="w-4 h-4" />
@@ -375,7 +375,7 @@ const BonkTrendingFeed: React.FC<BonkTrendingFeedProps> = React.memo(
                             ? "bg-main-accent/15 border border-main-accent/50 text-main-accent shadow-main-accent/20"
                             : isTransitioning
                             ? "bg-white/[0.02] border border-white/[0.05] text-main-light-text/40 cursor-not-allowed"
-                            : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
+                            : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
                         }`}
                       >
                         <span className="font-tiktok">{page}</span>
@@ -390,7 +390,7 @@ const BonkTrendingFeed: React.FC<BonkTrendingFeedProps> = React.memo(
                   className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm transition-all duration-300 ${
                     currentPage === totalPages || isTransitioning
                       ? "bg-white/[0.02] border border-white/[0.05] text-main-light-text/40 cursor-not-allowed"
-                      : "bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
+                      : "bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent cursor-pointer"
                   }`}
                 >
                   <span className="font-tiktok hidden sm:inline">Next</span>
@@ -402,7 +402,7 @@ const BonkTrendingFeed: React.FC<BonkTrendingFeedProps> = React.memo(
         )}
 
         <div className="text-center flex justify-center mt-6 relative z-10">
-          <div className="flex items-center gap-2 px-4 py-2   bg-white/[0.05] border border-white/[0.1] rounded-xl">
+          <div className="flex items-center gap-2 px-4 py-2   bg-white/[0.05] border border-white/[0.1] rounded-sm">
             <Icon
               icon="material-symbols:schedule"
               className="w-4 h-4 text-main-accent"

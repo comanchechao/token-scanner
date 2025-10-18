@@ -161,7 +161,7 @@ const HomepageSearch: React.FC<HomepageSearchProps> = memo(
 
     return (
       <div className={`relative w-full ${className}`}>
-        <div className="relative   bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-2xl transition-all duration-300">
+        <div className="relative   bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-sm transition-all duration-300">
           {/* Search Icon */}
           <Icon
             icon="icon-park-twotone:search"
@@ -200,7 +200,7 @@ const HomepageSearch: React.FC<HomepageSearchProps> = memo(
 
         {/* Results */}
         {shouldShowResults && (
-          <div className="absolute top-full left-0 right-0 mt-2 max-h-96 overflow-y-auto z-[9999] bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-2xl shadow-2xl shadow-black/40">
+          <div className="absolute top-full left-0 right-0 mt-2 max-h-96 overflow-y-auto z-[9999] bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-sm shadow-2xl shadow-black/40">
             {isSearching
               ? HOMEPAGE_SEARCH_CONFIG.renderLoading?.()
               : hasResults

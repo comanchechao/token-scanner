@@ -75,10 +75,10 @@ const TokenFilters: React.FC<TokenFiltersProps> = ({
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`group relative   border rounded-xl px-4 py-3 transition-all duration-300 hover:shadow-lg cursor-pointer ${
+              className={`group relative   border rounded-sm px-4 py-3 transition-all duration-300 hover:shadow-lg cursor-pointer ${
                 selectedCategory === category.id
                   ? "bg-main-accent/15 border-main-accent/50 text-main-accent shadow-main-accent/20"
-                  : "bg-white/[0.03] hover:bg-white/[0.06] border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent"
+                  : "bg-[#161616]  hover:bg-white/[0.06] border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent"
               }`}
             >
               <div className="flex items-center gap-3">
@@ -121,10 +121,10 @@ const TokenFilters: React.FC<TokenFiltersProps> = ({
             <button
               key={option.id}
               onClick={() => setSortBy(option.id)}
-              className={`group relative   border rounded-xl px-4 py-2.5 transition-all duration-300 hover:shadow-lg cursor-pointer ${
+              className={`group relative   border rounded-sm px-4 py-2.5 transition-all duration-300 hover:shadow-lg cursor-pointer ${
                 sortBy === option.id
                   ? "bg-main-highlight/15 border-main-highlight/50 text-main-highlight shadow-main-highlight/20"
-                  : "bg-white/[0.03] hover:bg-white/[0.06] border-white/[0.1] hover:border-main-highlight/30 text-main-light-text hover:text-main-highlight"
+                  : "bg-[#161616]  hover:bg-white/[0.06] border-white/[0.1] hover:border-main-highlight/30 text-main-light-text hover:text-main-highlight"
               }`}
             >
               <div className="flex items-center gap-2">
@@ -171,7 +171,7 @@ const TokenFilters: React.FC<TokenFiltersProps> = ({
             className={`group relative   border rounded-lg px-3 py-2 transition-all duration-300 hover:shadow-lg cursor-pointer ${
               cap.active
                 ? "bg-main-accent/10 border-main-accent/30 text-main-accent"
-                : "bg-white/[0.03] hover:bg-white/[0.06] border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent"
+                : "bg-[#161616]  hover:bg-white/[0.06] border-white/[0.1] hover:border-main-accent/30 text-main-light-text hover:text-main-accent"
             }`}
           >
             <div className="text-center">

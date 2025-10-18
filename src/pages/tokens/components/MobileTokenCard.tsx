@@ -165,7 +165,7 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
 
   return (
     <div
-      className="bg-white/[0.03] border border-white/[0.1] rounded-2xl p-4 mb-4 active:scale-95 transition-all duration-200"
+      className="bg-[#161616]  border border-white/[0.1] rounded-sm p-4 mb-4 active:scale-95 transition-all duration-200"
       onClick={() => onTokenClick(token)}
     >
       {/* Header */}
@@ -173,12 +173,12 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
         <div className="flex items-center gap-3">
           {/* Token Icon */}
           <div className="relative">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex items-center justify-center ring-2 ring-white/10 overflow-hidden">
+            <div className="w-10 h-10 rounded-sm bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex items-center justify-center ring-2 ring-white/10 overflow-hidden">
               {token.tokenImage ? (
                 <img
                   src={token.tokenImage}
                   alt={token.tokenName}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-cover rounded-sm"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = "none";
@@ -229,7 +229,7 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
 
       {/* Stats Row */}
       <div className="grid grid-cols-3 gap-2 mb-4">
-        <div className="bg-white/[0.03] rounded-lg p-2 border border-white/[0.05]">
+        <div className="bg-[#161616]  rounded-lg p-2 border border-white/[0.05]">
           <div className="flex items-center gap-1 mb-1">
             <Icon
               icon="material-symbols:trending-up"
@@ -244,7 +244,7 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
           </div>
         </div>
 
-        <div className="bg-white/[0.03] rounded-lg p-2 border border-white/[0.05]">
+        <div className="bg-[#161616]  rounded-lg p-2 border border-white/[0.05]">
           <div className="flex items-center gap-1 mb-1">
             <Icon
               icon="material-symbols:trending-down"
@@ -259,7 +259,7 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
           </div>
         </div>
 
-        <div className="bg-white/[0.03] rounded-lg p-2 border border-white/[0.05]">
+        <div className="bg-[#161616]  rounded-lg p-2 border border-white/[0.05]">
           <div className="flex items-center gap-1 mb-1">
             <Icon
               icon="material-symbols:timeline"
@@ -283,7 +283,7 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
             handleBuyToken();
           }}
           disabled={buyLoading}
-          className="flex-1 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-green-400/50 rounded-xl px-3 py-2 transition-all duration-300 disabled:opacity-50"
+          className="flex-1 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-green-400/50 rounded-sm px-3 py-2 transition-all duration-300 disabled:opacity-50"
         >
           <div className="flex items-center justify-center gap-1">
             {buyLoading ? (
@@ -309,7 +309,7 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
             handleSellToken();
           }}
           disabled={sellLoading}
-          className="flex-1 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/50 rounded-xl px-3 py-2 transition-all duration-300 disabled:opacity-50"
+          className="flex-1 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/50 rounded-sm px-3 py-2 transition-all duration-300 disabled:opacity-50"
         >
           <div className="flex items-center justify-center gap-1">
             {sellLoading ? (
@@ -334,7 +334,7 @@ const MobileTokenCard: React.FC<MobileTokenCardProps> = ({
             e.stopPropagation();
             onTokenClick(token);
           }}
-          className="bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-main-accent/50 rounded-xl p-2 transition-all duration-300"
+          className="bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-main-accent/50 rounded-sm p-2 transition-all duration-300"
         >
           <Icon
             icon="material-symbols:open-in-new"

@@ -403,7 +403,7 @@ const HoldingsSidebar: React.FC<HoldingsSidebarProps> = ({
 
       {/* Sidebar */}
       <div
-        className={`relative w-full max-w-md h-full backdrop-blur-xl bg-white/[0.03] border-l border-white/[0.1] shadow-2xl flex flex-col transition-all duration-300 transform
+        className={`relative w-full max-w-md h-full backdrop-blur-xl bg-[#161616]  border-l border-white/[0.1] shadow-2xl flex flex-col transition-all duration-300 transform
           ${open ? "sidebar-content-show" : "translate-x-full opacity-0"}
           before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
       >
@@ -424,7 +424,7 @@ const HoldingsSidebar: React.FC<HoldingsSidebarProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg   bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer"
+            className="p-2 rounded-lg   bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer"
           >
             <Icon
               icon="mingcute:close-line"
@@ -445,15 +445,15 @@ const HoldingsSidebar: React.FC<HoldingsSidebarProps> = ({
                     key={i}
                     width="100%"
                     height={120}
-                    className="rounded-2xl"
+                    className="rounded-sm"
                   />
                 ))}
               </div>
-              <Skeleton width="100%" height={100} className="rounded-xl" />
+              <Skeleton width="100%" height={100} className="rounded-sm" />
             </div>
           ) : error ? (
             <div className="text-center py-12">
-              <div className="w-16 h-16 bg-red-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-red-500/20 rounded-sm flex items-center justify-center mx-auto mb-4">
                 <Icon
                   icon="material-symbols:error"
                   className="w-8 h-8 text-red-400"
@@ -462,14 +462,14 @@ const HoldingsSidebar: React.FC<HoldingsSidebarProps> = ({
               <p className="text-red-400 font-tiktok mb-4">{error}</p>
               <button
                 onClick={fetchUserData}
-                className="px-6 py-3 bg-main-accent hover:bg-main-highlight text-main-bg font-tiktok rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/20"
+                className="px-6 py-3 bg-main-accent hover:bg-main-highlight text-main-bg font-tiktok rounded-sm transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/20"
               >
                 Retry
               </button>
             </div>
           ) : !userData?.result ? (
             <div className="text-center py-12">
-              <div className="w-16 h-16 bg-main-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-main-accent/20 rounded-sm flex items-center justify-center mx-auto mb-4">
                 <Icon
                   icon="material-symbols:account-balance-wallet"
                   className="w-8 h-8 text-main-accent"
@@ -482,14 +482,14 @@ const HoldingsSidebar: React.FC<HoldingsSidebarProps> = ({
           ) : (
             <div className="space-y-6">
               {/* User Info Section */}
-              <div className="  bg-white/[0.03] border border-white/[0.1] rounded-2xl p-4">
+              <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-algance text-lg text-main-text">
                     User Profile
                   </h3>
                   <button
                     onClick={fetchUserData}
-                    className="flex items-center cursor-pointer gap-2 px-3 py-1.5 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 rounded-lg transition-all duration-300"
+                    className="flex items-center cursor-pointer gap-2 px-3 py-1.5 bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 rounded-lg transition-all duration-300"
                   >
                     <Icon
                       icon="material-symbols:refresh"
@@ -529,7 +529,7 @@ const HoldingsSidebar: React.FC<HoldingsSidebarProps> = ({
 
               {/* Wallet Balances Section */}
               {userData.result && userData.result.length > 0 && (
-                <div className="  bg-white/[0.03] border border-white/[0.1] rounded-2xl p-4">
+                <div className="  bg-[#161616]  border border-white/[0.1] rounded-sm p-4">
                   <h3 className="font-algance text-lg text-main-text mb-4">
                     Wallet Balances ({userData.result.length})
                   </h3>
@@ -538,7 +538,7 @@ const HoldingsSidebar: React.FC<HoldingsSidebarProps> = ({
                     {userData.result.map((balance, index) => (
                       <div
                         key={index}
-                        className="p-3 bg-white/[0.03] rounded-lg border border-white/[0.1] space-y-3"
+                        className="p-3 bg-[#161616]  rounded-lg border border-white/[0.1] space-y-3"
                       >
                         {/* Wallet Info Row */}
                         <div className="flex items-center justify-between">

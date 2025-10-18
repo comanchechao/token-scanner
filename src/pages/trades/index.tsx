@@ -392,7 +392,7 @@ const TradesPage: React.FC = () => {
 
           {/* Error Message */}
           {error && (
-            <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 mb-8">
+            <div className="bg-red-500/10 border border-red-500/30 rounded-sm p-4 mb-8">
               <p className="text-red-400 font-tiktok">{error}</p>
             </div>
           )}
@@ -401,8 +401,8 @@ const TradesPage: React.FC = () => {
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, index) => (
-                <div key={index} className="h-[300px] rounded-3xl">
-                  <Skeleton className="h-full w-full rounded-3xl" />
+                <div key={index} className="h-[300px] rounded-sm">
+                  <Skeleton className="h-full w-full rounded-sm" />
                 </div>
               ))}
             </div>

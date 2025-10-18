@@ -147,7 +147,7 @@ const BonkTrendingCard: React.FC<BonkTrendingCardProps> = React.memo(
 
     return (
       <div
-        className={`relative  bg-white/[0.03] border border-white/[0.08] rounded-2xl p-2 transition-all duration-300 hover:bg-white/[0.06] hover:border-main-accent/30 ${
+        className={`relative  bg-[#161616]  border border-white/[0.08] rounded-sm p-2 transition-all duration-300 hover:bg-white/[0.06] hover:border-main-accent/30 ${
           isFirst
             ? "!border-[var(--color-main-highlight)] border-opacity-20"
             : ""

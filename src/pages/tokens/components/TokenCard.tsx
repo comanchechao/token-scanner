@@ -243,18 +243,18 @@ const TokenCard: React.FC<TokenCardProps> = ({ token }) => {
   };
 
   return (
-    <div className="group relative   bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-3xl p-6 transition-all duration-500 hover:shadow-2xl hover:shadow-main-accent/10 before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10">
+    <div className="group relative   bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-sm p-6 transition-all duration-500 hover:shadow-2xl hover:shadow-main-accent/10 before:absolute before:inset-0 before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10">
       {/* Header */}
       <div className="flex items-center justify-between gap-3 mb-3 relative z-10">
         <div className="flex items-center gap-4">
           {/* Token Icon */}
           <div className="relative">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex items-center justify-center ring-2 ring-white/10 group-hover:ring-main-accent/30 transition-all duration-300 overflow-hidden">
+            <div className="w-12 h-12 rounded-sm bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex items-center justify-center ring-2 ring-white/10 group-hover:ring-main-accent/30 transition-all duration-300 overflow-hidden">
               {token.tokenImage ? (
                 <img
                   src={token.tokenImage}
                   alt={token.tokenName}
-                  className="w-full h-full object-cover rounded-2xl"
+                  className="w-full h-full object-cover rounded-sm"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = "none";
@@ -309,7 +309,7 @@ const TokenCard: React.FC<TokenCardProps> = ({ token }) => {
             </div>
           </div>
         </div>{" "}
-        <div className="  w-full bg-white/[0.03] rounded-xl p-2 border border-white/[0.05]">
+        <div className="  w-full bg-[#161616]  rounded-sm p-2 border border-white/[0.05]">
           <div className="flex items-center gap-2 mb-1">
             <Icon
               icon="material-symbols:history"
@@ -327,7 +327,7 @@ const TokenCard: React.FC<TokenCardProps> = ({ token }) => {
 
       {/* Stats - Both Market Caps Side by Side */}
       <div className="grid grid-cols-1   mb-3 relative z-10">
-        <div className="  bg-white/[0.03] rounded-xl w-full p-2 border border-white/[0.05]">
+        <div className="  bg-[#161616]  rounded-sm w-full p-2 border border-white/[0.05]">
           <div className="flex items-center gap-2 mb-1">
             <Icon
               icon="material-symbols:bar-chart"
@@ -369,7 +369,7 @@ const TokenCard: React.FC<TokenCardProps> = ({ token }) => {
                 .map((trade, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-2 rounded-xl   bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.05] hover:border-white/[0.1] transition-all duration-300"
+                    className="flex items-center justify-between p-2 rounded-sm   bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.05] hover:border-white/[0.1] transition-all duration-300"
                   >
                     <div className="flex items-center gap-2">
                       <div
@@ -464,7 +464,7 @@ const TokenCard: React.FC<TokenCardProps> = ({ token }) => {
         <button
           onClick={handleBuyToken}
           disabled={buyLoading}
-          className="flex-1 relative overflow-hidden   bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-green-400/50 rounded-xl px-4 py-2 transition-all duration-300 group/btn hover:shadow-lg hover:shadow-green-400/20 before:absolute before:inset-0 before:bg-gradient-to-r before:from-green-400/0 before:via-green-400/10 before:to-green-400/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 cursor-pointer"
+          className="flex-1 relative overflow-hidden   bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-green-400/50 rounded-sm px-4 py-2 transition-all duration-300 group/btn hover:shadow-lg hover:shadow-green-400/20 before:absolute before:inset-0 before:bg-gradient-to-r before:from-green-400/0 before:via-green-400/10 before:to-green-400/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 cursor-pointer"
         >
           <div className="flex items-center justify-center gap-2 relative z-10">
             {buyLoading ? (
@@ -491,7 +491,7 @@ const TokenCard: React.FC<TokenCardProps> = ({ token }) => {
         <button
           onClick={handleSellToken}
           disabled={sellLoading}
-          className="flex-1 relative overflow-hidden   bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/50 rounded-xl px-4 py-3 transition-all duration-300 group/btn hover:shadow-lg hover:shadow-red-400/20 before:absolute before:inset-0 before:bg-gradient-to-r before:from-red-400/0 before:via-red-400/10 before:to-red-400/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 cursor-pointer"
+          className="flex-1 relative overflow-hidden   bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/50 rounded-sm px-4 py-3 transition-all duration-300 group/btn hover:shadow-lg hover:shadow-red-400/20 before:absolute before:inset-0 before:bg-gradient-to-r before:from-red-400/0 before:via-red-400/10 before:to-red-400/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 cursor-pointer"
         >
           <div className="flex items-center justify-center gap-2 relative z-10">
             {sellLoading ? (

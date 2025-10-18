@@ -42,7 +42,7 @@ const TelegramAuth: React.FC = () => {
     return (
       <button
         disabled
-        className="flex items-center cursor-not-allowed space-x-2 bg-white/[0.03] border border-white/[0.1] px-4 py-2.5 rounded-xl transition-all duration-300 opacity-50"
+        className="flex items-center cursor-not-allowed space-x-2 bg-[#161616]  border border-white/[0.1] px-4 py-2.5 rounded-sm transition-all duration-300 opacity-50"
         style={{
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
@@ -62,7 +62,7 @@ const TelegramAuth: React.FC = () => {
     return (
       <button
         onClick={handleTelegramLogin}
-        className="flex items-center cursor-pointer space-x-2 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-blue-400/30 px-4 py-2.5 rounded-xl transition-all duration-300 group"
+        className="flex items-center cursor-pointer space-x-2 bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-blue-400/30 px-4 py-2.5 rounded-sm transition-all duration-300 group"
         style={{
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
@@ -85,7 +85,7 @@ const TelegramAuth: React.FC = () => {
       {/* Logged In Button */}
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="flex items-center cursor-pointer space-x-2 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-blue-400/30 px-4 py-2.5 rounded-xl transition-all duration-300 group"
+        className="flex items-center cursor-pointer space-x-2 bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-blue-400/30 px-4 py-2.5 rounded-sm transition-all duration-300 group"
         style={{
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
@@ -113,7 +113,7 @@ const TelegramAuth: React.FC = () => {
       {/* Dropdown Menu */}
       {isDropdownOpen && (
         <div
-          className="absolute top-full right-0 mt-2 w-64 bg-[var(--color-main-bg)]/95 border border-white/[0.15] rounded-2xl shadow-2xl shadow-[var(--color-main-accent)]/10 p-2 z-50"
+          className="absolute top-full right-0 mt-2 w-64 bg-[var(--color-main-bg)]/95 border border-white/[0.15] rounded-sm shadow-2xl shadow-[var(--color-main-accent)]/10 p-2 z-50"
           style={{
             backdropFilter: "blur(24px)",
             WebkitBackdropFilter: "blur(24px)",
@@ -121,13 +121,13 @@ const TelegramAuth: React.FC = () => {
           }}
         >
           {/* Overlay for additional blur effect */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.08] to-transparent opacity-100 transition-opacity duration-500 -z-10"></div>
+          <div className="absolute inset-0 rounded-sm bg-gradient-to-br from-white/[0.08] to-transparent opacity-100 transition-opacity duration-500 -z-10"></div>
 
           {/* Content Section */}
           <div className="space-y-1">
             {/* Error Display */}
             {error && (
-              <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+              <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-sm">
                 <p className="font-tiktok text-sm text-red-400 mb-2">{error}</p>
                 <button
                   onClick={clearError}
@@ -139,7 +139,7 @@ const TelegramAuth: React.FC = () => {
             )}
 
             {/* User Info */}
-            <div className="p-3 bg-white/[0.03] border border-white/[0.1] rounded-xl">
+            <div className="p-3 bg-[#161616]  border border-white/[0.1] rounded-sm">
               <div className="flex items-center gap-3 mb-2">
                 {user.photo_url ? (
                   <img
@@ -167,7 +167,7 @@ const TelegramAuth: React.FC = () => {
             </div>
 
             {/* Wallet Connection Status */}
-            <div className="p-3 bg-white/[0.03] border border-white/[0.1] rounded-xl">
+            <div className="p-3 bg-[#161616]  border border-white/[0.1] rounded-sm">
               <div className="flex items-center gap-2">
                 <Icon
                   icon={
@@ -192,7 +192,7 @@ const TelegramAuth: React.FC = () => {
               <Link
                 to="/profile"
                 onClick={() => setIsDropdownOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-blue-400/30 rounded-xl transition-all duration-300 group"
+                className="flex items-center gap-3 px-4 py-3 bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-blue-400/30 rounded-sm transition-all duration-300 group"
               >
                 <Icon
                   icon="material-symbols:person"
@@ -212,7 +212,7 @@ const TelegramAuth: React.FC = () => {
             <div className="flex gap-3 pt-2">
               <button
                 onClick={handleLogout}
-                className="flex items-center w-full cursor-pointer gap-3 px-4 py-3 bg-red-400/[0.1] hover:bg-red-600/[0.06] border border-red-600/[0.3] hover:border-red-400/30 rounded-xl transition-all duration-300 group"
+                className="flex items-center w-full cursor-pointer gap-3 px-4 py-3 bg-red-400/[0.1] hover:bg-red-600/[0.06] border border-red-600/[0.3] hover:border-red-400/30 rounded-sm transition-all duration-300 group"
               >
                 <Icon
                   icon="material-symbols:logout"

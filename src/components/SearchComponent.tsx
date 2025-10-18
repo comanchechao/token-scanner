@@ -52,19 +52,19 @@ export function SearchComponent<T>({
 
   const variantClasses = {
     default:
-      "  placeholder:text-xs bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-xl",
+      "  placeholder:text-xs bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-sm",
     navbar:
-      "  bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-xl",
-    hero: "  bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-2xl",
+      "  bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-sm",
+    hero: "  bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/50 rounded-sm",
     sidebar: "bg-white/[0.05] border border-white/[0.1] rounded-lg",
   };
 
   const resultsContainerClasses = {
     default:
-      "  bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-xl shadow-2xl shadow-black/40",
+      "  bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-sm shadow-2xl shadow-black/40",
     navbar:
-      "  bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-xl shadow-2xl shadow-black/40",
-    hero: "  bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-2xl shadow-2xl shadow-black/40",
+      "  bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-sm shadow-2xl shadow-black/40",
+    hero: "  bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-sm shadow-2xl shadow-black/40",
     sidebar:
       "bg-white/[0.15] backdrop-blur-md border border-white/[0.2] rounded-lg shadow-2xl shadow-black/40",
   };

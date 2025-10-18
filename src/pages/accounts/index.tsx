@@ -562,7 +562,7 @@ const AccountsPage: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <Skeleton width={160} height={48} className="rounded-2xl" />
+                  <Skeleton width={160} height={48} className="rounded-sm" />
                 </div>
               </div>
 
@@ -571,7 +571,7 @@ const AccountsPage: React.FC = () => {
                 {/* Left Column - Stats/Holdings Skeleton */}
                 <div className="lg:col-span-1 space-y-6">
                   {/* Stats/Holdings/Overall Combined Skeleton */}
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     {/* Tab Headers Skeleton */}
                     <div className="flex mb-6 border-b border-white/[0.08]">
                       <Skeleton width={60} height={30} className="mr-6" />
@@ -603,7 +603,7 @@ const AccountsPage: React.FC = () => {
 
                 {/* Right Column - Defi Trades Skeleton */}
                 <div className="lg:col-span-3">
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     <div className="flex items-center justify-between mb-6">
                       <Skeleton width={140} height={28} />
                       <div className="flex items-center gap-3">
@@ -623,7 +623,7 @@ const AccountsPage: React.FC = () => {
                       {[...Array(4)].map((_, i) => (
                         <div
                           key={i}
-                          className="flex items-center justify-between p-4 bg-main-bg/20 rounded-xl"
+                          className="flex items-center justify-between p-4 bg-main-bg/20 rounded-sm"
                         >
                           <div className="flex items-center gap-4">
                             <Skeleton
@@ -656,7 +656,7 @@ const AccountsPage: React.FC = () => {
 
                 {/* Full Width - Token PnL Skeleton */}
                 <div className="lg:col-span-4">
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     <div className="flex items-center justify-between mb-6">
                       <Skeleton width={120} height={28} />
                       <div className="flex items-center gap-4">
@@ -717,7 +717,7 @@ const AccountsPage: React.FC = () => {
                       {[...Array(5)].map((_, i) => (
                         <div
                           key={i}
-                          className="flex items-center justify-between p-4 bg-main-bg/20 rounded-xl"
+                          className="flex items-center justify-between p-4 bg-main-bg/20 rounded-sm"
                         >
                           <div className="flex items-center gap-4">
                             <Skeleton
@@ -877,7 +877,7 @@ const AccountsPage: React.FC = () => {
                 {/* Copy Trade CTA */}
                 {/* Copy Trade CTA */}
                 <div
-                  className="relative overflow-hidden px-4 py-3 ml-4 z-50 transition-all flex gap-2 items-center ease-in shadow-2xl shadow-main-accent border border-main-accent/50 text-main-accent text-sm rounded-xl duration-300 hover:shadow-2xl hover:shadow-main-accent/30 transform cursor-pointer group"
+                  className="relative overflow-hidden px-4 py-3 ml-4 z-50 transition-all flex gap-2 items-center ease-in shadow-2xl shadow-main-accent border border-main-accent/50 text-main-accent text-sm rounded-sm duration-300 hover:shadow-2xl hover:shadow-main-accent/30 transform cursor-pointer group"
                   onClick={() => setCopyTradeOpen(true)}
                 >
                   <span className="absolute inset-0 left-0 w-0 group-hover:w-full bg-main-accent transition-all duration-300 ease-in-out z-0"></span>
@@ -928,7 +928,7 @@ const AccountsPage: React.FC = () => {
                     loading={tokenPnLState.loading}
                   />
                 ) : (
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     <div className="text-center text-red-400">
                       <Icon
                         icon="material-symbols:error"
@@ -943,7 +943,7 @@ const AccountsPage: React.FC = () => {
               {/* Right Column - Defi Trades */}
               <div className="lg:col-span-3">
                 {tradesState.error ? (
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     <div className="text-center text-red-400">
                       <Icon
                         icon="material-symbols:error"
@@ -962,7 +962,7 @@ const AccountsPage: React.FC = () => {
                     </div>
                   </div>
                 ) : tradesState.loading ? (
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <Skeleton width={140} height={28} />
@@ -982,7 +982,7 @@ const AccountsPage: React.FC = () => {
                       {[...Array(4)].map((_, i) => (
                         <div
                           key={i}
-                          className="flex items-center justify-between p-4 bg-main-bg/20 rounded-xl"
+                          className="flex items-center justify-between p-4 bg-main-bg/20 rounded-sm"
                         >
                           <div className="flex items-center gap-4">
                             <Skeleton
@@ -1026,7 +1026,7 @@ const AccountsPage: React.FC = () => {
               {/* Full Width - Token PnL */}
               <div className="lg:col-span-4">
                 {tokenPnLState.error ? (
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     <div className="text-center text-red-400">
                       <Icon
                         icon="material-symbols:error"
@@ -1047,7 +1047,7 @@ const AccountsPage: React.FC = () => {
                     </div>
                   </div>
                 ) : tokenPnLState.loading ? (
-                  <div className="bg-light-bg/5   rounded-2xl p-6 ring-1 ring-white/10">
+                  <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <Skeleton width={120} height={28} />
@@ -1091,7 +1091,7 @@ const AccountsPage: React.FC = () => {
                         {[...Array(5)].map((_, i) => (
                           <div
                             key={i}
-                            className="flex items-center justify-between p-4 bg-main-bg/20 rounded-xl"
+                            className="flex items-center justify-between p-4 bg-main-bg/20 rounded-sm"
                           >
                             <div className="flex items-center gap-4">
                               <Skeleton

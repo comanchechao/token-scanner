@@ -93,7 +93,7 @@ const LeaderboardRow: React.FC<LeaderboardRowProps> = React.memo(
     return (
       <>
         <div
-          className={`bg-white/5 border border-white/10 rounded-xl p-4 transition-colors hover:bg-white/8 hover:border-white/20 ${
+          className={`bg-white/5 border border-white/10 rounded-sm p-4 transition-colors hover:bg-white/8 hover:border-white/20 ${
             isTopRank ? "bg-yellow-500/10 border-yellow-500/30" : ""
           }`}
         >

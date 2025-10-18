@@ -23,7 +23,7 @@ const WalletButton: React.FC<WalletButtonProps> = () => {
   };
 
   const baseButtonClasses = `
-    relative overflow-hidden   border rounded-xl px-4 py-2.5 
+    relative overflow-hidden   border rounded-sm px-4 py-2.5 
     flex items-center justify-center gap-2 transition-all duration-300 
     font-tiktok text-sm hover:shadow-lg hover:shadow-main-accent/20
     before:absolute before:inset-0 before:bg-gradient-to-r 
@@ -69,10 +69,10 @@ const WalletButton: React.FC<WalletButtonProps> = () => {
 
         {/* Dropdown Menu */}
         {isDropdownOpen && (
-          <div className="absolute top-full right-0 mt-2 w-64   bg-white/[0.05] border border-white/[0.1] rounded-xl p-4 shadow-2xl shadow-main-accent/10 z-50">
+          <div className="absolute top-full right-0 mt-2 w-64   bg-white/[0.05] border border-white/[0.1] rounded-sm p-4 shadow-2xl shadow-main-accent/10 z-50">
             <div className="space-y-3">
               {/* Wallet Info */}
-              <div className="flex items-center gap-3 p-3 bg-white/[0.03] rounded-lg border border-white/[0.05]">
+              <div className="flex items-center gap-3 p-3 bg-[#161616]  rounded-lg border border-white/[0.05]">
                 <div className="w-8 h-8 rounded-full bg-main-accent/20 flex items-center justify-center">
                   <Icon
                     icon="material-symbols:account-balance-wallet"
@@ -92,7 +92,7 @@ const WalletButton: React.FC<WalletButtonProps> = () => {
                   navigator.clipboard.writeText(walletInfo.address);
                   setIsDropdownOpen(false);
                 }}
-                className="w-full flex items-center gap-2 p-2 text-left hover:bg-white/[0.03] rounded-lg transition-all duration-200 cursor-pointer"
+                className="w-full flex items-center gap-2 p-2 text-left hover:bg-[#161616]  rounded-lg transition-all duration-200 cursor-pointer"
               >
                 <Icon
                   icon="mdi:content-copy"

@@ -118,7 +118,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
 
   return (
     <div
-      className={`  bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-2xl p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 ${
+      className={`  bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 ${
         isRefreshing ? "opacity-80" : "opacity-100"
       }`}
     >
@@ -164,7 +164,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
 
       {/* PnL Summary */}
       <div
-        className={`flex items-center justify-between mb-4 lg:mb-6 p-3 lg:p-4 bg-white/[0.02] border border-white/[0.05] rounded-xl transition-all duration-300 ${
+        className={`flex items-center justify-between mb-4 lg:mb-6 p-3 lg:p-4 bg-white/[0.02] border border-white/[0.05] rounded-sm transition-all duration-300 ${
           isRefreshing ? "opacity-70" : "opacity-100"
         }`}
       >
@@ -206,7 +206,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
         {tokens.map((token) => (
           <div
             key={token.tokenAddress}
-            className="flex items-center justify-between p-4 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-xl transition-all duration-300"
+            className="flex items-center justify-between p-4 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-sm transition-all duration-300"
           >
             {/* Token Info */}
             <div className="flex items-center gap-3 flex-1">
@@ -317,7 +317,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
         {tokens.map((token) => (
           <div
             key={token.tokenAddress}
-            className="bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-xl p-3 transition-all duration-300"
+            className="bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-sm p-3 transition-all duration-300"
           >
             {/* Token Info and PnL */}
             <div className="flex items-center justify-between mb-3">

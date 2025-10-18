@@ -76,9 +76,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
       {/* Modal */}
       <div
-        className={`relative w-full max-w-md backdrop-blur-xl bg-white/[0.03] border border-white/[0.1] shadow-2xl rounded-2xl flex flex-col transition-all duration-300 transform 
+        className={`relative w-full max-w-md backdrop-blur-xl bg-[#161616]  border border-white/[0.1] shadow-2xl rounded-sm flex flex-col transition-all duration-300 transform 
           ${open ? "modal-content-show" : "opacity-0 scale-95 translate-y-8"}
-          before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
+          before:absolute before:inset-0 before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
         style={{ minWidth: 400, maxHeight: "85vh" }}
       >
         {/* Header */}
@@ -98,7 +98,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg   bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer"
+            className="p-2 rounded-lg   bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer"
           >
             <Icon
               icon="iconamoon:close-fill"
@@ -113,7 +113,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
         <div className="flex-1 overflow-y-auto px-6 py-8 space-y-6">
           <div className="text-center space-y-4">
             <div className="flex justify-center">
-              <div className="w-16 h-16 rounded-full bg-white/[0.03] border border-white/[0.1] flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-[#161616]  border border-white/[0.1] flex items-center justify-center">
                 <Icon
                   icon="mdi:wallet"
                   width={32}
@@ -147,13 +147,13 @@ const LoginModal: React.FC<LoginModalProps> = ({
             <button
               onClick={handleLoginWithWallet}
               disabled={connecting}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl transition-all duration-300 border cursor-pointer
+              className={`flex items-center gap-2 px-5 py-3 rounded-sm transition-all duration-300 border cursor-pointer
                 ${
                   connecting
                     ? "opacity-60 cursor-not-allowed"
                     : "hover:bg-white/[0.06] hover:border-yellow-400/30"
                 }
-                bg-white/[0.03] border-white/[0.1]`}
+                bg-[#161616]  border-white/[0.1]`}
             >
               {connecting ? (
                 <>

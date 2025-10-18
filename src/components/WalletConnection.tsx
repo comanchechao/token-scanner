@@ -56,7 +56,7 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto">
             {/* Success Card */}
-            <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] p-8 relative overflow-hidden">
+            <div className="bg-cherry-cream rounded-sm border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] p-8 relative overflow-hidden">
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/paper.png')] opacity-20"></div>
 
               <div className="relative z-10">
@@ -77,7 +77,7 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({
                 </h1>
 
                 {/* Wallet Info */}
-                <div className="bg-cherry-burgundy rounded-xl p-4 mb-6">
+                <div className="bg-cherry-burgundy rounded-sm p-4 mb-6">
                   <div className="flex items-center justify-center gap-3 mb-3">
                     {wallet?.adapter.icon && (
                       <img
@@ -147,7 +147,7 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto">
           {/* Main Card */}
-          <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] p-8 relative overflow-hidden">
+          <div className="bg-cherry-cream rounded-sm border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] p-8 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/paper.png')] opacity-20"></div>
 
             <div className="relative z-10">
@@ -174,7 +174,7 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({
 
               {/* Features List */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div className="bg-cherry-burgundy rounded-xl p-4">
+                <div className="bg-cherry-burgundy rounded-sm p-4">
                   <Icon
                     icon="mdi:shield-check"
                     className="text-yellow-400 mx-auto mb-2"
@@ -188,7 +188,7 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({
                     Your wallet stays secure in your control
                   </p>
                 </div>
-                <div className="bg-cherry-burgundy rounded-xl p-4">
+                <div className="bg-cherry-burgundy rounded-sm p-4">
                   <Icon
                     icon="mdi:lightning-bolt"
                     className="text-yellow-400 mx-auto mb-2"
@@ -202,7 +202,7 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({
                     Lightning-fast Solana transactions
                   </p>
                 </div>
-                <div className="bg-cherry-burgundy rounded-xl p-4">
+                <div className="bg-cherry-burgundy rounded-sm p-4">
                   <Icon
                     icon="mdi:coin"
                     className="text-yellow-400 mx-auto mb-2"
@@ -224,7 +224,7 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({
                 disabled={connecting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-cherry-red text-white py-4 px-8 rounded-xl border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-3 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-cherry-red text-white py-4 px-8 rounded-sm border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-3 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {connecting ? (
                   <>

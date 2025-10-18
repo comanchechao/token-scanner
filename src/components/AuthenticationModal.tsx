@@ -291,9 +291,9 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
 
       {/* Modal */}
       <div
-        className={`relative w-full max-w-xs lg:max-w-md backdrop-blur-xl bg-white/[0.03] border border-white/[0.1] shadow-2xl rounded-2xl flex flex-col transition-all duration-300 transform 
+        className={`relative w-full max-w-xs lg:max-w-md backdrop-blur-xl bg-[#161616]  border border-white/[0.1] shadow-2xl rounded-sm flex flex-col transition-all duration-300 transform 
           ${open ? "modal-content-show" : "opacity-0 scale-95 translate-y-8"}
-          before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
+          before:absolute before:inset-0 before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
         style={{ minWidth: 280, maxHeight: "85vh" }}
       >
         {/* Header */}
@@ -318,7 +318,7 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
           <button
             onClick={onClose}
             disabled={isProcessing}
-            className="p-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/30 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-2 rounded-lg bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-red-400/30 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Icon
               icon="iconamoon:close-fill"
@@ -357,7 +357,7 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
 
             {/* Error Display */}
             {error && (
-              <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+              <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-sm">
                 <p className="font-tiktok text-sm lg:text-base text-red-400">
                   {error}
                 </p>
@@ -366,7 +366,7 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
 
             {/* Wallet Info */}
             {walletInfo && (
-              <div className="p-3 bg-white/[0.03] border border-white/[0.1] rounded-xl">
+              <div className="p-3 bg-[#161616]  border border-white/[0.1] rounded-sm">
                 <p className="font-tiktok text-xs lg:text-sm text-main-light-text/70 mb-1">
                   Wallet Address
                 </p>
@@ -382,7 +382,7 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
             <button
               onClick={onClose}
               disabled={isProcessing}
-              className="flex-1 cursor-pointer bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/[0.2] px-4 py-3 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+              className="flex-1 cursor-pointer bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/[0.2] px-4 py-3 rounded-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
             >
               <span className="font-tiktok text-sm lg:text-base text-main-light-text group-hover:text-main-text transition-colors duration-300">
                 Cancel
@@ -392,7 +392,7 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
             <button
               onClick={handleAuthenticate}
               disabled={isProcessing || currentStep > 1}
-              className={`flex-1 cursor-pointer ${stepConfig.buttonColor} px-4 py-3 lg:px-6 lg:py-4 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2`}
+              className={`flex-1 cursor-pointer ${stepConfig.buttonColor} px-4 py-3 lg:px-6 lg:py-4 rounded-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2`}
             >
               {isProcessing || currentStep > 1 ? (
                 <>
