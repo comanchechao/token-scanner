@@ -134,10 +134,10 @@ const Footer: React.FC = React.memo(() => {
                 <>
                   <div className="flex items-center gap-2">
                     <Icon
-                      icon="cryptocurrency:btc"
-                      className="w-5 h-5 text-orange-400"
+                      icon="cryptocurrency-color:btc"
+                      className="w-5 h-5  "
                     />
-                    <span className="font-display font-bold text-sm text-main-light-text">
+                    <span className="font-display   text-sm text-main-light-text">
                       BTC:{" "}
                       <span className="font-display text-main-text">
                         {formatPrice(prices.bitcoin.usd)}
@@ -145,11 +145,8 @@ const Footer: React.FC = React.memo(() => {
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Icon
-                      icon="cryptocurrency:eth"
-                      className="w-5 h-5 text-blue-400"
-                    />
-                    <span className="font-display font-bold text-sm text-main-light-text">
+                    <Icon icon="cryptocurrency:eth" className="w-5 h-5  " />
+                    <span className="font-display   text-sm text-main-light-text">
                       ETH:{" "}
                       <span className="font-display text-main-text">
                         {formatPrice(prices.ethereum.usd)}
@@ -158,10 +155,10 @@ const Footer: React.FC = React.memo(() => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Icon
-                      icon="cryptocurrency:sol"
+                      icon="token-branded:solana"
                       className="w-5 h-5 text-purple-400"
                     />
-                    <span className="font-display font-bold text-sm text-main-light-text">
+                    <span className="font-display   text-sm text-main-light-text">
                       SOL:{" "}
                       <span className="font-display text-main-text">
                         {formatPrice(prices.solana.usd)}
@@ -170,10 +167,10 @@ const Footer: React.FC = React.memo(() => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Icon
-                      icon="cryptocurrency:bnb"
-                      className="w-5 h-5 text-yellow-400"
+                      icon="cryptocurrency-color:bnb"
+                      className="w-5 h-5  "
                     />
-                    <span className="font-display font-bold text-sm text-main-light-text">
+                    <span className="font-display   text-sm text-main-light-text">
                       BNB:{" "}
                       <span className="font-display text-main-text">
                         {formatPrice(prices.binancecoin.usd)}
