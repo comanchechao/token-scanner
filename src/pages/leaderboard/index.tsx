@@ -67,7 +67,7 @@ const LeaderboardPage: React.FC = () => {
   }, [selectedFilter, currentPage, fetchKOLs]);
 
   return (
-    <div className="min-h-screen bg-main-bg py-8 px-4">
+    <div className="min-h-screen bg-main-bg pb-8 px-4">
       <Navbar />
       <div className="max-w-6xl mx-auto mb-20">
         {/* Back Button */}

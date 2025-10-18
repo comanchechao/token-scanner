@@ -1,9 +1,14 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { Icon } from "@iconify/react";
-import { motion } from "framer-motion";
 import Navbar from "../../layouts/Navbar";
 import Footer from "../../layouts/Footer";
 import ActivityFeed from "./components/ActivityFeed";
+import HeroSearch from "./components/HeroSearch";
+import TokenOverview from "./components/TokenOverview";
+import KOLTraction from "./components/KOLTraction";
+import TelegramCalls from "./components/TelegramCalls";
+import SecurityAnalysis from "./components/SecurityAnalysis";
+import DeveloperEcosystem from "./components/DeveloperEcosystem";
+import NavigationSidebar from "./components/NavigationSidebar";
 import "../../css/index.css";
 
 type KolBuyer = {
@@ -476,127 +481,23 @@ const HomePage: React.FC = () => {
       <Navbar />
 
       {/* Hero + Search */}
-      <section
-        className={`relative z-10 flex-1 flex flex-col justify-center transition-all duration-500 ${
-          !scanned ? "pt-32 pb-10" : "pt-16 pb-8"
-        }`}
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {!scanned ? (
-            // Centered search when not scanned
-            <div className="flex flex-col items-center justify-center">
-              <motion.h1
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35 }}
-                className="font-mono text-4xl md:text-6xl text-main-text mb-4 leading-tight"
-              >
-                Token Find
-              </motion.h1>
-              <p className="font-display text-lg md:text-xl text-main-light-text/70 mb-12 max-w-2xl">
-                Analyze any token instantly - get KOL insights, security checks,
-                and dev connections
-              </p>
-            </div>
-          ) : (
-            // Compact header when scanned
-            <>
-              <motion.h1
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35 }}
-                className="font-mono text-3xl md:text-5xl text-main-text mb-3 leading-tight"
-              >
-                Find everything about a token
-                <span className="text-main-accent"> in one place</span>
-              </motion.h1>
-              <p className="font-display text-base md:text-lg text-main-light-text/80 mb-8">
-                Paste a token address to see narrative, KOL traction, Telegram
-                calls, security, and dev tokens.
-              </p>
-            </>
-          )}
-
-          {/* Search Input - shown in both states */}
-          <div
-            className={`${
-              !scanned ? "max-w-4xl w-full mx-auto" : "max-w-3xl mx-auto"
-            }`}
-          >
-            <div
-              className={`relative bg-[#161616] hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 transition-all duration-300 ${
-                !scanned ? "rounded-sm" : "rounded-sm"
-              }`}
-            >
-              <Icon
-                icon="solar:magnifer-linear"
-                className="absolute left-5 top-1/2 -translate-y-1/2 text-main-light-text/60 w-6 h-6"
-              />
-              <input
-                value={input}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleInputChange(e.target.value)
-                }
-                onFocus={() => {
-                  if (suggestions.length > 0) setShowSuggestions(true);
-                }}
-                onBlur={() => {
-                  // Delay hiding to allow clicking on suggestions
-                  setTimeout(() => setShowSuggestions(false), 200);
-                }}
-                placeholder={
-                  !scanned
-                    ? "Search by token name or paste address..."
-                    : "Paste token address or search by name..."
-                }
-                className="w-full pl-14 pr-40 py-4 bg-transparent text-main-text placeholder-main-light-text/60 font-display text-base focus:outline-none"
-              />
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
-                <button
-                  onClick={handlePaste}
-                  className="px-3 py-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-main-light-text text-sm cursor-pointer"
-                >
-                  Paste
-                </button>
-                <button
-                  onClick={handleScan}
-                  className="px-4 py-2 rounded-lg bg-main-accent hover:bg-main-highlight text-main-bg font-display text-sm cursor-pointer transition-colors"
-                >
-                  {!scanned ? "Analyze" : "Analyze"}
-                </button>
-              </div>
-            </div>
-
-            {/* Search Suggestions Dropdown */}
-            {showSuggestions && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-[#161616] border border-white/[0.1] rounded-lg shadow-2xl z-50 max-h-64 overflow-y-auto">
-                {suggestions.map((suggestion) => (
-                  <button
-                    key={suggestion.address}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                    className="w-full px-4 py-3 text-left hover:bg-white/[0.05] border-b border-white/[0.05] last:border-b-0 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-display text-main-text font-medium">
-                          {suggestion.name}
-                        </div>
-                        <div className="font-display text-sm text-main-light-text/60">
-                          {suggestion.symbol}
-                        </div>
-                      </div>
-                      <div className="font-mono text-xs text-main-light-text/40">
-                        {suggestion.address.slice(0, 6)}...
-                        {suggestion.address.slice(-4)}
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+      <HeroSearch
+        scanned={scanned}
+        input={input}
+        showSuggestions={showSuggestions}
+        suggestions={suggestions}
+        onInputChange={handleInputChange}
+        onSuggestionClick={handleSuggestionClick}
+        onScan={handleScan}
+        onPaste={handlePaste}
+        onFocus={() => {
+          if (suggestions.length > 0) setShowSuggestions(true);
+        }}
+        onBlur={() => {
+          setTimeout(() => setShowSuggestions(false), 200);
+        }}
+        onCloseSuggestions={() => setShowSuggestions(false)}
+      />
 
       {/* Activity Feed - Show when not scanned */}
       {!scanned && (
@@ -611,478 +512,61 @@ const HomePage: React.FC = () => {
       {scanned && (
         <section className="relative z-10 pb-20 flex-1">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Back to List Button */}
-
-            {/* Mobile Navigation Toggle */}
-            <div className="lg:hidden mb-6">
-              <button
-                onClick={() => setShowMobileNav(!showMobileNav)}
-                className="flex items-center gap-2 px-4 py-2 bg-[#161616] border border-white/[0.1] rounded-sm text-main-text hover:border-main-accent/40 transition-colors"
-              >
-                <Icon icon="material-symbols:menu" className="w-5 h-5" />
-                <span className="font-display text-sm">Navigation</span>
-                <Icon
-                  icon={
-                    showMobileNav
-                      ? "material-symbols:expand-less"
-                      : "material-symbols:expand-more"
-                  }
-                  className="w-5 h-5"
-                />
-              </button>
-
-              {showMobileNav && (
-                <div className="mt-2 bg-[#161616] border border-white/[0.1] rounded-sm p-4">
-                  <nav className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {sections.map((section) => (
-                      <button
-                        key={section.id}
-                        onClick={() => {
-                          scrollToSection(section.id);
-                          setShowMobileNav(false);
-                        }}
-                        className={`flex items-center gap-2 px-3 py-2 rounded text-left transition-all duration-200 ${
-                          activeSection === section.id
-                            ? "bg-main-accent/20 text-main-accent"
-                            : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
-                        }`}
-                      >
-                        <Icon icon={section.icon} className="w-4 h-4" />
-                        <span className="font-display text-xs">
-                          {section.label}
-                        </span>
-                      </button>
-                    ))}
-                  </nav>
-                </div>
-              )}
-            </div>
-
             <div className="flex gap-8">
-              {/* Left Sidebar Navigation */}
-              <div className="hidden lg:block w-64 flex-shrink-0">
-                <div className="mb-5">
-                  <button
-                    onClick={handleBackToList}
-                    className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
-                  >
-                    <Icon
-                      icon="material-symbols:arrow-back"
-                      className="w-5 h-5"
-                    />
-                    <span className="font-display text-sm">
-                      Back to Live Activity
-                    </span>
-                  </button>
-                </div>
-                <div
-                  ref={navRef}
-                  className={`w-64 bg-[#161616] border border-white/[0.1] rounded-sm p-4 transition-all duration-200 ${
-                    isNavSticky
-                      ? "fixed top-24 z-40 max-h-[calc(100vh-1rem)] overflow-y-auto"
-                      : "relative"
-                  }`}
-                >
-                  <nav className="space-y-2">
-                    {sections.map((section) => (
-                      <button
-                        key={section.id}
-                        onClick={() => scrollToSection(section.id)}
-                        className={`w-full flex items-center gap-3 px-3 py-2 rounded text-left transition-all duration-200 ${
-                          activeSection === section.id
-                            ? "bg-main-accent/20 text-main-accent border-l-2 border-main-accent"
-                            : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
-                        }`}
-                      >
-                        <Icon icon={section.icon} className="w-4 h-4" />
-                        <span className="font-display text-sm">
-                          {section.label}
-                        </span>
-                      </button>
-                    ))}
-                  </nav>
-                </div>
-              </div>
+              {/* Navigation Sidebar */}
+              <NavigationSidebar
+                sections={sections}
+                activeSection={activeSection}
+                isNavSticky={isNavSticky}
+                showMobileNav={showMobileNav}
+                onScrollToSection={scrollToSection}
+                onBackToList={handleBackToList}
+                onToggleMobileNav={() => setShowMobileNav(!showMobileNav)}
+                navRef={navRef}
+              />
 
               {/* Main Content */}
               <div className="flex-1 min-w-0">
                 {/* Token Overview */}
-                <motion.div
-                  id="overview"
-                  ref={(el) => (sectionRefs.current.overview = el)}
+                <TokenOverview
+                  token={data.token}
                   custom={0}
                   variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="group bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
-                >
-                  <div className="flex flex-col lg:flex-row gap-6">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-4">
-                        <h2 className="font-mono text-2xl text-main-text">
-                          {data.token.name}
-                        </h2>
-                        <span className="px-3 py-1 font-bold bg-main-accent/20 text-main-accent font-display text-sm rounded-full">
-                          ${data.token.symbol}
-                        </span>
-                      </div>
-                      <p className="font-display text-main-light-text/90 mb-4 leading-relaxed">
-                        {data.token.narrative}
-                      </p>
-                      <div className="font-mono text-xs text-main-light-text/60 bg-[#0a0a0a] hover:bg-white/[0.02] p-3 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
-                        {data.token.address}
-                      </div>
-                    </div>
-                    <div className="lg:w-80">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
-                          <div className="font-display text-xs text-main-light-text/60 mb-1">
-                            Price
-                          </div>
-                          <div className="font-mono text-lg text-main-text">
-                            {data.token.price}
-                          </div>
-                        </div>
-                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
-                          <div className="font-display text-xs text-main-light-text/60 mb-1">
-                            Market Cap
-                          </div>
-                          <div className="font-mono text-lg text-main-text">
-                            {data.token.marketCap}
-                          </div>
-                        </div>
-                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
-                          <div className="font-display text-xs text-main-light-text/60 mb-1">
-                            24h Volume
-                          </div>
-                          <div className="font-mono text-lg text-main-text">
-                            {data.token.volume24h}
-                          </div>
-                        </div>
-                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
-                          <div className="font-display text-xs text-main-light-text/60 mb-1">
-                            Holders
-                          </div>
-                          <div className="font-mono text-lg text-main-text">
-                            {data.token.holders}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+                  sectionRef={(el) => (sectionRefs.current.overview = el)}
+                />
 
                 {/* KOLs and Telegram */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <motion.div
-                    id="kols"
-                    ref={(el) => (sectionRefs.current.kols = el)}
+                  <KOLTraction
+                    kolData={data.kols}
                     custom={1}
                     variants={cardVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-mono text-xl text-main-text">
-                        KOL Traction
-                      </h3>
-                      <div className="text-right">
-                        <div className="font-display text-sm text-main-accent">
-                          {data.kols.count} KOLs
-                        </div>
-                        <div className="font-display text-xs text-main-light-text/60">
-                          {data.kols.totalInvested} invested
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      {data.kols.top.map((kol: KolBuyer) => (
-                        <div
-                          key={kol.name}
-                          className="bg-[#0a0a0a] hover:bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.1] rounded-lg p-3 transition-all duration-200"
-                        >
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20">
-                                {kol.avatar ? (
-                                  <img
-                                    src={kol.avatar}
-                                    alt={kol.name}
-                                    className="w-full h-full object-cover"
-                                  />
-                                ) : (
-                                  <div className="w-full h-full flex items-center justify-center">
-                                    <Icon
-                                      icon="material-symbols:person"
-                                      className="w-4 h-4 text-main-accent"
-                                    />
-                                  </div>
-                                )}
-                              </div>
-                              <div>
-                                <div className="font-display text-main-light-text font-medium">
-                                  {kol.name}
-                                </div>
-                                <div className="font-display text-xs text-main-light-text/60">
-                                  {kol.followers} followers
-                                </div>
-                              </div>
-                            </div>
-                            <div className="text-right">
-                              <div className="font-mono text-main-text">
-                                {kol.amount}
-                              </div>
-                              <div className="font-display text-xs text-main-accent">
-                                {kol.invested}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
+                    sectionRef={(el) => (sectionRefs.current.kols = el)}
+                  />
 
-                  <motion.div
-                    id="telegram"
-                    ref={(el) => (sectionRefs.current.telegram = el)}
+                  <TelegramCalls
+                    telegramData={data.telegram}
                     custom={2}
                     variants={cardVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-mono text-xl text-main-text">
-                        Telegram Calls
-                      </h3>
-                      <div className="text-right">
-                        <div className="font-display text-sm text-main-accent">
-                          {data.telegram.count} channels
-                        </div>
-                        <div className="font-display text-xs text-main-light-text/60">
-                          {data.telegram.totalMembers} total reach
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      {data.telegram.top.map((ch: TelegramChannel) => (
-                        <div
-                          key={ch.name}
-                          className="bg-[#0a0a0a] hover:bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.1] rounded-lg p-3 transition-all duration-200"
-                        >
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-3">
-                              <Icon
-                                icon="ic:baseline-telegram"
-                                className="w-6 h-6 text-blue-400"
-                              />
-                              <div>
-                                <div className="font-display text-main-light-text font-medium">
-                                  {ch.name}
-                                </div>
-                                <div className="font-display text-xs text-main-light-text/60">
-                                  {ch.mentions} mentions
-                                </div>
-                              </div>
-                            </div>
-                            <div className="text-right">
-                              <div className="font-mono text-main-text">
-                                {ch.members}
-                              </div>
-                              <div
-                                className={`font-display text-xs px-2 py-1 rounded-full ${
-                                  ch.sentiment === "Bullish"
-                                    ? "bg-emerald-500/20 text-emerald-400"
-                                    : ch.sentiment === "Bearish"
-                                    ? "bg-red-500/20 text-red-400"
-                                    : "bg-amber-500/20 text-amber-400"
-                                }`}
-                              >
-                                {ch.sentiment}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
+                    sectionRef={(el) => (sectionRefs.current.telegram = el)}
+                  />
                 </div>
 
-                {/* Security Checklist */}
-                <motion.div
-                  id="security"
-                  ref={(el) => (sectionRefs.current.security = el)}
+                {/* Security Analysis */}
+                <SecurityAnalysis
+                  securityData={data.security}
                   custom={3}
                   variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
-                >
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-mono text-xl text-main-text">
-                      Security Analysis
-                    </h3>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
-                      <span className="font-display text-sm text-main-light-text/70">
-                        {
-                          data.security.filter((item) => item.status === "pass")
-                            .length
-                        }
-                        /{data.security.length} checks passed
-                      </span>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {data.security.map(
-                      (item: {
-                        label: string;
-                        status: "pass" | "warn" | "fail";
-                        detail: string;
-                      }) => {
-                        const color =
-                          item.status === "pass"
-                            ? "text-emerald-400"
-                            : item.status === "warn"
-                            ? "text-amber-400"
-                            : "text-red-400";
-                        const bgColor =
-                          item.status === "pass"
-                            ? "bg-emerald-500/10 border-emerald-500/20"
-                            : item.status === "warn"
-                            ? "bg-amber-500/10 border-amber-500/20"
-                            : "bg-red-500/10 border-red-500/20";
-                        const icon =
-                          item.status === "pass"
-                            ? "solar:check-circle-bold"
-                            : item.status === "warn"
-                            ? "solar:warning-circle-bold"
-                            : "solar:close-circle-bold";
-                        return (
-                          <div
-                            key={item.label}
-                            className={`bg-[#0a0a0a] border rounded-lg p-4 hover:border-opacity-40 transition-colors ${bgColor}`}
-                          >
-                            <div className="flex items-start gap-3">
-                              <Icon
-                                icon={icon}
-                                className={`w-5 h-5 ${color} mt-0.5`}
-                              />
-                              <div className="flex-1">
-                                <div className="font-display text-main-light-text font-medium mb-1">
-                                  {item.label}
-                                </div>
-                                <div className="font-display text-xs text-main-light-text/60">
-                                  {item.detail}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                </motion.div>
+                  sectionRef={(el) => (sectionRefs.current.security = el)}
+                />
 
-                {/* Dev Tokens */}
-                <motion.div
-                  id="devtokens"
-                  ref={(el) => (sectionRefs.current.devtokens = el)}
+                {/* Developer Ecosystem */}
+                <DeveloperEcosystem
+                  devTokens={data.devTokens}
                   custom={4}
                   variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 rounded-sm p-6 md:p-8"
-                >
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-mono text-xl text-main-text">
-                      Developer Ecosystem
-                    </h3>
-                    <div className="text-right">
-                      <div className="font-display text-sm text-main-accent">
-                        {data.devTokens.length} tokens
-                      </div>
-                      <div className="font-display text-xs text-main-light-text/60">
-                        Related projects
-                      </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {data.devTokens.map((t: DevToken) => (
-                      <a
-                        key={t.address + t.name}
-                        href={t.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group bg-[#0a0a0a] hover:bg-white/[0.05] border border-white/[0.08] hover:border-main-accent/30 rounded-lg p-4 transition-all duration-200  "
-                      >
-                        <div className="flex items-start gap-3 mb-3">
-                          <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex-shrink-0">
-                            {t.avatar ? (
-                              <img
-                                src={t.avatar}
-                                alt={t.name}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center">
-                                <Icon
-                                  icon="material-symbols:token"
-                                  className="w-5 h-5 text-main-accent"
-                                />
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="font-display text-main-text font-medium mb-1 truncate">
-                              {t.name}
-                            </div>
-                            <div className="font-mono text-xs text-main-light-text/60 mb-2">
-                              {t.symbol}
-                            </div>
-                            <div className="font-mono text-xs text-main-light-text/40 truncate">
-                              {t.address.slice(0, 6)}...{t.address.slice(-4)}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between pt-3 border-t border-white/[0.05]">
-                          <div>
-                            <div className="font-display text-xs text-main-light-text/60">
-                              Market Cap
-                            </div>
-                            <div className="font-mono text-sm text-main-text">
-                              {t.marketCap}
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-display text-xs text-main-light-text/60">
-                              Performance
-                            </div>
-                            <div
-                              className={`font-mono text-sm ${
-                                t.performance.startsWith("+")
-                                  ? "text-emerald-400"
-                                  : "text-red-400"
-                              }`}
-                            >
-                              {t.performance}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between mt-3">
-                          <div className="font-display text-xs text-main-accent group-hover:text-main-highlight transition-colors">
-                            View on DEX →
-                          </div>
-                          <Icon
-                            icon="solar:external-link-outline"
-                            className="w-4 h-4 text-main-light-text/40 group-hover:text-main-accent transition-colors"
-                          />
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </motion.div>
+                  sectionRef={(el) => (sectionRefs.current.devtokens = el)}
+                />
               </div>
             </div>
           </div>

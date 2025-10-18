@@ -1,0 +1,117 @@
+import React from "react";
+import { Icon } from "@iconify/react";
+
+interface Section {
+  id: string;
+  label: string;
+  icon: string;
+}
+
+interface NavigationSidebarProps {
+  sections: Section[];
+  activeSection: string;
+  isNavSticky: boolean;
+  showMobileNav: boolean;
+  onScrollToSection: (sectionId: string) => void;
+  onBackToList: () => void;
+  onToggleMobileNav: () => void;
+  navRef?: React.RefObject<HTMLDivElement>;
+}
+
+const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
+  sections,
+  activeSection,
+  isNavSticky,
+  showMobileNav,
+  onScrollToSection,
+  onBackToList,
+  onToggleMobileNav,
+  navRef,
+}) => {
+  return (
+    <>
+      {/* Mobile Navigation Toggle */}
+      <div className="lg:hidden mb-6">
+        <button
+          onClick={onToggleMobileNav}
+          className="flex items-center gap-2 px-4 py-2 bg-[#161616] border border-white/[0.1] rounded-sm text-main-text hover:border-main-accent/40 transition-colors"
+        >
+          <Icon icon="material-symbols:menu" className="w-5 h-5" />
+          <span className="font-display text-sm">Navigation</span>
+          <Icon
+            icon={
+              showMobileNav
+                ? "material-symbols:expand-less"
+                : "material-symbols:expand-more"
+            }
+            className="w-5 h-5"
+          />
+        </button>
+
+        {showMobileNav && (
+          <div className="mt-2 bg-[#161616] border border-white/[0.1] rounded-sm p-4">
+            <nav className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => {
+                    onScrollToSection(section.id);
+                    onToggleMobileNav();
+                  }}
+                  className={`flex items-center gap-2 px-3 py-2 rounded text-left transition-all duration-200 ${
+                    activeSection === section.id
+                      ? "bg-main-accent/20 text-main-accent"
+                      : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
+                  }`}
+                >
+                  <Icon icon={section.icon} className="w-4 h-4" />
+                  <span className="font-display text-xs">{section.label}</span>
+                </button>
+              ))}
+            </nav>
+          </div>
+        )}
+      </div>
+
+      {/* Desktop Sidebar Navigation */}
+      <div className="hidden lg:block w-64 flex-shrink-0">
+        <div className="mb-5">
+          <button
+            onClick={onBackToList}
+            className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616] hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
+          >
+            <Icon icon="material-symbols:arrow-back" className="w-5 h-5" />
+            <span className="font-display text-sm">Back to Live Activity</span>
+          </button>
+        </div>
+        <div
+          ref={navRef}
+          className={`w-64 bg-[#161616] border border-white/[0.1] rounded-sm p-4 transition-all duration-200 ${
+            isNavSticky
+              ? "fixed top-24 z-40 max-h-[calc(100vh-1rem)] overflow-y-auto"
+              : "relative"
+          }`}
+        >
+          <nav className="space-y-2">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => onScrollToSection(section.id)}
+                className={`w-full flex items-center gap-3 px-3 py-2 rounded text-left transition-all duration-200 ${
+                  activeSection === section.id
+                    ? "bg-main-accent/20 text-main-accent border-l-2 border-main-accent"
+                    : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
+                }`}
+              >
+                <Icon icon={section.icon} className="w-4 h-4" />
+                <span className="font-display text-sm">{section.label}</span>
+              </button>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default NavigationSidebar;
