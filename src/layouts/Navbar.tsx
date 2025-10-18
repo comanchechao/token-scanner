@@ -6,6 +6,7 @@ const Navbar: React.FC = React.memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [accent, setAccent] = useState<string>("cyan");
+  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -38,6 +39,26 @@ const Navbar: React.FC = React.memo(() => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleColorSelect = (color: string) => {
+    setAccent(color);
+    setIsColorPickerOpen(false);
+  };
+
+  const getColorValue = (color: string) => {
+    switch (color) {
+      case "cyan":
+        return "#00b4d8";
+      case "violet":
+        return "#8b5cf6";
+      case "emerald":
+        return "#10b981";
+      case "amber":
+        return "#f59e0b";
+      default:
+        return "#00b4d8";
+    }
   };
 
   const isActivePath = (path: string) => {
@@ -107,31 +128,57 @@ const Navbar: React.FC = React.memo(() => {
             </div>
 
             {/* Theme Toggle */}
-            <div className="flex items-center">
-              <div className="flex items-center gap-1 px-2 py-2 rounded-sm bg-[#161616]  border border-white/[0.1]">
-                {(["cyan", "violet", "emerald", "amber"] as const).map((a) => (
-                  <button
-                    key={a}
-                    onClick={() => setAccent(a)}
-                    className={`w-4 h-4 rounded-full cursor-pointer transition-transform duration-200 ${
-                      accent === a
-                        ? "scale-110 ring-2 ring-white/30"
-                        : "hover:scale-110"
-                    }`}
-                    aria-label={`Set accent ${a}`}
-                    title={`Theme: ${a}`}
-                    style={{
-                      backgroundColor:
-                        a === "cyan"
-                          ? "#00b4d8"
-                          : a === "violet"
-                          ? "#8b5cf6"
-                          : a === "emerald"
-                          ? "#10b981"
-                          : "#f59e0b",
-                    }}
+            <div className="flex items-center relative">
+              <div className="relative">
+                <button
+                  onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                  aria-label="Color picker"
+                >
+                  <div
+                    className="w-4 h-4 rounded-full ring-2 ring-white/30"
+                    style={{ backgroundColor: getColorValue(accent) }}
                   />
-                ))}
+                  <Icon
+                    icon="material-symbols:keyboard-arrow-down"
+                    className={`w-4 h-4 text-main-text transition-transform duration-200 ${
+                      isColorPickerOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Dropdown */}
+                {isColorPickerOpen && (
+                  <div className="absolute top-full right-0 mt-2 p-2 bg-[#161616] border border-white/[0.1] rounded-lg shadow-2xl z-50 min-w-[120px]">
+                    <div className="space-y-1">
+                      {(["cyan", "violet", "emerald", "amber"] as const).map(
+                        (color) => (
+                          <button
+                            key={color}
+                            onClick={() => handleColorSelect(color)}
+                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+                              accent === color
+                                ? "bg-main-accent/20 text-main-accent"
+                                : "text-main-light-text hover:text-main-accent hover:bg-white/[0.05]"
+                            }`}
+                          >
+                            <div
+                              className="w-3 h-3 rounded-full"
+                              style={{ backgroundColor: getColorValue(color) }}
+                            />
+                            <span className="capitalize">{color}</span>
+                            {accent === color && (
+                              <Icon
+                                icon="material-symbols:check"
+                                className="w-4 h-4 ml-auto"
+                              />
+                            )}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
