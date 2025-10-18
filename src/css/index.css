@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* Font Declarations */
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("../fonts/RedHatDisplayVariableFont_wght.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Set default font */
+body {
+  font-family: "Red Hat Display", sans-serif;
+  color-scheme: dark;
+  color: var(--color-main-text);
+  /* Subtle dark grid background suitable for dark UI */
+  background-color: var(--color-main-bg);
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px;
+  background-position: 0 0, 0 0;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-highlight-fade {
+  animation: highlightFade 1.5s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@layer theme {
+  :root {
+    --color-main-bg: #080808;
+    --color-light-bg: #1b212c;
+    --color-main-accent: #00b4d8;
+    --color-main-highlight: #e0fbfc;
+    --color-main-text: #ffffff;
+    --color-main-light-text: #e5e5e5;
+  }
+}
+
+/* Accent theme variants - applied via data-accent on <html> */
+[data-accent="cyan"] {
+  --color-main-accent: #00b4d8;
+  --color-main-highlight: #e0fbfc;
+}
+
+[data-accent="violet"] {
+  --color-main-accent: #8b5cf6; /* violet-500 */
+  --color-main-highlight: #d8b4fe; /* violet-300 */
+}
+
+[data-accent="emerald"] {
+  --color-main-accent: #10b981; /* emerald-500 */
+  --color-main-highlight: #a7f3d0; /* emerald-200 */
+}
+
+[data-accent="amber"] {
+  --color-main-accent: #f59e0b; /* amber-500 */
+  --color-main-highlight: #fde68a; /* amber-200 */
+}
+
+@layer utilities {
+  /* Background Colors */
+  .bg-main-bg {
+    background-color: var(--color-main-bg);
+  }
+  .bg-light-bg {
+    background-color: var(--color-light-bg);
+  }
+  .bg-main-accent {
+    background-color: var(--color-main-accent);
+  }
+  .bg-main-highlight {
+    background-color: var(--color-main-highlight);
+  }
+
+  /* Text Colors */
+  .text-main-bg {
+    color: var(--color-main-bg);
+  }
+  .text-light-bg {
+    color: var(--color-light-bg);
+  }
+  .text-main-accent {
+    color: var(--color-main-accent);
+  }
+  .text-main-highlight {
+    color: var(--color-main-highlight);
+  }
+  .text-main-text {
+    color: var(--color-main-text);
+  }
+  .text-main-light-text {
+    color: var(--color-main-light-text);
+  }
+
+  /* Border Colors */
+  .border-main-bg {
+    border-color: var(--color-main-bg);
+  }
+  .border-light-bg {
+    border-color: var(--color-light-bg);
+  }
+  .border-main-accent {
+    border-color: var(--color-main-accent);
+  }
+  .border-main-highlight {
+    border-color: var(--color-main-highlight);
+  }
+  .border-main-text {
+    border-color: var(--color-main-text);
+  }
+  .border-main-light-text {
+    border-color: var(--color-main-light-text);
+  }
+
+  /* Gradient Colors */
+  .from-main-accent {
+    --tw-gradient-from: var(--color-main-accent);
+  }
+  .to-main-highlight {
+    --tw-gradient-to: var(--color-main-highlight);
+  }
+  .from-main-bg {
+    --tw-gradient-from: var(--color-main-bg);
+  }
+  .to-light-bg {
+    --tw-gradient-to: var(--color-light-bg);
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in;
+  }
+  /* Grid background utility for elements */
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px;
+    background-position: 0 0, 0 0;
+  }
+  /* Font Families */
+  .font-mono {
+    font-family: "JetBrains Mono", "Fira Code", "Consolas", "Monaco", monospace;
+  }
+  .font-display {
+    font-family: "Red Hat Display", sans-serif;
+  }
+
+  /* Scrollbar Hide */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .theme-kol {
+    --color-primary: var(--color-main-accent);
+    --color-secondary: var(--color-main-highlight);
+    --color-accent: var(--color-light-bg);
+    --color-background: var(--color-main-bg);
+    --color-text: var(--color-main-text);
+    --color-text-light: var(--color-main-light-text);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .wallet-adapter-button {
+    font-size: 14px !important;
+  }
+}

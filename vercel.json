@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/auth-api/(.*)",
+      "destination": "https://sniper.cherrybot.ai/api/v1/$1"
+    },
+    {
+      "source": "/((?!api/.*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
