@@ -661,8 +661,7 @@ const HomePage: React.FC = () => {
             <div className="flex gap-8">
               {/* Left Sidebar Navigation */}
               <div className="hidden lg:block w-64 flex-shrink-0">
-                {" "}
-                <div className="mb-6">
+                <div className="mb-5">
                   <button
                     onClick={handleBackToList}
                     className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
@@ -715,7 +714,7 @@ const HomePage: React.FC = () => {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
-                  className="group bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 rounded-sm p-6 md:p-8 mb-8"
+                  className="group bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
                 >
                   <div className="flex flex-col lg:flex-row gap-6">
                     <div className="flex-1">
@@ -730,13 +729,13 @@ const HomePage: React.FC = () => {
                       <p className="font-display text-main-light-text/90 mb-4 leading-relaxed">
                         {data.token.narrative}
                       </p>
-                      <div className="font-mono text-xs text-main-light-text/60 bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+                      <div className="font-mono text-xs text-main-light-text/60 bg-[#0a0a0a] hover:bg-white/[0.02] p-3 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
                         {data.token.address}
                       </div>
                     </div>
                     <div className="lg:w-80">
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-[#0a0a0a] p-4 rounded border border-white/[0.05]">
+                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
                           <div className="font-display text-xs text-main-light-text/60 mb-1">
                             Price
                           </div>
@@ -744,7 +743,7 @@ const HomePage: React.FC = () => {
                             {data.token.price}
                           </div>
                         </div>
-                        <div className="bg-[#0a0a0a] p-4 rounded border border-white/[0.05]">
+                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
                           <div className="font-display text-xs text-main-light-text/60 mb-1">
                             Market Cap
                           </div>
@@ -752,7 +751,7 @@ const HomePage: React.FC = () => {
                             {data.token.marketCap}
                           </div>
                         </div>
-                        <div className="bg-[#0a0a0a] p-4 rounded border border-white/[0.05]">
+                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
                           <div className="font-display text-xs text-main-light-text/60 mb-1">
                             24h Volume
                           </div>
@@ -760,7 +759,7 @@ const HomePage: React.FC = () => {
                             {data.token.volume24h}
                           </div>
                         </div>
-                        <div className="bg-[#0a0a0a] p-4 rounded border border-white/[0.05]">
+                        <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
                           <div className="font-display text-xs text-main-light-text/60 mb-1">
                             Holders
                           </div>
@@ -782,7 +781,7 @@ const HomePage: React.FC = () => {
                     variants={cardVariants}
                     initial="hidden"
                     animate="visible"
-                    className="bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 rounded-sm p-6"
+                    className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-mono text-xl text-main-text">
@@ -801,7 +800,7 @@ const HomePage: React.FC = () => {
                       {data.kols.top.map((kol: KolBuyer) => (
                         <div
                           key={kol.name}
-                          className="bg-[#0a0a0a] border border-white/[0.05] rounded p-3 hover:border-main-accent/20 transition-colors"
+                          className="bg-[#0a0a0a] hover:bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.1] rounded-lg p-3 transition-all duration-200"
                         >
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center gap-3">
@@ -851,7 +850,7 @@ const HomePage: React.FC = () => {
                     variants={cardVariants}
                     initial="hidden"
                     animate="visible"
-                    className="bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 rounded-sm p-6"
+                    className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-mono text-xl text-main-text">
@@ -870,7 +869,7 @@ const HomePage: React.FC = () => {
                       {data.telegram.top.map((ch: TelegramChannel) => (
                         <div
                           key={ch.name}
-                          className="bg-[#0a0a0a] border border-white/[0.05] rounded p-3 hover:border-main-accent/20 transition-colors"
+                          className="bg-[#0a0a0a] hover:bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.1] rounded-lg p-3 transition-all duration-200"
                         >
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center gap-3">
@@ -918,7 +917,7 @@ const HomePage: React.FC = () => {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
-                  className="bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 rounded-sm p-6 md:p-8 mb-8"
+                  className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
                 >
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="font-mono text-xl text-main-text">
@@ -1016,7 +1015,7 @@ const HomePage: React.FC = () => {
                         href={t.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="group bg-[#0a0a0a] border border-white/[0.08] hover:border-main-accent/30 rounded-lg p-4 transition-all duration-200 hover:scale-[1.02]"
+                        className="group bg-[#0a0a0a] hover:bg-white/[0.05] border border-white/[0.08] hover:border-main-accent/30 rounded-lg p-4 transition-all duration-200  "
                       >
                         <div className="flex items-start gap-3 mb-3">
                           <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex-shrink-0">

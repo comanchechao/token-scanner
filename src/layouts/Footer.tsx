@@ -108,7 +108,7 @@ const Footer: React.FC = React.memo(() => {
         {/* Main Footer Content */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           {" "}
-          <div className="mb-6 p-4  ">
+          <div className="p-4">
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
               {loading ? (
                 <div className="flex items-center gap-2 text-main-light-text/60">
@@ -183,12 +183,6 @@ const Footer: React.FC = React.memo(() => {
                 </>
               ) : null}
             </div>
-          </div>
-          {/* Brand */}
-          <div className="flex items-center">
-            <h2 className="font-display text-lg font-bold bg-gradient-to-r from-main-accent to-main-highlight bg-clip-text text-transparent">
-              Token Find
-            </h2>
           </div>
           {/* Navigation Links */}
           <div className="flex flex-wrap gap-6 md:gap-8">

@@ -232,7 +232,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
                 className="font-tiktok font-medium text-main-accent cursor-pointer"
                 onClick={handleTokenClick}
               >
-                {activity.token}
+                ${activity.token}
               </span>
               <span className="font-tiktok text-sm text-main-light-text">
                 at
@@ -336,7 +336,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
                   className="font-tiktok font-medium text-main-accent cursor-pointer"
                   onClick={handleTokenClick}
                 >
-                  {activity.token}
+                  ${activity.token}
                 </span>
                 <span className="font-tiktok text-sm text-main-light-text">
                   at
