@@ -47,7 +47,7 @@ const MOCK_DATA = {
     top: [
       {
         name: "AlphaWhale",
-        avatar: "/okxlogo.webp",
+        avatar: "/dogLogo.webp",
         amount: "47.2K",
         invested: "$3.2K",
         followers: "284K",
@@ -209,7 +209,7 @@ const MOCK_ACTIVITIES = [
   {
     id: "1",
     name: "AlphaWhale",
-    avatar: "/okxlogo.webp",
+    avatar: "/dogLogo.webp",
     action: "bought",
     amount: "47.2K",
     token: "NEURAL",
