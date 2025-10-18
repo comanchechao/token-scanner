@@ -84,7 +84,7 @@ const Navbar: React.FC = React.memo(() => {
             {/* Brand */}
             <div className="flex items-center">
               <Link to="/" className="flex items-center group">
-                <h2 className="text-xl font-bold font-mono bg-gradient-to-r from-main-accent to-main-highlight bg-clip-text text-transparent">
+                <h2 className="text-xl font-bold font-mono  text-white">
                   Token Find
                 </h2>
               </Link>
