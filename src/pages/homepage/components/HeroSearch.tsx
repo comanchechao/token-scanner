@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 
@@ -20,6 +20,7 @@ interface HeroSearchProps {
   onFocus: () => void;
   onBlur: () => void;
   onCloseSuggestions?: () => void;
+  searchRef?: React.RefObject<HTMLDivElement>;
 }
 
 const HeroSearch: React.FC<HeroSearchProps> = ({
@@ -33,8 +34,10 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
   onPaste,
   onFocus,
   onBlur,
-  onCloseSuggestions,
+  onCloseSuggestions: _onCloseSuggestions,
+  searchRef,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
   return (
     <section
       className={`relative z-10 flex-1 flex flex-col justify-center transition-all duration-500 ${
@@ -79,14 +82,17 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
 
         {/* Search Input - shown in both states */}
         <div
-          className={`${
+          ref={searchRef}
+          className={`relative z ${
             !scanned ? "max-w-4xl w-full mx-auto" : "max-w-3xl mx-auto"
           }`}
         >
           <div
-            className={`relative bg-[#161616] hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 transition-all duration-300 ${
-              !scanned ? "rounded-sm" : "rounded-sm"
-            }`}
+            className={`relative bg-[#161616] hover:bg-white/[0.05] border transition-all duration-300 ${
+              isFocused
+                ? "border-main-accent/60 shadow-lg shadow-main-accent/10"
+                : "border-white/[0.1] hover:border-main-accent/40"
+            } ${!scanned ? "rounded-sm" : "rounded-sm"}`}
           >
             <Icon
               icon="solar:magnifer-linear"
@@ -97,8 +103,14 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 onInputChange(e.target.value)
               }
-              onFocus={onFocus}
-              onBlur={onBlur}
+              onFocus={() => {
+                setIsFocused(true);
+                onFocus();
+              }}
+              onBlur={() => {
+                setIsFocused(false);
+                onBlur();
+              }}
               placeholder={
                 !scanned
                   ? "Search by token name or paste address..."
@@ -123,68 +135,59 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
           </div>
 
           {showSuggestions && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
-                onClick={onCloseSuggestions}
-              />
-
-              <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute top-full left-0 right-0 mt-2 bg-[#161616]/95 backdrop-blur-md border border-white/[0.15] rounded-lg shadow-2xl z-50 max-h-64 overflow-y-auto"
-              >
-                {suggestions.length > 0 ? (
-                  suggestions.map((suggestion, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="absolute top-full left-0 right-0 mt-1 bg-[#1a1a1a] border border-white/[0.12] rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto backdrop-blur-sm"
+            >
+              {suggestions.length > 0 ? (
+                <div className="py-2">
+                  {suggestions.map((suggestion, index) => (
                     <motion.button
                       key={suggestion.address}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05, duration: 0.2 }}
+                      transition={{ delay: index * 0.03, duration: 0.15 }}
                       onClick={() => onSuggestionClick(suggestion)}
-                      className="w-full px-4 py-3 text-left hover:bg-white/[0.08] border-b border-white/[0.08] last:border-b-0 transition-all duration-200 hover:backdrop-blur-lg group"
+                      className="w-full px-4 py-3 text-left hover:bg-main-accent/10 hover:border-l-2 hover:border-main-accent transition-all duration-150 group"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex items-center justify-center">
+                          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex items-center justify-center flex-shrink-0">
                             <Icon
                               icon="material-symbols:token"
-                              className="w-4 h-4 text-main-accent"
+                              className="w-3.5 h-3.5 text-main-accent"
                             />
                           </div>
-                          <div>
-                            <div className="font-display text-main-text font-medium group-hover:text-main-accent transition-colors">
+                          <div className="min-w-0">
+                            <div className="font-display text-sm font-medium text-main-text group-hover:text-main-accent transition-colors truncate">
                               {suggestion.name}
                             </div>
-                            <div className="font-display text-sm text-main-light-text/60">
+                            <div className="font-display text-xs text-main-light-text/60 truncate">
                               {suggestion.symbol}
                             </div>
                           </div>
                         </div>
-                        <div className="font-mono text-xs text-main-light-text/40 group-hover:text-main-light-text/60 transition-colors">
+                        <div className="font-mono text-xs text-main-light-text/40 group-hover:text-main-light-text/60 transition-colors flex-shrink-0 ml-2">
                           {suggestion.address.slice(0, 6)}...
                           {suggestion.address.slice(-4)}
                         </div>
                       </div>
                     </motion.button>
-                  ))
-                ) : (
-                  <div className="px-4 py-6 text-center text-main-light-text/60">
-                    <Icon
-                      icon="material-symbols:search-off"
-                      className="w-8 h-8 mx-auto mb-2 opacity-50"
-                    />
-                    <p className="font-display text-sm">No tokens found</p>
-                  </div>
-                )}
-              </motion.div>
-            </>
+                  ))}
+                </div>
+              ) : (
+                <div className="px-4 py-8 text-center text-main-light-text/60">
+                  <Icon
+                    icon="material-symbols:search-off"
+                    className="w-6 h-6 mx-auto mb-2 opacity-50"
+                  />
+                  <p className="font-display text-sm">No tokens found</p>
+                </div>
+              )}
+            </motion.div>
           )}
         </div>
       </div>

@@ -372,6 +372,7 @@ const HomePage: React.FC = () => {
 
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const navRef = useRef<HTMLDivElement | null>(null);
+  const searchRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToSection = (sectionId: string) => {
     const element = sectionRefs.current[sectionId];
@@ -424,6 +425,26 @@ const HomePage: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scanned]);
 
+  // Click outside to close suggestions
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+
+    if (showSuggestions) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSuggestions]);
+
   const isValidAddress = (str: string) => {
     return /^0x[a-fA-F0-9]{40}$/.test(str);
   };
@@ -431,7 +452,7 @@ const HomePage: React.FC = () => {
   const handleInputChange = (value: string) => {
     setInput(value);
 
-    if (value.trim().length > 1 && !isValidAddress(value.trim())) {
+    if (value.trim().length > 0 && !isValidAddress(value.trim())) {
       const filtered = MOCK_SUGGESTIONS.filter(
         (token) =>
           token.name.toLowerCase().includes(value.toLowerCase()) ||
@@ -491,12 +512,15 @@ const HomePage: React.FC = () => {
         onScan={handleScan}
         onPaste={handlePaste}
         onFocus={() => {
-          if (suggestions.length > 0) setShowSuggestions(true);
+          if (input.trim().length > 0 && suggestions.length > 0) {
+            setShowSuggestions(true);
+          }
         }}
         onBlur={() => {
           setTimeout(() => setShowSuggestions(false), 200);
         }}
         onCloseSuggestions={() => setShowSuggestions(false)}
+        searchRef={searchRef}
       />
 
       {/* Activity Feed - Show when not scanned */}

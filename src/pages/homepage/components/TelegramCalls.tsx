@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import DetailModal from "./DetailModal";
 
 interface TelegramChannel {
   name: string;
@@ -28,6 +29,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
   variants,
   sectionRef,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <motion.div
       id="telegram"
@@ -88,6 +90,100 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
           </div>
         ))}
       </div>
+
+      {/* See More Button */}
+      <div className="mt-4 pt-4 border-t border-white/[0.05]">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200 w-full justify-center"
+        >
+          <Icon icon="ic:baseline-telegram" className="w-4 h-4" />
+          See All Channels
+        </button>
+      </div>
+
+      {/* Detail Modal */}
+      <DetailModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Telegram Analysis"
+      >
+        <div className="space-y-3">
+          {/* Stats Overview */}
+          <div className="grid grid-cols-3 gap-2">
+            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+              <div className="font-mono text-lg text-blue-400 mb-1">
+                {telegramData.count}
+              </div>
+              <div className="font-display text-xs text-main-light-text/60">
+                Channels
+              </div>
+            </div>
+            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+              <div className="font-mono text-lg text-main-accent mb-1">
+                {telegramData.totalMembers}
+              </div>
+              <div className="font-display text-xs text-main-light-text/60">
+                Reach
+              </div>
+            </div>
+            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+              <div className="font-mono text-lg text-green-400 mb-1">
+                {telegramData.top.reduce((sum, ch) => sum + ch.mentions, 0)}
+              </div>
+              <div className="font-display text-xs text-main-light-text/60">
+                Mentions
+              </div>
+            </div>
+          </div>
+
+          {/* Top Channels */}
+          <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+            <div className="font-display text-xs text-main-light-text/60 mb-2">
+              Top Channels
+            </div>
+            <div className="space-y-2">
+              {telegramData.top.slice(0, 4).map((channel) => (
+                <div
+                  key={channel.name}
+                  className="flex items-center justify-between p-2 bg-[#161616] rounded"
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      icon="ic:baseline-telegram"
+                      className="w-4 h-4 text-blue-400"
+                    />
+                    <div>
+                      <div className="font-display text-sm text-main-text">
+                        {channel.name}
+                      </div>
+                      <div className="font-display text-xs text-main-light-text/60">
+                        {channel.mentions} mentions
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right flex items-center gap-2">
+                    <div className="font-mono text-sm text-main-text">
+                      {channel.members}
+                    </div>
+                    <div
+                      className={`px-2 py-1 rounded text-xs ${
+                        channel.sentiment === "Bullish"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : channel.sentiment === "Bearish"
+                          ? "bg-red-500/20 text-red-400"
+                          : "bg-amber-500/20 text-amber-400"
+                      }`}
+                    >
+                      {channel.sentiment}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </DetailModal>
     </motion.div>
   );
 };
