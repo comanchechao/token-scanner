@@ -248,6 +248,7 @@ const HomePage: React.FC = () => {
   const [suggestions, setSuggestions] = useState<typeof MOCK_SUGGESTIONS>([]);
   const [activeSection, setActiveSection] = useState("overview");
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const [isNavSticky, setIsNavSticky] = useState(false);
 
   const data = useMemo(() => MOCK_DATA, []);
 
@@ -268,6 +269,7 @@ const HomePage: React.FC = () => {
   ];
 
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const navRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToSection = (sectionId: string) => {
     const element = sectionRefs.current[sectionId];
@@ -303,6 +305,27 @@ const HomePage: React.FC = () => {
     });
 
     return () => observer.disconnect();
+  }, [scanned]);
+
+  // Scroll detection for sticky navigation
+  useEffect(() => {
+    if (!scanned || !navRef.current) return;
+
+    // Store the original position of the navigation
+    const originalNavTop = navRef.current.offsetTop;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+
+      // Only make sticky when we've scrolled past the navigation's original position
+      // This ensures it starts as normal flow and only becomes sticky when needed
+      setIsNavSticky(scrollTop > originalNavTop);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Don't call handleScroll() initially - let it start as normal flow
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [scanned]);
 
   // Check if input looks like an EVM address (0x followed by 40 hex chars)
@@ -483,57 +506,62 @@ const HomePage: React.FC = () => {
       {scanned && (
         <section className="relative z-10 pb-20 flex-1">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Mobile Navigation Toggle - Fixed Position */}
-            <div className="lg:hidden">
-              <div className="fixed top-20 right-4 z-50">
-                <button
-                  onClick={() => setShowMobileNav(!showMobileNav)}
-                  className="flex items-center gap-2 px-4 py-2 bg-[#161616] border border-white/[0.1] rounded-sm text-main-text hover:border-main-accent/40 transition-colors shadow-lg"
-                >
-                  <Icon icon="material-symbols:menu" className="w-5 h-5" />
-                  <span className="font-display text-sm">Navigation</span>
-                  <Icon
-                    icon={
-                      showMobileNav
-                        ? "material-symbols:expand-less"
-                        : "material-symbols:expand-more"
-                    }
-                    className="w-5 h-5"
-                  />
-                </button>
+            {/* Mobile Navigation Toggle */}
+            <div className="lg:hidden mb-6">
+              <button
+                onClick={() => setShowMobileNav(!showMobileNav)}
+                className="flex items-center gap-2 px-4 py-2 bg-[#161616] border border-white/[0.1] rounded-sm text-main-text hover:border-main-accent/40 transition-colors"
+              >
+                <Icon icon="material-symbols:menu" className="w-5 h-5" />
+                <span className="font-display text-sm">Navigation</span>
+                <Icon
+                  icon={
+                    showMobileNav
+                      ? "material-symbols:expand-less"
+                      : "material-symbols:expand-more"
+                  }
+                  className="w-5 h-5"
+                />
+              </button>
 
-                {showMobileNav && (
-                  <div className="mt-2 bg-[#161616] border border-white/[0.1] rounded-sm p-4 shadow-xl max-w-xs">
-                    <nav className="space-y-2">
-                      {sections.map((section) => (
-                        <button
-                          key={section.id}
-                          onClick={() => {
-                            scrollToSection(section.id);
-                            setShowMobileNav(false);
-                          }}
-                          className={`w-full flex items-center gap-2 px-3 py-2 rounded text-left transition-all duration-200 ${
-                            activeSection === section.id
-                              ? "bg-main-accent/20 text-main-accent"
-                              : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
-                          }`}
-                        >
-                          <Icon icon={section.icon} className="w-4 h-4" />
-                          <span className="font-display text-sm">
-                            {section.label}
-                          </span>
-                        </button>
-                      ))}
-                    </nav>
-                  </div>
-                )}
-              </div>
+              {showMobileNav && (
+                <div className="mt-2 bg-[#161616] border border-white/[0.1] rounded-sm p-4">
+                  <nav className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {sections.map((section) => (
+                      <button
+                        key={section.id}
+                        onClick={() => {
+                          scrollToSection(section.id);
+                          setShowMobileNav(false);
+                        }}
+                        className={`flex items-center gap-2 px-3 py-2 rounded text-left transition-all duration-200 ${
+                          activeSection === section.id
+                            ? "bg-main-accent/20 text-main-accent"
+                            : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
+                        }`}
+                      >
+                        <Icon icon={section.icon} className="w-4 h-4" />
+                        <span className="font-display text-xs">
+                          {section.label}
+                        </span>
+                      </button>
+                    ))}
+                  </nav>
+                </div>
+              )}
             </div>
 
             <div className="flex gap-8">
-              {/* Left Sidebar Navigation - Fixed Position */}
+              {/* Left Sidebar Navigation */}
               <div className="hidden lg:block w-64 flex-shrink-0">
-                <div className="fixed left-4 top-24 w-60 bg-[#161616] border border-white/[0.1] rounded-sm p-4 z-40 max-h-[calc(100vh-120px)] overflow-y-auto">
+                <div
+                  ref={navRef}
+                  className={`w-64 bg-[#161616] border border-white/[0.1] rounded-sm p-4 transition-all duration-200 ${
+                    isNavSticky
+                      ? "fixed top-24 z-40 max-h-[calc(100vh-1rem)] overflow-y-auto"
+                      : "relative"
+                  }`}
+                >
                   <h3 className="font-mono text-lg text-main-text mb-4">
                     Navigation
                   </h3>
@@ -559,7 +587,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Main Content */}
-              <div className="flex-1 min-w-0 lg:ml-64">
+              <div className="flex-1 min-w-0">
                 {/* Token Overview */}
                 <motion.div
                   id="overview"
@@ -576,8 +604,8 @@ const HomePage: React.FC = () => {
                         <h2 className="font-mono text-2xl text-main-text">
                           {data.token.name}
                         </h2>
-                        <span className="px-3 py-1 bg-main-accent/20 text-main-accent font-display text-sm rounded-full">
-                          {data.token.symbol}
+                        <span className="px-3 py-1 font-bold bg-main-accent/20 text-main-accent font-display text-sm rounded-full">
+                          ${data.token.symbol}
                         </span>
                       </div>
                       <p className="font-display text-main-light-text/90 mb-4 leading-relaxed">
