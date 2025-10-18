@@ -615,7 +615,7 @@ const HomePage: React.FC = () => {
             <div className="mb-6">
               <button
                 onClick={handleBackToList}
-                className="flex items-center gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
+                className="flex items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
               >
                 <Icon icon="material-symbols:arrow-back" className="w-5 h-5" />
                 <span className="font-display text-sm">
