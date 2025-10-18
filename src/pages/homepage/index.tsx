@@ -612,17 +612,6 @@ const HomePage: React.FC = () => {
         <section className="relative z-10 pb-20 flex-1">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Back to List Button */}
-            <div className="mb-6">
-              <button
-                onClick={handleBackToList}
-                className="flex items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
-              >
-                <Icon icon="material-symbols:arrow-back" className="w-5 h-5" />
-                <span className="font-display text-sm">
-                  Back to Live Activity
-                </span>
-              </button>
-            </div>
 
             {/* Mobile Navigation Toggle */}
             <div className="lg:hidden mb-6">
@@ -672,6 +661,21 @@ const HomePage: React.FC = () => {
             <div className="flex gap-8">
               {/* Left Sidebar Navigation */}
               <div className="hidden lg:block w-64 flex-shrink-0">
+                {" "}
+                <div className="mb-6">
+                  <button
+                    onClick={handleBackToList}
+                    className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616]  hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
+                  >
+                    <Icon
+                      icon="material-symbols:arrow-back"
+                      className="w-5 h-5"
+                    />
+                    <span className="font-display text-sm">
+                      Back to Live Activity
+                    </span>
+                  </button>
+                </div>
                 <div
                   ref={navRef}
                   className={`w-64 bg-[#161616] border border-white/[0.1] rounded-sm p-4 transition-all duration-200 ${
@@ -680,9 +684,6 @@ const HomePage: React.FC = () => {
                       : "relative"
                   }`}
                 >
-                  <h3 className="font-mono text-lg text-main-text mb-4">
-                    Navigation
-                  </h3>
                   <nav className="space-y-2">
                     {sections.map((section) => (
                       <button
