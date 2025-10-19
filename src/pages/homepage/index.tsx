@@ -536,18 +536,20 @@ const HomePage: React.FC = () => {
       {scanned && (
         <section className="relative z-10 pb-20 flex-1">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex gap-8">
-              {/* Navigation Sidebar */}
-              <NavigationSidebar
-                sections={sections}
-                activeSection={activeSection}
-                isNavSticky={isNavSticky}
-                showMobileNav={showMobileNav}
-                onScrollToSection={scrollToSection}
-                onBackToList={handleBackToList}
-                onToggleMobileNav={() => setShowMobileNav(!showMobileNav)}
-                navRef={navRef}
-              />
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+              {/* Navigation Sidebar - Hidden on mobile, visible on md+ */}
+              <div className="hidden md:block">
+                <NavigationSidebar
+                  sections={sections}
+                  activeSection={activeSection}
+                  isNavSticky={isNavSticky}
+                  showMobileNav={showMobileNav}
+                  onScrollToSection={scrollToSection}
+                  onBackToList={handleBackToList}
+                  onToggleMobileNav={() => setShowMobileNav(!showMobileNav)}
+                  navRef={navRef}
+                />
+              </div>
 
               {/* Main Content */}
               <div className="flex-1 min-w-0">
@@ -560,7 +562,7 @@ const HomePage: React.FC = () => {
                 />
 
                 {/* KOLs and Telegram */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
                   <KOLTraction
                     kolData={data.kols}
                     custom={1}

@@ -103,12 +103,17 @@ const Navbar: React.FC = React.memo(() => {
         <div className="max-w-7xl xl:max-w-[99rem] mx-auto px-4 sm:px-2 lg:px-3">
           <div className="flex justify-between items-center">
             {/* Brand */}
-            <div className="flex items-center">
-              <Link to="/" className="flex items-center group">
-                <h2 className="text-xl font-bold font-mono  text-white">
-                  Token Find
-                </h2>
-              </Link>
+            <div
+              className="relative  "
+              style={{ backgroundColor: getColorValue(accent) }}
+            >
+              <div className="flex items-center gap-2 px-3 py-2 rounded-sm bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer">
+                <Link to="/" className="flex items-center group">
+                  <h2 className="text-xl font-bold font-mono  text-white">
+                    Token Find
+                  </h2>
+                </Link>
+              </div>
             </div>
 
             {/* Desktop Navigation */}
@@ -128,11 +133,14 @@ const Navbar: React.FC = React.memo(() => {
             </div>
 
             {/* Theme Toggle */}
-            <div className="flex items-center relative">
-              <div className="relative">
+            <div className="flex items-center gap-4   relative">
+              <div
+                className="relative  "
+                style={{ backgroundColor: getColorValue(accent) }}
+              >
                 <button
                   onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                  className="flex items-center gap-2 px-3 py-3 rounded-sm bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
                   aria-label="Color picker"
                 >
                   <div
@@ -180,33 +188,31 @@ const Navbar: React.FC = React.memo(() => {
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={toggleMobileMenu}
-                className="outline-none p-2 rounded-lg   bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
-                aria-label="Menu"
-              >
-                <svg
-                  className={`w-6 h-6 text-main-text transition-all duration-300 ${
-                    isMobileMenuOpen ? "transform rotate-90" : ""
-                  }`}
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <div className="md:hidden flex items-center">
+                <button
+                  onClick={toggleMobileMenu}
+                  className="outline-none p-2 rounded-sm   bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                  aria-label="Menu"
                 >
-                  {isMobileMenuOpen ? (
-                    <path d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
-              </button>
+                  <svg
+                    className={`w-6 h-6 text-main-text transition-all duration-300 ${
+                      isMobileMenuOpen ? "transform rotate-90" : ""
+                    }`}
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    {isMobileMenuOpen ? (
+                      <path d="M6 18L18 6M6 6l12 12" />
+                    ) : (
+                      <path d="M4 6h16M4 12h16M4 18h16" />
+                    )}
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
