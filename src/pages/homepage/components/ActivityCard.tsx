@@ -366,7 +366,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
               <button
                 onClick={handleBuyToken}
                 disabled={buyLoading}
-                className="relative bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-green-400/50 rounded-lg px-3 py-2 transition-all duration-300 cursor-pointer"
+                className="relative bg-green-600/10 hover:bg-main-accent/20 border border-green-500/30 hover:border-green-600/50 rounded-lg px-3 py-2 transition-all duration-300 cursor-pointer"
               >
                 <div className="flex items-center gap-1 relative z-10">
                   {buyLoading ? (
@@ -389,7 +389,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
               <button
                 onClick={handleSellToken}
                 disabled={sellLoading}
-                className="relative bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 hover:border-red-400/50 rounded-lg px-3 py-2 transition-all duration-300 cursor-pointer"
+                className="relative bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 hover:border-red-600/50 rounded-lg px-3 py-2 transition-all duration-300 cursor-pointer"
               >
                 <div className="flex items-center gap-1 relative z-10">
                   {sellLoading ? (
