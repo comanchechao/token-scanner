@@ -75,7 +75,7 @@ const Navbar: React.FC = React.memo(() => {
       case "violet":
         return "#8b5cf6";
       case "emerald":
-        return "#10b981";
+        return "#099E65";
       case "amber":
         return "#f59e0b";
       default:

@@ -178,7 +178,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
     return (
       <div
         key={activity.id}
-        className={`relative bg-surface border border-subtle rounded-sm p-2 transition-all duration-300 ${
+        className={`relative bg-surface border-2 border-subtle rounded-sm p-2 transition-all duration-300 ${
           activity.timestamp === "now" ? "animate-slideInLeft" : ""
         } ${
           isFirst
@@ -218,7 +218,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
               </span>
               <span
                 className={`font-tiktok text-base cursor-pointer ${
-                  activity.type === "buy" ? "text-green-400" : "text-red-400"
+                  activity.type === "buy" ? "text-green-600" : "text-red-600"
                 }`}
                 onClick={handleTransactionClick}
                 title="View transaction on Solscan"
@@ -242,7 +242,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
               </span>
               <span
                 className={`font-tiktok text-sm ${
-                  activity.type === "buy" ? "text-green-400" : "text-red-400"
+                  activity.type === "buy" ? "text-green-600" : "text-red-600"
                 }`}
               >
                 ({activity.solSpent})
@@ -322,7 +322,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
                 </span>
                 <span
                   className={`font-tiktok text-sm cursor-pointer ${
-                    activity.type === "buy" ? "text-green-400" : "text-red-400"
+                    activity.type === "buy" ? "text-green-600" : "text-red-600"
                   }`}
                   onClick={handleTransactionClick}
                   title="View transaction on Solscan"
@@ -346,7 +346,7 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
                 </span>
                 <span
                   className={`font-tiktok text-sm ${
-                    activity.type === "buy" ? "text-green-400" : "text-red-400"
+                    activity.type === "buy" ? "text-green-600" : "text-red-600"
                   }`}
                 >
                   ({activity.solSpent})

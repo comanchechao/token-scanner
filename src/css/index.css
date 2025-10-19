@@ -4,7 +4,7 @@
 @font-face {
   font-family: "Red Hat Display";
   src: url("../fonts/RedHatDisplayVariableFont_wght.ttf") format("truetype");
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
@@ -85,7 +85,7 @@ body {
 /* Accent theme variants - applied via data-accent on <html> */
 [data-accent="cyan"] {
   --color-main-accent: #00b4d8;
-  --color-main-highlight: #e0fbfc;
+  --color-main-highlight: #00b4d8;
 }
 
 [data-accent="violet"] {
@@ -95,12 +95,12 @@ body {
 
 [data-accent="emerald"] {
   --color-main-accent: #10b981; /* emerald-500 */
-  --color-main-highlight: #a7f3d0; /* emerald-200 */
+  --color-main-highlight: #06d675; /* emerald-200 */
 }
 
 [data-accent="amber"] {
   --color-main-accent: #f59e0b; /* amber-500 */
-  --color-main-highlight: #fde68a; /* amber-200 */
+  --color-main-highlight: #f59e0b; /* amber-200 */
 }
 
 @layer utilities {
