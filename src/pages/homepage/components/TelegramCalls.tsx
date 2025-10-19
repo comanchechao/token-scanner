@@ -38,7 +38,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
+      className="bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-mono text-xl text-main-text">Telegram Calls</h3>
@@ -55,7 +55,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
         {telegramData.top.map((ch: TelegramChannel) => (
           <div
             key={ch.name}
-            className="bg-[#0a0a0a] hover:bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.1] rounded-lg p-3 transition-all duration-200"
+            className="bg-surface hover:bg-main-accent/5 border border-subtle rounded-lg p-3 transition-all duration-200"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
       </div>
 
       {/* See More Button */}
-      <div className="mt-4 pt-4 border-t border-white/[0.05]">
+      <div className="mt-4 pt-4 border-t border-subtle">
         <button
           onClick={() => setIsModalOpen(true)}
           className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200 w-full justify-center"
@@ -111,7 +111,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
         <div className="space-y-3">
           {/* Stats Overview */}
           <div className="grid grid-cols-3 gap-2">
-            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+            <div className="text-center p-3 bg-surface rounded border border-subtle">
               <div className="font-mono text-lg text-blue-400 mb-1">
                 {telegramData.count}
               </div>
@@ -119,7 +119,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
                 Channels
               </div>
             </div>
-            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+            <div className="text-center p-3 bg-surface rounded border border-subtle">
               <div className="font-mono text-lg text-main-accent mb-1">
                 {telegramData.totalMembers}
               </div>
@@ -127,7 +127,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
                 Reach
               </div>
             </div>
-            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+            <div className="text-center p-3 bg-surface rounded border border-subtle">
               <div className="font-mono text-lg text-green-400 mb-1">
                 {telegramData.top.reduce((sum, ch) => sum + ch.mentions, 0)}
               </div>
@@ -138,7 +138,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
           </div>
 
           {/* Top Channels */}
-          <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+          <div className="bg-surface p-3 rounded border border-subtle">
             <div className="font-display text-xs text-main-light-text/60 mb-2">
               Top Channels
             </div>
@@ -146,7 +146,7 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
               {telegramData.top.slice(0, 4).map((channel) => (
                 <div
                   key={channel.name}
-                  className="flex items-center justify-between p-2 bg-[#161616] rounded"
+                  className="flex items-center justify-between p-2 bg-surface rounded border border-subtle"
                 >
                   <div className="flex items-center gap-2">
                     <Icon

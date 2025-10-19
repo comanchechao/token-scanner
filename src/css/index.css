@@ -26,6 +26,18 @@ body {
   background-position: 0 0, 0 0;
 }
 
+/* Body overrides for light theme */
+[data-theme="light"] body {
+  color-scheme: light;
+  background-color: var(--color-main-bg);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
 @keyframes slideIn {
   0% {
     transform: translateY(-20px);
@@ -53,7 +65,21 @@ body {
     --color-main-highlight: #e0fbfc;
     --color-main-text: #ffffff;
     --color-main-light-text: #e5e5e5;
+    --color-surface-bg: #161616;
+    --color-border-subtle: rgba(255, 255, 255, 0.12);
   }
+}
+
+/* Light theme overrides - apply on <html data-theme="light"> */
+[data-theme="light"] {
+  --color-main-bg: #e0e0e0;
+  --color-light-bg: #ffffff;
+  --color-main-accent: #0ea5e9;
+  --color-main-highlight: #bae6fd;
+  --color-main-text: #0f172a;
+  --color-main-light-text: #334155;
+  --color-surface-bg: #ffffff;
+  --color-border-subtle: rgba(0, 0, 0, 0.16);
 }
 
 /* Accent theme variants - applied via data-accent on <html> */
@@ -132,6 +158,21 @@ body {
     border-color: var(--color-main-light-text);
   }
 
+  /* Subtle border utility that adapts per theme */
+  .border-subtle {
+    border-color: var(--color-border-subtle);
+  }
+
+  /* Surface background utility */
+  .bg-surface {
+    background-color: var(--color-surface-bg);
+  }
+
+  /* Elevation helper for light mode to increase separation */
+  .shadow-elevated {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
   /* Gradient Colors */
   .from-main-accent {
     --tw-gradient-from: var(--color-main-accent);
@@ -166,6 +207,16 @@ body {
       linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 24px 24px, 24px 24px;
     background-position: 0 0, 0 0;
+  }
+
+  /* Light variant for the grid utility */
+  [data-theme="light"] .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
   }
   /* Font Families */
   .font-mono {

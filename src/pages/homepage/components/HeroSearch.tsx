@@ -88,10 +88,10 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
           }`}
         >
           <div
-            className={`relative bg-[#161616] hover:bg-white/[0.05] border transition-all duration-300 ${
+            className={`relative bg-surface hover:bg-main-accent/5 border border-subtle transition-all duration-300 ${
               isFocused
                 ? "border-main-accent/60 shadow-lg shadow-main-accent/10"
-                : "border-white/[0.1] hover:border-main-accent/40"
+                : "hover:border-main-accent/40"
             } ${!scanned ? "rounded-sm" : "rounded-sm"}`}
           >
             <Icon
@@ -121,7 +121,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
               <button
                 onClick={onPaste}
-                className="px-3 py-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-main-light-text text-sm cursor-pointer"
+                className="px-3 py-2 rounded-lg bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 text-main-accent text-sm cursor-pointer"
               >
                 Paste
               </button>
@@ -140,7 +140,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
-              className="absolute top-full left-0 right-0 mt-1 bg-[#1a1a1a] border border-white/[0.12] rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto backdrop-blur-sm"
+              className="absolute top-full left-0 right-0 mt-1 bg-surface border border-subtle rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto backdrop-blur-sm"
             >
               {suggestions.length > 0 ? (
                 <div className="py-2">

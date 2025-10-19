@@ -7,6 +7,18 @@ const Navbar: React.FC = React.memo(() => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [accent, setAccent] = useState<string>("cyan");
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    // Initialize theme from localStorage or default to dark for first-time visitors
+    if (typeof window !== "undefined") {
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme === "light" || storedTheme === "dark") {
+        return storedTheme;
+      }
+      // First-time visitor: default to dark mode
+      return "dark";
+    }
+    return "dark"; // SSR fallback
+  });
   const location = useLocation();
 
   useEffect(() => {
@@ -36,6 +48,16 @@ const Navbar: React.FC = React.memo(() => {
     document.documentElement.setAttribute("data-accent", accent);
     localStorage.setItem("accentTheme", accent);
   }, [accent]);
+
+  // Apply theme to DOM and save to localStorage
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -107,9 +129,9 @@ const Navbar: React.FC = React.memo(() => {
               className="relative  "
               style={{ backgroundColor: getColorValue(accent) }}
             >
-              <div className="flex items-center gap-2 px-3 py-2 rounded-sm bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer">
+              <div className="flex items-center gap-2 px-3 py-2 rounded-sm bg-surface border border-subtle hover:border-main-accent/30 transition-all duration-300 cursor-pointer">
                 <Link to="/" className="flex items-center group">
-                  <h2 className="text-xl font-bold font-mono  text-white">
+                  <h2 className="text-xl font-bold font-mono  text-main-text">
                     Token Find
                   </h2>
                 </Link>
@@ -132,15 +154,38 @@ const Navbar: React.FC = React.memo(() => {
               </Link>
             </div>
 
-            {/* Theme Toggle */}
+            {/* Theme & Accent Controls */}
             <div className="flex items-center gap-4   relative">
+              {/* Theme toggle */}
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 px-3 py-3 rounded-sm bg-surface border border-subtle hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                aria-label="Toggle theme"
+                title={
+                  theme === "dark"
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+                }
+              >
+                <Icon
+                  icon={
+                    theme === "dark"
+                      ? "material-symbols:light-mode-outline"
+                      : "material-symbols:dark-mode-outline"
+                  }
+                  className="w-5 h-5 text-main-text"
+                />
+                <span className="hidden md:inline text-sm text-main-light-text capitalize">
+                  {theme}
+                </span>
+              </button>
               <div
                 className="relative  "
                 style={{ backgroundColor: getColorValue(accent) }}
               >
                 <button
                   onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
-                  className="flex items-center gap-2 px-3 py-3 rounded-sm bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                  className="flex items-center gap-2 px-3 py-3 rounded-sm bg-surface border border-subtle hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
                   aria-label="Color picker"
                 >
                   <div
@@ -157,7 +202,7 @@ const Navbar: React.FC = React.memo(() => {
 
                 {/* Dropdown */}
                 {isColorPickerOpen && (
-                  <div className="absolute top-full right-0 mt-2 p-2 bg-[#161616] border border-white/[0.1] rounded-lg shadow-2xl z-50 min-w-[120px]">
+                  <div className="absolute top-full right-0 mt-2 p-2 bg-surface border border-subtle rounded-lg shadow-2xl z-50 min-w-[120px]">
                     <div className="space-y-1">
                       {(["cyan", "violet", "emerald", "amber"] as const).map(
                         (color) => (
@@ -191,7 +236,7 @@ const Navbar: React.FC = React.memo(() => {
               <div className="md:hidden flex items-center">
                 <button
                   onClick={toggleMobileMenu}
-                  className="outline-none p-2 rounded-sm   bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.1] hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                  className="outline-none p-2 rounded-sm bg-surface hover:bg-white/[0.06] border border-subtle hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
                   aria-label="Menu"
                 >
                   <svg

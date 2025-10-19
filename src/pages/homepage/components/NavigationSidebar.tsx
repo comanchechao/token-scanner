@@ -34,7 +34,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       <div className="lg:hidden mb-6">
         <button
           onClick={onToggleMobileNav}
-          className="flex items-center gap-2 px-4 py-2 bg-[#161616] border border-white/[0.1] rounded-sm text-main-text hover:border-main-accent/40 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-surface border border-subtle rounded-sm text-main-text hover:border-main-accent/40 transition-colors"
         >
           <Icon icon="material-symbols:menu" className="w-5 h-5" />
           <span className="font-display text-sm">Navigation</span>
@@ -49,7 +49,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         </button>
 
         {showMobileNav && (
-          <div className="mt-2 bg-[#161616] border border-white/[0.1] rounded-sm p-4">
+          <div className="mt-2 bg-surface border border-subtle rounded-sm p-4">
             <nav className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {sections.map((section) => (
                 <button
@@ -61,7 +61,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                   className={`flex items-center gap-2 px-3 py-2 rounded text-left transition-all duration-200 ${
                     activeSection === section.id
                       ? "bg-main-accent/20 text-main-accent"
-                      : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
+                      : "text-main-light-text hover:bg-main-accent/5 hover:text-main-accent"
                   }`}
                 >
                   <Icon icon={section.icon} className="w-4 h-4" />
@@ -78,7 +78,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         <div className="mb-5">
           <button
             onClick={onBackToList}
-            className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 bg-[#161616] hover:bg-white/[0.05] border border-white/[0.1] hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
+            className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
           >
             <Icon icon="material-symbols:arrow-back" className="w-5 h-5" />
             <span className="font-display text-sm">Back to Live Activity</span>
@@ -86,7 +86,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         </div>
         <div
           ref={navRef}
-          className={`w-64 bg-[#161616] border border-white/[0.1] rounded-sm p-4 transition-all duration-200 ${
+          className={`w-64 bg-surface border border-subtle rounded-sm p-4 transition-all duration-200 ${
             isNavSticky
               ? "fixed top-24 z-40 max-h-[calc(100vh-1rem)] overflow-y-auto"
               : "relative"
@@ -100,7 +100,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                 className={`w-full flex items-center gap-3 px-3 py-2 rounded text-left transition-all duration-200 ${
                   activeSection === section.id
                     ? "bg-main-accent/20 text-main-accent border-l-2 border-main-accent"
-                    : "text-main-light-text hover:bg-white/[0.05] hover:text-main-accent"
+                    : "text-main-light-text hover:bg-main-accent/5 hover:text-main-accent"
                 }`}
               >
                 <Icon icon={section.icon} className="w-4 h-4" />

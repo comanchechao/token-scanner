@@ -36,7 +36,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="group bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
+      className="group bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
     >
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex-1">
@@ -49,7 +49,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
           <p className="font-display text-main-light-text/90 mb-4 leading-relaxed">
             {token.narrative}
           </p>
-          <div className="font-mono text-xs text-main-light-text/60 bg-[#0a0a0a] hover:bg-white/[0.02] p-3 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200 mb-4">
+          <div className="font-mono text-xs text-main-light-text/60 bg-surface hover:bg-main-accent/5 p-3 rounded-lg border border-subtle transition-all duration-200 mb-4">
             {token.address}
           </div>
           <button
@@ -62,7 +62,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
         </div>
         <div className="lg:w-80">
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 Price
               </div>
@@ -70,7 +70,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
                 {token.price}
               </div>
             </div>
-            <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 Market Cap
               </div>
@@ -78,7 +78,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
                 {token.marketCap}
               </div>
             </div>
-            <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 24h Volume
               </div>
@@ -86,7 +86,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
                 {token.volume24h}
               </div>
             </div>
-            <div className="bg-[#0a0a0a] hover:bg-white/[0.02] p-4 rounded-lg border border-white/[0.05] hover:border-white/[0.1] transition-all duration-200">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 Holders
               </div>
@@ -107,7 +107,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
         <div className="space-y-3">
           {/* Key Metrics */}
           <div className="grid grid-cols-2 gap-2">
-            <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+            <div className="bg-surface p-3 rounded border border-subtle">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 Price
               </div>
@@ -115,7 +115,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
                 {token.price}
               </div>
             </div>
-            <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+            <div className="bg-surface p-3 rounded border border-subtle">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 Market Cap
               </div>
@@ -123,7 +123,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
                 {token.marketCap}
               </div>
             </div>
-            <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+            <div className="bg-surface p-3 rounded border border-subtle">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 24h Volume
               </div>
@@ -131,7 +131,7 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
                 {token.volume24h}
               </div>
             </div>
-            <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+            <div className="bg-surface p-3 rounded border border-subtle">
               <div className="font-display text-xs text-main-light-text/60 mb-1">
                 Holders
               </div>
@@ -142,11 +142,11 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
           </div>
 
           {/* Contract Address */}
-          <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+          <div className="bg-surface p-3 rounded border border-subtle">
             <div className="font-display text-xs text-main-light-text/60 mb-2">
               Contract Address
             </div>
-            <div className="font-mono text-xs text-main-light-text/80 break-all bg-[#161616] p-2 rounded">
+            <div className="font-mono text-xs text-main-light-text/80 break-all bg-surface p-2 rounded">
               {token.address}
             </div>
           </div>

@@ -35,7 +35,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="bg-[#161616] border border-white/[0.1] hover:border-main-accent/30 rounded-sm p-6 md:p-8"
+      className="bg-surface border border-subtle hover:border-main-accent/30 rounded-sm p-6 md:p-8"
     >
       <div className="flex items-center justify-between mb-6">
         <h3 className="font-mono text-xl text-main-text">
@@ -57,7 +57,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
             href={t.link}
             target="_blank"
             rel="noreferrer"
-            className="group bg-[#0a0a0a] hover:bg-white/[0.05] border border-white/[0.08] hover:border-main-accent/30 rounded-lg p-4 transition-all duration-200"
+            className="group bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-lg p-4 transition-all duration-200"
           >
             <div className="flex items-start gap-3 mb-3">
               <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex-shrink-0">
@@ -88,7 +88,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between pt-3 border-t border-white/[0.05]">
+            <div className="flex items-center justify-between pt-3 border-t border-subtle">
               <div>
                 <div className="font-display text-xs text-main-light-text/60">
                   Market Cap
@@ -126,7 +126,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
       </div>
 
       {/* See More Button */}
-      <div className="mt-6 pt-4 border-t border-white/[0.05]">
+      <div className="mt-6 pt-4 border-t border-subtle">
         <button
           onClick={() => setIsModalOpen(true)}
           className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200 w-full justify-center"
@@ -145,7 +145,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
         <div className="space-y-3">
           {/* Ecosystem Stats */}
           <div className="grid grid-cols-3 gap-2">
-            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+            <div className="text-center p-3 bg-surface rounded border border-subtle">
               <div className="font-mono text-lg text-main-accent mb-1">
                 {devTokens.length}
               </div>
@@ -153,7 +153,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
                 Projects
               </div>
             </div>
-            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+            <div className="text-center p-3 bg-surface rounded border border-subtle">
               <div className="font-mono text-lg text-green-400 mb-1">
                 {devTokens.filter((t) => t.performance.startsWith("+")).length}
               </div>
@@ -161,7 +161,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
                 Positive
               </div>
             </div>
-            <div className="text-center p-3 bg-[#0a0a0a] rounded border border-white/[0.05]">
+            <div className="text-center p-3 bg-surface rounded border border-subtle">
               <div className="font-mono text-lg text-blue-400 mb-1">
                 $
                 {devTokens
@@ -186,7 +186,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
           </div>
 
           {/* Top Developer Tokens */}
-          <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+          <div className="bg-surface p-3 rounded border border-subtle">
             <div className="font-display text-xs text-main-light-text/60 mb-2">
               Top Developer Tokens
             </div>
@@ -194,7 +194,7 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
               {devTokens.slice(0, 4).map((token) => (
                 <div
                   key={token.address + token.name}
-                  className="flex items-center justify-between p-2 bg-[#161616] rounded"
+                  className="flex items-center justify-between p-2 bg-surface rounded border border-subtle"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20">

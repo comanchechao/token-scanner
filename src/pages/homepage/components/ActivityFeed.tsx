@@ -105,7 +105,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = React.memo(
     }, []);
 
     return (
-      <div className="relative   bg-[#161616]  border border-white/[0.1] rounded-sm py-4 px-6 transition-all duration-500">
+      <div className="relative bg-surface border border-subtle rounded-sm py-4 px-6 transition-all duration-500 shadow-elevated">
         <div className="flex items-center justify-between mb-4 relative z-10">
           <h2 className="font-algance text-xl text-main-text">
             Live KOL Activity

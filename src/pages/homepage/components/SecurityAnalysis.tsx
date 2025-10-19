@@ -35,7 +35,7 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="bg-[#161616] border border-white/[0.08] hover:border-main-accent/20 hover:bg-white/[0.02] rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
+      className="bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
     >
       <div className="flex items-center justify-between mb-6">
         <h3 className="font-mono text-xl text-main-text">Security Analysis</h3>
@@ -69,7 +69,7 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
           return (
             <div
               key={item.label}
-              className={`bg-[#0a0a0a] border rounded-lg p-4 hover:border-opacity-40 transition-colors ${bgColor}`}
+              className={`bg-surface border border-subtle rounded-lg p-4 hover:border-opacity-40 transition-colors ${bgColor}`}
             >
               <div className="flex items-start gap-3">
                 <Icon icon={icon} className={`w-5 h-5 ${color} mt-0.5`} />
@@ -88,7 +88,7 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
       </div>
 
       {/* See More Button */}
-      <div className="mt-6 pt-4 border-t border-white/[0.05]">
+      <div className="mt-6 pt-4 border-t border-subtle">
         <button
           onClick={() => setIsModalOpen(true)}
           className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200 w-full justify-center"
@@ -106,7 +106,7 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
       >
         <div className="space-y-3">
           {/* Security Score */}
-          <div className="text-center bg-[#0a0a0a] p-4 rounded border border-white/[0.05]">
+          <div className="text-center bg-surface p-4 rounded border border-subtle">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 mb-2">
               <span className="font-mono text-lg text-emerald-400">
                 {Math.round((passedChecks / securityData.length) * 100)}%
@@ -147,7 +147,7 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
           </div>
 
           {/* Security Checks */}
-          <div className="bg-[#0a0a0a] p-3 rounded border border-white/[0.05]">
+          <div className="bg-surface p-3 rounded border border-subtle">
             <div className="font-display text-xs text-main-light-text/60 mb-2">
               Security Checks
             </div>
@@ -168,7 +168,7 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
                 return (
                   <div
                     key={item.label}
-                    className="flex items-center justify-between p-2 bg-[#161616] rounded"
+                    className="flex items-center justify-between p-2 bg-surface rounded border border-subtle"
                   >
                     <div className="flex items-center gap-2">
                       <Icon icon={icon} className={`w-4 h-4 ${color}`} />
