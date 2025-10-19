@@ -41,7 +41,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
   return (
     <section
       className={`relative z-10 flex-1 flex flex-col justify-center transition-all duration-500 ${
-        !scanned ? "pt-32 pb-10" : "pt-16 pb-8"
+        !scanned ? "pt-16 pb-10" : "pt-16 pb-8"
       }`}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
