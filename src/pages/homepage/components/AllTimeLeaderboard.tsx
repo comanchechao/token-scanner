@@ -232,114 +232,87 @@ const AllTimeLeaderboard: React.FC<AllTimeLeaderboardProps> = ({ feedRef }) => {
 
   const currentData = MOCK_LEADERBOARD_DATA[selectedPeriod];
 
-  const renderLeaderboardEntry = useCallback(
-    (entry: LeaderboardEntry, index: number) => {
-      const getRankIcon = (rank: number) => {
-        switch (rank) {
-          case 1:
-            return "🏆";
-          case 2:
-            return "🥈";
-          case 3:
-            return "🥉";
-          default:
-            return rank.toString();
-        }
-      };
+  const renderLeaderboardEntry = useCallback((entry: LeaderboardEntry) => {
+    const getRankIcon = (rank: number) => {
+      switch (rank) {
+        case 1:
+          return "🏆";
+        case 2:
+          return "🥈";
+        case 3:
+          return "🥉";
+        default:
+          return rank.toString();
+      }
+    };
 
-      const winRate =
-        entry.wins + entry.losses > 0
-          ? (entry.wins / (entry.wins + entry.losses)) * 100
-          : 0;
+    const winRate =
+      entry.wins + entry.losses > 0
+        ? (entry.wins / (entry.wins + entry.losses)) * 100
+        : 0;
 
-      return (
-        <div
-          key={entry.id}
-          className={`flex items-center justify-between p-3 xl:p-4 rounded-lg border transition-all duration-200 ${
-            entry.rank <= 3
-              ? "bg-gradient-to-r from-main-accent/10 to-main-highlight/10 border-main-accent/30"
-              : "bg-surface hover:bg-main-accent/5 border-subtle hover:border-main-accent/20"
-          }`}
-        >
-          {/* Rank and User Info */}
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            <div className="flex-shrink-0 w-8 xl:w-10 text-center">
-              {entry.rank <= 3 ? (
-                <span className="text-lg xl:text-xl">
-                  {getRankIcon(entry.rank)}
-                </span>
-              ) : (
-                <span className="font-mono text-main-light-text/60 text-sm xl:text-base font-medium">
-                  {entry.rank}
-                </span>
-              )}
-            </div>
-
-            <div className="w-8 h-8 xl:w-10 xl:h-10 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex-shrink-0">
-              {entry.avatar ? (
-                <img
-                  src={entry.avatar}
-                  alt={entry.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <Icon
-                    icon="material-symbols:person"
-                    className="w-4 h-4 xl:w-5 xl:h-5 text-main-accent"
-                  />
-                </div>
-              )}
-            </div>
-
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="font-display text-main-text font-medium text-sm xl:text-base truncate">
-                  {entry.name}
-                </span>
-                {entry.isVerified && (
-                  <Icon
-                    icon="material-symbols:verified"
-                    className="w-4 h-4 text-blue-400 flex-shrink-0"
-                  />
-                )}
-                <Icon
-                  icon="mdi:twitter"
-                  className="w-3 h-3 xl:w-4 xl:h-4 text-main-light-text/40 flex-shrink-0"
-                />
-                <span className="font-mono text-xs xl:text-sm text-main-light-text/60 truncate">
-                  {entry.handle}
-                </span>
-              </div>
-
-              {/* Win/Loss ratio - hidden on mobile */}
-              <div className="hidden sm:flex items-center gap-2 mt-1">
-                <span className="font-display text-xs text-emerald-400">
-                  {entry.wins}
-                </span>
-                <span className="font-display text-xs text-main-light-text/40">
-                  /
-                </span>
-                <span className="font-display text-xs text-red-400">
-                  {entry.losses}
-                </span>
-                <span className="font-display text-xs text-main-light-text/60 ml-2">
-                  {winRate.toFixed(0)}% win rate
-                </span>
-              </div>
-            </div>
+    return (
+      <div
+        key={entry.id}
+        className={`flex items-center justify-between p-3 xl:p-4 rounded-lg border transition-all duration-200 ${
+          entry.rank <= 3
+            ? "bg-gradient-to-r from-main-accent/10 to-main-highlight/10 border-main-accent/30"
+            : "bg-surface hover:bg-main-accent/5 border-subtle hover:border-main-accent/20"
+        }`}
+      >
+        {/* Rank and User Info */}
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <div className="flex-shrink-0 w-8 xl:w-10 text-center">
+            {entry.rank <= 3 ? (
+              <span className="text-lg xl:text-xl">
+                {getRankIcon(entry.rank)}
+              </span>
+            ) : (
+              <span className="font-mono text-main-light-text/60 text-sm xl:text-base font-medium">
+                {entry.rank}
+              </span>
+            )}
           </div>
 
-          {/* Performance Data */}
-          <div className="text-right flex-shrink-0">
-            <div className="font-mono text-emerald-400 text-sm xl:text-base font-medium">
-              +{entry.totalSol.toFixed(2)} Sol
+          <div className="w-8 h-8 xl:w-10 xl:h-10 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex-shrink-0">
+            {entry.avatar ? (
+              <img
+                src={entry.avatar}
+                alt={entry.name}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <Icon
+                  icon="material-symbols:person"
+                  className="w-4 h-4 xl:w-5 xl:h-5 text-main-accent"
+                />
+              </div>
+            )}
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="font-display text-main-text font-medium text-sm xl:text-base truncate">
+                {entry.name}
+              </span>
+              {entry.isVerified && (
+                <Icon
+                  icon="material-symbols:verified"
+                  className="w-4 h-4 text-blue-400 flex-shrink-0"
+                />
+              )}
+              <Icon
+                icon="mdi:twitter"
+                className="w-3 h-3 xl:w-4 xl:h-4 text-main-light-text/40 flex-shrink-0"
+              />
+              <span className="font-mono text-xs xl:text-sm text-main-light-text/60 truncate">
+                {entry.handle}
+              </span>
             </div>
-            <div className="font-mono text-main-light-text/60 text-xs xl:text-sm">
-              (${entry.totalUsd.toLocaleString()})
-            </div>
-            {/* Win/Loss ratio - visible on mobile */}
-            <div className="sm:hidden flex items-center justify-end gap-1 mt-1">
+
+            {/* Win/Loss ratio - hidden on mobile */}
+            <div className="hidden sm:flex items-center gap-2 mt-1">
               <span className="font-display text-xs text-emerald-400">
                 {entry.wins}
               </span>
@@ -349,13 +322,37 @@ const AllTimeLeaderboard: React.FC<AllTimeLeaderboardProps> = ({ feedRef }) => {
               <span className="font-display text-xs text-red-400">
                 {entry.losses}
               </span>
+              <span className="font-display text-xs text-main-light-text/60 ml-2">
+                {winRate.toFixed(0)}% win rate
+              </span>
             </div>
           </div>
         </div>
-      );
-    },
-    []
-  );
+
+        {/* Performance Data */}
+        <div className="text-right flex-shrink-0">
+          <div className="font-mono text-emerald-400 text-sm xl:text-base font-medium">
+            +{entry.totalSol.toFixed(2)} Sol
+          </div>
+          <div className="font-mono text-main-light-text/60 text-xs xl:text-sm">
+            (${entry.totalUsd.toLocaleString()})
+          </div>
+          {/* Win/Loss ratio - visible on mobile */}
+          <div className="sm:hidden flex items-center justify-end gap-1 mt-1">
+            <span className="font-display text-xs text-emerald-400">
+              {entry.wins}
+            </span>
+            <span className="font-display text-xs text-main-light-text/40">
+              /
+            </span>
+            <span className="font-display text-xs text-red-400">
+              {entry.losses}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }, []);
 
   return (
     <div className="relative bg-surface border border-subtle rounded-sm h-fit py-4 px-6 xl:py-6 xl:px-8 transition-all duration-500 shadow-elevated">
