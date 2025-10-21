@@ -358,7 +358,7 @@ const AllTimeLeaderboard: React.FC<AllTimeLeaderboardProps> = ({ feedRef }) => {
   );
 
   return (
-    <div className="relative bg-surface border border-subtle rounded-sm py-4 px-6 xl:py-6 xl:px-8 transition-all duration-500 shadow-elevated">
+    <div className="relative bg-surface border border-subtle rounded-sm h-fit py-4 px-6 xl:py-6 xl:px-8 transition-all duration-500 shadow-elevated">
       {/* Header with tabs */}
       <div className="flex items-center justify-between mb-4 xl:mb-6 relative z-10">
         <h2 className="font-algance text-xl xl:text-2xl text-main-text">
