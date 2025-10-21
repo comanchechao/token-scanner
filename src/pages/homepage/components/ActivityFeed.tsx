@@ -55,14 +55,20 @@ const ActivityFeed: React.FC<ActivityFeedProps> = React.memo(
       const currentRef = feedRef?.current || localFeedRef.current;
 
       if (currentRef) {
-        gsap.to(currentRef, {
-          duration: 0.4,
-          ease: "power2.out",
-          onComplete: () => {
-            currentRef.classList.remove("opacity-0");
-            currentRef.classList.add("opacity-100");
-          },
-        });
+        // Immediately show the content, then animate
+        currentRef.classList.remove("opacity-0");
+        currentRef.classList.add("opacity-100");
+
+        gsap.fromTo(
+          currentRef,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          }
+        );
       }
     }, [feedRef]);
 
@@ -105,35 +111,43 @@ const ActivityFeed: React.FC<ActivityFeedProps> = React.memo(
     }, []);
 
     return (
-      <div className="relative bg-surface border border-subtle rounded-sm py-4 px-6 transition-all duration-500 shadow-elevated">
-        <div className="flex items-center justify-between mb-4 relative z-10">
-          <h2 className="font-algance text-xl text-main-text">
+      <div className="relative bg-surface border border-subtle rounded-sm h-auto py-4 px-6 xl:py-6 xl:px-8 transition-all duration-500 shadow-elevated">
+        <div className="flex items-center justify-between mb-4 xl:mb-6 relative z-10">
+          <h2 className="font-algance text-xl xl:text-2xl text-main-text">
             Live KOL Activity
           </h2>
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="font-tiktok text-sm text-main-light-text">
+            <div className="w-3 h-3 xl:w-4 xl:h-4 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="font-tiktok text-sm xl:text-base text-main-light-text">
               Live
             </span>
           </div>
         </div>
         <div
           ref={feedRef || localFeedRef}
-          className="space-y-4 relative z-10 opacity-0"
+          className="space-y-4 xl:space-y-5 relative z-10"
         >
-          {activities.map(renderActivity)}
+          {activities.length > 0 ? (
+            activities.map(renderActivity)
+          ) : (
+            <div className="text-center py-8">
+              <div className="font-display text-main-light-text/60">
+                No activity data available
+              </div>
+            </div>
+          )}
         </div>
-        <div className="text-center flex justify-center mt-8 relative z-10">
+        <div className="text-center flex justify-center mt-8 xl:mt-10 relative z-10">
           <Link
             to="/leaderboard"
-            className="relative overflow-hidden w-fit   px-4 py-3 ml-4 z-50 transition-all flex gap-2 items-center ease-in shadow-2xl shadow-main-accent border border-main-accent/50 text-main-accent text-sm rounded-sm duration-300 cursor-pointer  "
+            className="relative overflow-hidden w-fit px-4 py-3 xl:px-6 xl:py-4 ml-4 z-50 transition-all flex gap-2 items-center ease-in shadow-2xl shadow-main-accent border border-main-accent/50 text-main-accent text-sm xl:text-base rounded-sm duration-300 cursor-pointer"
           >
             <span className="flex gap-2 items-center">
               View Full Leaderboard
             </span>
             <Icon
               icon="material-symbols:arrow-right-alt"
-              className="ml-2 w-5 h-5"
+              className="ml-2 w-5 h-5 xl:w-6 xl:h-6"
             />
           </Link>
         </div>

@@ -36,61 +36,66 @@ const TokenOverview: React.FC<TokenOverviewProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="group bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
+      className="group bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 md:p-8 xl:p-10 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
     >
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col lg:flex-row xl:gap-8 gap-6">
         <div className="flex-1">
-          <div className="flex items-center gap-3 mb-4">
-            <h2 className="font-mono text-2xl text-main-text">{token.name}</h2>
-            <span className="px-3 py-1 font-bold bg-main-accent/20 text-main-accent font-display text-sm rounded-full">
+          <div className="flex items-center gap-3 mb-4 xl:mb-6">
+            <h2 className="font-mono text-2xl xl:text-3xl text-main-text">
+              {token.name}
+            </h2>
+            <span className="px-3 py-1 xl:px-4 xl:py-1.5 font-bold bg-main-accent/20 text-main-accent font-display text-sm xl:text-base rounded-full">
               ${token.symbol}
             </span>
           </div>
-          <p className="font-display text-main-light-text/90 mb-4 leading-relaxed">
+          <p className="font-display text-main-light-text/90 mb-4 xl:mb-6 leading-relaxed xl:text-lg">
             {token.narrative}
           </p>
-          <div className="font-mono text-xs text-main-light-text/60 bg-surface hover:bg-main-accent/5 p-3 rounded-lg border border-subtle transition-all duration-200 mb-4">
+          <div className="font-mono text-xs xl:text-sm text-main-light-text/60 bg-surface hover:bg-main-accent/5 p-3 xl:p-4 rounded-lg border border-subtle transition-all duration-200 mb-4 xl:mb-6">
             {token.address}
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200"
+            className="flex items-center gap-2 px-4 py-2 xl:px-5 xl:py-3 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm xl:text-base transition-all duration-200"
           >
-            <Icon icon="material-symbols:info-outline" className="w-4 h-4" />
+            <Icon
+              icon="material-symbols:info-outline"
+              className="w-4 h-4 xl:w-5 xl:h-5"
+            />
             See More Details
           </button>
         </div>
-        <div className="lg:w-80">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
-              <div className="font-display text-xs text-main-light-text/60 mb-1">
+        <div className="lg:w-80 xl:w-96">
+          <div className="grid grid-cols-2 gap-4 xl:gap-6">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 xl:p-5 rounded-lg border border-subtle transition-all duration-200">
+              <div className="font-display text-xs xl:text-sm text-main-light-text/60 mb-1 xl:mb-2">
                 Price
               </div>
-              <div className="font-mono text-lg text-main-text">
+              <div className="font-mono text-lg xl:text-xl text-main-text">
                 {token.price}
               </div>
             </div>
-            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
-              <div className="font-display text-xs text-main-light-text/60 mb-1">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 xl:p-5 rounded-lg border border-subtle transition-all duration-200">
+              <div className="font-display text-xs xl:text-sm text-main-light-text/60 mb-1 xl:mb-2">
                 Market Cap
               </div>
-              <div className="font-mono text-lg text-main-text">
+              <div className="font-mono text-lg xl:text-xl text-main-text">
                 {token.marketCap}
               </div>
             </div>
-            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
-              <div className="font-display text-xs text-main-light-text/60 mb-1">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 xl:p-5 rounded-lg border border-subtle transition-all duration-200">
+              <div className="font-display text-xs xl:text-sm text-main-light-text/60 mb-1 xl:mb-2">
                 24h Volume
               </div>
-              <div className="font-mono text-lg text-main-text">
+              <div className="font-mono text-lg xl:text-xl text-main-text">
                 {token.volume24h}
               </div>
             </div>
-            <div className="bg-surface hover:bg-main-accent/5 p-4 rounded-lg border border-subtle transition-all duration-200">
-              <div className="font-display text-xs text-main-light-text/60 mb-1">
+            <div className="bg-surface hover:bg-main-accent/5 p-4 xl:p-5 rounded-lg border border-subtle transition-all duration-200">
+              <div className="font-display text-xs xl:text-sm text-main-light-text/60 mb-1 xl:mb-2">
                 Holders
               </div>
-              <div className="font-mono text-lg text-main-text">
+              <div className="font-mono text-lg xl:text-xl text-main-text">
                 {token.holders}
               </div>
             </div>

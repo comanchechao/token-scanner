@@ -35,32 +35,32 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="bg-surface border border-subtle hover:border-main-accent/30 rounded-sm p-6 md:p-8"
+      className="bg-surface border border-subtle hover:border-main-accent/30 rounded-sm p-6 md:p-8 xl:p-10"
     >
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="font-mono text-xl text-main-text">
+      <div className="flex items-center justify-between mb-6 xl:mb-8">
+        <h3 className="font-mono text-xl xl:text-2xl text-main-text">
           Developer Ecosystem
         </h3>
         <div className="text-right">
-          <div className="font-display text-sm text-main-accent">
+          <div className="font-display text-sm xl:text-base text-main-accent">
             {devTokens.length} tokens
           </div>
-          <div className="font-display text-xs text-main-light-text/60">
+          <div className="font-display text-xs xl:text-sm text-main-light-text/60">
             Related projects
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-6">
         {devTokens.map((t: DevToken) => (
           <a
             key={t.address + t.name}
             href={t.link}
             target="_blank"
             rel="noreferrer"
-            className="group bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-lg p-4 transition-all duration-200"
+            className="group bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-lg p-4 xl:p-5 transition-all duration-200"
           >
             <div className="flex items-start gap-3 mb-3">
-              <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex-shrink-0">
+              <div className="w-10 h-10 xl:w-12 xl:h-12 rounded-full overflow-hidden bg-gradient-to-br from-main-accent/20 to-main-highlight/20 flex-shrink-0">
                 {t.avatar ? (
                   <img
                     src={t.avatar}
@@ -71,38 +71,38 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
                   <div className="w-full h-full flex items-center justify-center">
                     <Icon
                       icon="material-symbols:token"
-                      className="w-5 h-5 text-main-accent"
+                      className="w-5 h-5 xl:w-6 xl:h-6 text-main-accent"
                     />
                   </div>
                 )}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-display text-main-text font-medium mb-1 truncate">
+                <div className="font-display text-main-text font-medium mb-1 xl:text-base truncate">
                   {t.name}
                 </div>
-                <div className="font-mono text-xs text-main-light-text/60 mb-2">
+                <div className="font-mono text-xs xl:text-sm text-main-light-text/60 mb-2">
                   {t.symbol}
                 </div>
-                <div className="font-mono text-xs text-main-light-text/40 truncate">
+                <div className="font-mono text-xs xl:text-sm text-main-light-text/40 truncate">
                   {t.address.slice(0, 6)}...{t.address.slice(-4)}
                 </div>
               </div>
             </div>
             <div className="flex items-center justify-between pt-3 border-t border-subtle">
               <div>
-                <div className="font-display text-xs text-main-light-text/60">
+                <div className="font-display text-xs xl:text-sm text-main-light-text/60">
                   Market Cap
                 </div>
-                <div className="font-mono text-sm text-main-text">
+                <div className="font-mono text-sm xl:text-base text-main-text">
                   {t.marketCap}
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-display text-xs text-main-light-text/60">
+                <div className="font-display text-xs xl:text-sm text-main-light-text/60">
                   Performance
                 </div>
                 <div
-                  className={`font-mono text-sm ${
+                  className={`font-mono text-sm xl:text-base ${
                     t.performance.startsWith("+")
                       ? "text-emerald-400"
                       : "text-red-400"
@@ -113,12 +113,12 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
               </div>
             </div>
             <div className="flex items-center justify-between mt-3">
-              <div className="font-display text-xs text-main-accent group-hover:text-main-highlight transition-colors">
+              <div className="font-display text-xs xl:text-sm text-main-accent group-hover:text-main-highlight transition-colors">
                 View on DEX →
               </div>
               <Icon
                 icon="solar:external-link-outline"
-                className="w-4 h-4 text-main-light-text/40 group-hover:text-main-accent transition-colors"
+                className="w-4 h-4 xl:w-5 xl:h-5 text-main-light-text/40 group-hover:text-main-accent transition-colors"
               />
             </div>
           </a>
@@ -126,12 +126,15 @@ const DeveloperEcosystem: React.FC<DeveloperEcosystemProps> = ({
       </div>
 
       {/* See More Button */}
-      <div className="mt-6 pt-4 border-t border-subtle">
+      <div className="mt-6 xl:mt-8 pt-4 xl:pt-6 border-t border-subtle">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200 w-full justify-center"
+          className="flex items-center gap-2 px-4 py-2 xl:px-5 xl:py-3 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm xl:text-base transition-all duration-200 w-full justify-center"
         >
-          <Icon icon="material-symbols:token" className="w-4 h-4" />
+          <Icon
+            icon="material-symbols:token"
+            className="w-4 h-4 xl:w-5 xl:h-5"
+          />
           Explore All Dev Tokens
         </button>
       </div>

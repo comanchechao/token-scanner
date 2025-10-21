@@ -2,6 +2,8 @@ import React, { useMemo, useState, useEffect, useRef } from "react";
 import Navbar from "../../layouts/Navbar";
 import Footer from "../../layouts/Footer";
 import ActivityFeed from "./components/ActivityFeed";
+import AllTimeLeaderboard from "./components/AllTimeLeaderboard";
+import FeedToggle from "./components/FeedToggle";
 import HeroSearch from "./components/HeroSearch";
 import TokenOverview from "./components/TokenOverview";
 import KOLTraction from "./components/KOLTraction";
@@ -349,10 +351,14 @@ const HomePage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("overview");
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [isNavSticky, setIsNavSticky] = useState(false);
+  const [activeFeedView, setActiveFeedView] = useState<
+    "activity" | "leaderboard"
+  >("activity");
 
   const data = useMemo(() => MOCK_DATA, []);
   const activities = useMemo(() => MOCK_ACTIVITIES, []);
   const activityFeedRef = useRef<HTMLDivElement>(null);
+  const leaderboardRef = useRef<HTMLDivElement>(null);
 
   const sections = [
     {
@@ -523,20 +529,42 @@ const HomePage: React.FC = () => {
         searchRef={searchRef}
       />
 
-      {/* Activity Feed - Show when not scanned */}
+      {/* Activity Feed & Leaderboard - Show when not scanned */}
       {!scanned && (
-        <section className="relative z-10 pb-20 flex-1">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ActivityFeed activities={activities} feedRef={activityFeedRef} />
+        <section className="relative z-10 pb-20 xl:pb-24 flex-1">
+          <div className="max-w-7xl lg:max-w-9xl xl:max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            {/* Mobile Toggle */}
+            <FeedToggle
+              activeView={activeFeedView}
+              onToggle={setActiveFeedView}
+            />
+
+            {/* Desktop: Side by side layout */}
+            <div className="hidden lg:grid lg:grid-cols-2 xl:gap-8 gap-6">
+              <ActivityFeed activities={activities} feedRef={activityFeedRef} />
+              <AllTimeLeaderboard feedRef={leaderboardRef} />
+            </div>
+
+            {/* Mobile: Toggle between views */}
+            <div className="lg:hidden">
+              {activeFeedView === "activity" ? (
+                <ActivityFeed
+                  activities={activities}
+                  feedRef={activityFeedRef}
+                />
+              ) : (
+                <AllTimeLeaderboard feedRef={leaderboardRef} />
+              )}
+            </div>
           </div>
         </section>
       )}
 
       {/* Results - Only show after search */}
       {scanned && (
-        <section className="relative z-10 pb-20 flex-1">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+        <section className="relative z-10 pb-20 xl:pb-24 flex-1">
+          <div className="max-w-7xl lg:max-w-9xl xl:max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="flex flex-col md:flex-row xl:gap-10 gap-4 md:gap-8">
               {/* Navigation Sidebar - Hidden on mobile, visible on md+ */}
               <div className="hidden md:block">
                 <NavigationSidebar
@@ -562,7 +590,7 @@ const HomePage: React.FC = () => {
                 />
 
                 {/* KOLs and Telegram */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6 xl:gap-8 mb-6 md:mb-8 xl:mb-10">
                   <KOLTraction
                     kolData={data.kols}
                     custom={1}

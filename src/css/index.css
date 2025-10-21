@@ -90,7 +90,7 @@ body {
 
 [data-accent="violet"] {
   --color-main-accent: #8b5cf6; /* violet-500 */
-  --color-main-highlight: #d8b4fe; /* violet-300 */
+  --color-main-highlight: #8b5cf6; /* violet-300 */
 }
 
 [data-accent="emerald"] {
@@ -233,6 +233,17 @@ body {
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Custom Max Width Classes */
+  .max-w-8xl {
+    max-width: 88rem; /* 1408px */
+  }
+  .max-w-9xl {
+    max-width: 96rem; /* 1536px */
+  }
+  .max-w-10xl {
+    max-width: 104rem; /* 1664px */
   }
 }
 

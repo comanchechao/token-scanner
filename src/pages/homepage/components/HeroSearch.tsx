@@ -44,7 +44,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
         !scanned ? "pt-16 pb-10" : "pt-16 pb-8"
       }`}
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-4xl xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
         {!scanned ? (
           // Centered search when not scanned
           <div className="flex flex-col items-center justify-center">
@@ -52,11 +52,11 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
-              className="font-mono text-4xl md:text-6xl text-main-text mb-4 leading-tight"
+              className="font-mono text-4xl md:text-6xl xl:text-7xl text-main-text mb-4 leading-tight"
             >
               Token Find
             </motion.h1>
-            <p className="font-display text-lg md:text-xl text-main-light-text/70 mb-12 max-w-2xl">
+            <p className="font-display text-lg md:text-xl xl:text-2xl text-main-light-text/70 mb-12 max-w-2xl xl:max-w-3xl">
               Analyze any token instantly - get KOL insights, security checks,
               and dev connections
             </p>
@@ -68,12 +68,12 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
-              className="font-mono text-3xl md:text-5xl text-main-text mb-3 leading-tight"
+              className="font-mono text-3xl md:text-5xl xl:text-6xl text-main-text mb-3 leading-tight"
             >
               Find everything about a token
               <span className="text-main-accent"> in one place</span>
             </motion.h1>
-            <p className="font-display text-base md:text-lg text-main-light-text/80 mb-8">
+            <p className="font-display text-base md:text-lg xl:text-xl text-main-light-text/80 mb-8">
               Paste a token address to see narrative, KOL traction, Telegram
               calls, security, and dev tokens.
             </p>
@@ -84,7 +84,9 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
         <div
           ref={searchRef}
           className={`relative z ${
-            !scanned ? "max-w-4xl w-full mx-auto" : "max-w-3xl mx-auto"
+            !scanned
+              ? "max-w-4xl xl:max-w-5xl w-full mx-auto"
+              : "max-w-3xl xl:max-w-4xl mx-auto"
           }`}
         >
           <div
@@ -116,18 +118,18 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
                   ? "Search by token name or paste address..."
                   : "Paste token address or search by name..."
               }
-              className="w-full pl-14 pr-40 py-4 bg-transparent text-main-text placeholder:text-base placeholder-main-light-text/60 font-display text-base focus:outline-none"
+              className="w-full pl-14 pr-40 py-4 xl:py-5 bg-transparent text-main-text placeholder:text-base xl:placeholder:text-lg placeholder-main-light-text/60 font-display text-base xl:text-lg focus:outline-none"
             />
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
               <button
                 onClick={onPaste}
-                className="px-3 py-2 rounded-lg bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 text-main-accent text-sm cursor-pointer"
+                className="px-3 py-2 xl:px-4 xl:py-2.5 rounded-lg bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 text-main-accent text-sm xl:text-base cursor-pointer"
               >
                 Paste
               </button>
               <button
                 onClick={onScan}
-                className="px-4 py-2 rounded-lg bg-main-accent hover:bg-main-highlight text-main-bg font-display text-sm cursor-pointer transition-colors"
+                className="px-4 py-2 xl:px-5 xl:py-2.5 rounded-lg bg-main-accent hover:bg-main-highlight text-main-bg font-display text-sm xl:text-base cursor-pointer transition-colors"
               >
                 {!scanned ? "Analyze" : "Analyze"}
               </button>

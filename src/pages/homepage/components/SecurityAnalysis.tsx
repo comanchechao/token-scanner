@@ -35,18 +35,20 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 md:p-8 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
+      className="bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 md:p-8 xl:p-10 mb-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
     >
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="font-mono text-xl text-main-text">Security Analysis</h3>
+      <div className="flex items-center justify-between mb-6 xl:mb-8">
+        <h3 className="font-mono text-xl xl:text-2xl text-main-text">
+          Security Analysis
+        </h3>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
-          <span className="font-display text-sm text-main-light-text/70">
+          <div className="w-3 h-3 xl:w-4 xl:h-4 bg-emerald-400 rounded-full"></div>
+          <span className="font-display text-sm xl:text-base text-main-light-text/70">
             {passedChecks}/{securityData.length} checks passed
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
         {securityData.map((item: SecurityItem) => {
           const color =
             item.status === "pass"
@@ -69,15 +71,18 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
           return (
             <div
               key={item.label}
-              className={`bg-surface border border-subtle rounded-lg p-4 hover:border-opacity-40 transition-colors ${bgColor}`}
+              className={`bg-surface border border-subtle rounded-lg p-4 xl:p-5 hover:border-opacity-40 transition-colors ${bgColor}`}
             >
               <div className="flex items-start gap-3">
-                <Icon icon={icon} className={`w-5 h-5 ${color} mt-0.5`} />
+                <Icon
+                  icon={icon}
+                  className={`w-5 h-5 xl:w-6 xl:h-6 ${color} mt-0.5`}
+                />
                 <div className="flex-1">
-                  <div className="font-display text-main-light-text font-medium mb-1">
+                  <div className="font-display text-main-light-text font-medium mb-1 xl:text-base">
                     {item.label}
                   </div>
-                  <div className="font-display text-xs text-main-light-text/60">
+                  <div className="font-display text-xs xl:text-sm text-main-light-text/60">
                     {item.detail}
                   </div>
                 </div>
@@ -88,12 +93,15 @@ const SecurityAnalysis: React.FC<SecurityAnalysisProps> = ({
       </div>
 
       {/* See More Button */}
-      <div className="mt-6 pt-4 border-t border-subtle">
+      <div className="mt-6 xl:mt-8 pt-4 xl:pt-6 border-t border-subtle">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200 w-full justify-center"
+          className="flex items-center gap-2 px-4 py-2 xl:px-5 xl:py-3 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm xl:text-base transition-all duration-200 w-full justify-center"
         >
-          <Icon icon="material-symbols:security" className="w-4 h-4" />
+          <Icon
+            icon="material-symbols:security"
+            className="w-4 h-4 xl:w-5 xl:h-5"
+          />
           View Full Security Report
         </button>
       </div>

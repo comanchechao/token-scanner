@@ -38,44 +38,48 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
+      className="bg-surface border border-subtle hover:border-main-accent/20 hover:bg-main-accent/5 rounded-sm p-6 xl:p-8 transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/5"
     >
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-mono text-xl text-main-text">Telegram Calls</h3>
+      <div className="flex items-center justify-between mb-4 xl:mb-6">
+        <h3 className="font-mono text-xl xl:text-2xl text-main-text">
+          Telegram Calls
+        </h3>
         <div className="text-right">
-          <div className="font-display text-sm text-main-accent">
+          <div className="font-display text-sm xl:text-base text-main-accent">
             {telegramData.count} channels
           </div>
-          <div className="font-display text-xs text-main-light-text/60">
+          <div className="font-display text-xs xl:text-sm text-main-light-text/60">
             {telegramData.totalMembers} total reach
           </div>
         </div>
       </div>
-      <div className="space-y-3">
+      <div className="space-y-3 xl:space-y-4">
         {telegramData.top.map((ch: TelegramChannel) => (
           <div
             key={ch.name}
-            className="bg-surface hover:bg-main-accent/5 border border-subtle rounded-lg p-3 transition-all duration-200"
+            className="bg-surface hover:bg-main-accent/5 border border-subtle rounded-lg p-3 xl:p-4 transition-all duration-200"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <Icon
                   icon="ic:baseline-telegram"
-                  className="w-6 h-6 text-blue-400"
+                  className="w-6 h-6 xl:w-7 xl:h-7 text-blue-400"
                 />
                 <div>
-                  <div className="font-display text-main-light-text font-medium">
+                  <div className="font-display text-main-light-text font-medium xl:text-base">
                     {ch.name}
                   </div>
-                  <div className="font-display text-xs text-main-light-text/60">
+                  <div className="font-display text-xs xl:text-sm text-main-light-text/60">
                     {ch.mentions} mentions
                   </div>
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-mono text-main-text">{ch.members}</div>
+                <div className="font-mono text-main-text xl:text-lg">
+                  {ch.members}
+                </div>
                 <div
-                  className={`font-display text-xs px-2 py-1 rounded-full ${
+                  className={`font-display text-xs xl:text-sm px-2 py-1 rounded-full ${
                     ch.sentiment === "Bullish"
                       ? "bg-emerald-500/20 text-emerald-400"
                       : ch.sentiment === "Bearish"
@@ -92,12 +96,12 @@ const TelegramCalls: React.FC<TelegramCallsProps> = ({
       </div>
 
       {/* See More Button */}
-      <div className="mt-4 pt-4 border-t border-subtle">
+      <div className="mt-4 xl:mt-6 pt-4 xl:pt-6 border-t border-subtle">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm transition-all duration-200 w-full justify-center"
+          className="flex items-center gap-2 px-4 py-2 xl:px-5 xl:py-3 bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 hover:border-main-accent/50 rounded-lg text-main-accent hover:text-main-highlight font-display text-sm xl:text-base transition-all duration-200 w-full justify-center"
         >
-          <Icon icon="ic:baseline-telegram" className="w-4 h-4" />
+          <Icon icon="ic:baseline-telegram" className="w-4 h-4 xl:w-5 xl:h-5" />
           See All Channels
         </button>
       </div>

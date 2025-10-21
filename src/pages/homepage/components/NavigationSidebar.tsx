@@ -74,37 +74,44 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       </div>
 
       {/* Desktop Sidebar Navigation */}
-      <div className="hidden lg:block w-64 flex-shrink-0">
-        <div className="mb-5">
+      <div className="hidden lg:block w-64 xl:w-72 flex-shrink-0">
+        <div className="mb-5 xl:mb-6">
           <button
             onClick={onBackToList}
-            className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
+            className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 xl:px-5 xl:py-3 bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/40 rounded-sm text-main-text hover:text-main-accent transition-all duration-300"
           >
-            <Icon icon="material-symbols:arrow-back" className="w-5 h-5" />
-            <span className="font-display text-sm">Back to Live Activity</span>
+            <Icon
+              icon="material-symbols:arrow-back"
+              className="w-5 h-5 xl:w-6 xl:h-6"
+            />
+            <span className="font-display text-sm xl:text-base">
+              Back to Live Activity
+            </span>
           </button>
         </div>
         <div
           ref={navRef}
-          className={`w-64 bg-surface border border-subtle rounded-sm p-4 transition-all duration-200 ${
+          className={`w-64 xl:w-72 bg-surface border border-subtle rounded-sm p-4 xl:p-5 transition-all duration-200 ${
             isNavSticky
               ? "fixed top-24 z-40 max-h-[calc(100vh-1rem)] overflow-y-auto"
               : "relative"
           }`}
         >
-          <nav className="space-y-2">
+          <nav className="space-y-2 xl:space-y-3">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => onScrollToSection(section.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded text-left transition-all duration-200 ${
+                className={`w-full flex items-center gap-3 px-3 py-2 xl:px-4 xl:py-3 rounded text-left transition-all duration-200 ${
                   activeSection === section.id
                     ? "bg-main-accent/20 text-main-accent border-l-2 border-main-accent"
                     : "text-main-light-text hover:bg-main-accent/5 hover:text-main-accent"
                 }`}
               >
-                <Icon icon={section.icon} className="w-4 h-4" />
-                <span className="font-display text-sm">{section.label}</span>
+                <Icon icon={section.icon} className="w-4 h-4 xl:w-5 xl:h-5" />
+                <span className="font-display text-sm xl:text-base">
+                  {section.label}
+                </span>
               </button>
             ))}
           </nav>
