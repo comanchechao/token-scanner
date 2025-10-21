@@ -237,13 +237,13 @@ body {
 
   /* Custom Max Width Classes */
   .max-w-8xl {
-    max-width: 88rem; /* 1408px */
+    max-width: 88rem !important; /* 1408px */
   }
   .max-w-9xl {
-    max-width: 96rem; /* 1536px */
+    max-width: 96rem !important; /* 1536px */
   }
   .max-w-10xl {
-    max-width: 104rem; /* 1664px */
+    max-width: 104rem !important; /* 1664px */
   }
 }
 
