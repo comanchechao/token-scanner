@@ -532,7 +532,7 @@ const HomePage: React.FC = () => {
       {/* Activity Feed & Leaderboard - Show when not scanned */}
       {!scanned && (
         <section className="relative z-10 pb-20 xl:pb-24 flex-1">
-          <div className="    mx-auto px-4  lg:px-44 xl:px-44">
+          <div className="    mx-auto px-4  lg:px-96 xl:px-96">
             {/* Mobile Toggle */}
             <FeedToggle
               activeView={activeFeedView}
