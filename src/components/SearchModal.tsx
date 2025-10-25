@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
-import {
-  MockTokenData,
-  getTokenData,
-  getAllTokens,
-} from "../data/mockTokenData";
+import { MockTokenData, getAllTokens } from "../data/mockTokenData";
 
 interface SearchModalProps {
   isOpen: boolean;
