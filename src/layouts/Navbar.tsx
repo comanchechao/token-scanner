@@ -7,6 +7,15 @@ const Navbar: React.FC = React.memo(() => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [accent, setAccent] = useState<string>("cyan");
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+  const [chain, setChain] = useState<{ id: string; name: string }>({
+    id: "solana",
+    name: "Solana",
+  });
+  const [isChainPickerOpen, setIsChainPickerOpen] = useState(false);
+  const chainOptions = [
+    { id: "solana", name: "Solana" },
+    { id: "bnb", name: "BNB" },
+  ];
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     // Initialize theme from localStorage or default to dark for first-time visitors
     if (typeof window !== "undefined") {
@@ -44,10 +53,30 @@ const Navbar: React.FC = React.memo(() => {
     document.documentElement.setAttribute("data-accent", initial);
   }, []);
 
+  // Chain init and persistence
+  useEffect(() => {
+    const stored = localStorage.getItem("selectedChain");
+    let initial = { id: "solana", name: "Solana" };
+    if (stored) {
+      try {
+        initial = JSON.parse(stored);
+      } catch {
+        // If parsing fails, use default
+      }
+    }
+    setChain(initial);
+    document.documentElement.setAttribute("data-chain", initial.id);
+  }, []);
+
   useEffect(() => {
     document.documentElement.setAttribute("data-accent", accent);
     localStorage.setItem("accentTheme", accent);
   }, [accent]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-chain", chain.id);
+    localStorage.setItem("selectedChain", JSON.stringify(chain));
+  }, [chain]);
 
   // Apply theme to DOM and save to localStorage
   useEffect(() => {
@@ -66,6 +95,11 @@ const Navbar: React.FC = React.memo(() => {
   const handleColorSelect = (color: string) => {
     setAccent(color);
     setIsColorPickerOpen(false);
+  };
+
+  const handleChainSelect = (selectedChain: { id: string; name: string }) => {
+    setChain(selectedChain);
+    setIsChainPickerOpen(false);
   };
 
   const getColorValue = (color: string) => {
@@ -144,9 +178,15 @@ const Navbar: React.FC = React.memo(() => {
                 <Icon icon="material-symbols:group" className="w-4 h-4 mr-2" />
                 <span>KOLs</span>
               </Link>
-              <Link to="/devs" className={getDesktopLinkClasses("/devs")}>
-                <Icon icon="material-symbols:code" className="w-4 h-4 mr-2" />
-                <span>Devs</span>
+              <Link
+                to="/leaderboard"
+                className={getDesktopLinkClasses("/leaderboard")}
+              >
+                <Icon
+                  icon="material-symbols:leaderboard"
+                  className="w-4 h-4 mr-2"
+                />
+                <span>Leaderboard</span>
               </Link>
               <Link to="/tokens" className={getDesktopLinkClasses("/tokens")}>
                 <Icon icon="material-symbols:token" className="w-4 h-4 mr-2" />
@@ -155,7 +195,7 @@ const Navbar: React.FC = React.memo(() => {
             </div>
 
             {/* Theme & Accent Controls */}
-            <div className="flex items-center gap-4   relative">
+            <div className="flex items-center gap-4 relative">
               {/* Theme toggle */}
               <button
                 onClick={toggleTheme}
@@ -179,8 +219,10 @@ const Navbar: React.FC = React.memo(() => {
                   {theme}
                 </span>
               </button>
+
+              {/* Desktop Color Picker - Hidden on mobile */}
               <div
-                className="relative  "
+                className="hidden md:block relative"
                 style={{ backgroundColor: getColorValue(accent) }}
               >
                 <button
@@ -233,6 +275,69 @@ const Navbar: React.FC = React.memo(() => {
                   </div>
                 )}
               </div>
+
+              {/* Chain Picker */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsChainPickerOpen(!isChainPickerOpen)}
+                  className="flex items-center gap-2 px-3 py-3 rounded-sm bg-surface border border-subtle hover:border-main-accent/30 transition-all duration-300 cursor-pointer"
+                  aria-label="Chain picker"
+                >
+                  <Icon
+                    icon={
+                      chain.id === "solana"
+                        ? "token-branded:solana"
+                        : "cryptocurrency-color:bnb"
+                    }
+                    className="w-5 h-5"
+                  />
+                  <span className="hidden md:inline text-sm text-main-light-text  ">
+                    {chain.name}
+                  </span>
+                  <Icon
+                    icon="material-symbols:keyboard-arrow-down"
+                    className={`w-4 h-4 text-main-text transition-transform duration-200 ${
+                      isChainPickerOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Chain Dropdown */}
+                {isChainPickerOpen && (
+                  <div className="absolute top-full right-0 mt-2 p-2 bg-surface border border-subtle rounded-lg shadow-2xl z-50 min-w-[140px]">
+                    <div className="space-y-1">
+                      {chainOptions.map((chainOption) => (
+                        <button
+                          key={chainOption.id}
+                          onClick={() => handleChainSelect(chainOption)}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+                            chain.id === chainOption.id
+                              ? " text-main-accent"
+                              : "text-main-light-text hover:text-main-accent hover:bg-white/[0.05]"
+                          }`}
+                        >
+                          <Icon
+                            icon={
+                              chainOption.id === "solana"
+                                ? "token-branded:solana"
+                                : "cryptocurrency-color:bnb"
+                            }
+                            className="w-4 h-4"
+                          />
+                          <span className=" ">{chainOption.name}</span>
+                          {chain.id === chainOption.id && (
+                            <Icon
+                              icon="material-symbols:check"
+                              className="w-4 h-4 ml-auto"
+                            />
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <div className="md:hidden flex items-center">
                 <button
                   onClick={toggleMobileMenu}
@@ -276,14 +381,56 @@ const Navbar: React.FC = React.memo(() => {
               <Icon icon="material-symbols:group" className="w-4 h-4 mr-2" />
               KOLs
             </Link>
-            <Link to="/devs" className={getMobileLinkClasses("/devs")}>
-              <Icon icon="material-symbols:code" className="w-4 h-4 mr-2" />
-              Devs
+            <Link
+              to="/leaderboard"
+              className={getMobileLinkClasses("/leaderboard")}
+            >
+              <Icon
+                icon="material-symbols:leaderboard"
+                className="w-4 h-4 mr-2"
+              />
+              Leaderboard
             </Link>
             <Link to="/tokens" className={getMobileLinkClasses("/tokens")}>
               <Icon icon="material-symbols:token" className="w-4 h-4 mr-2" />
               Tokens
             </Link>
+
+            {/* Mobile Color Picker */}
+            <div className="pt-4 border-t border-subtle">
+              <div className="px-4 py-2">
+                <h3 className="text-sm font-medium text-main-light-text mb-3">
+                  Theme Colors
+                </h3>
+                <div className="grid grid-cols-2 gap-2">
+                  {(["cyan", "violet", "emerald", "amber"] as const).map(
+                    (color) => (
+                      <button
+                        key={color}
+                        onClick={() => handleColorSelect(color)}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+                          accent === color
+                            ? "bg-main-accent/20 text-main-accent border border-main-accent/30"
+                            : "text-main-light-text hover:text-main-accent hover:bg-main-accent/5 border border-subtle"
+                        }`}
+                      >
+                        <div
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: getColorValue(color) }}
+                        />
+                        <span className="capitalize">{color}</span>
+                        {accent === color && (
+                          <Icon
+                            icon="material-symbols:check"
+                            className="w-4 h-4 ml-auto"
+                          />
+                        )}
+                      </button>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

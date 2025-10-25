@@ -1,9 +1,8 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../layouts/Navbar";
 import Footer from "../../layouts/Footer";
 import ActivityFeed from "./components/ActivityFeed";
-import AllTimeLeaderboard from "./components/AllTimeLeaderboard";
-import FeedToggle from "./components/FeedToggle";
 import HeroSearch from "./components/HeroSearch";
 import TokenOverview from "./components/TokenOverview";
 import KOLTraction from "./components/KOLTraction";
@@ -12,6 +11,8 @@ import SecurityAnalysis from "./components/SecurityAnalysis";
 import DeveloperEcosystem from "./components/DeveloperEcosystem";
 import NavigationSidebar from "./components/NavigationSidebar";
 import TrendingRibbon from "../../components/TrendingRibbon";
+import SearchModal from "../../components/SearchModal";
+import { MockTokenData } from "../../data/mockTokenData";
 import "../../css/index.css";
 
 type KolBuyer = {
@@ -345,6 +346,7 @@ const MOCK_SUGGESTIONS = [
 ];
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [scanned, setScanned] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -352,14 +354,11 @@ const HomePage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("overview");
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [isNavSticky, setIsNavSticky] = useState(false);
-  const [activeFeedView, setActiveFeedView] = useState<
-    "activity" | "leaderboard"
-  >("activity");
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
   const data = useMemo(() => MOCK_DATA, []);
   const activities = useMemo(() => MOCK_ACTIVITIES, []);
   const activityFeedRef = useRef<HTMLDivElement>(null);
-  const leaderboardRef = useRef<HTMLDivElement>(null);
 
   const sections = [
     {
@@ -479,13 +478,6 @@ const HomePage: React.FC = () => {
     setSuggestions([]);
   };
 
-  const handleScan = () => {
-    if (input.trim()) {
-      setScanned(true);
-      setShowSuggestions(false);
-    }
-  };
-
   const handleBackToList = () => {
     setScanned(false);
     setInput("");
@@ -493,15 +485,16 @@ const HomePage: React.FC = () => {
     setSuggestions([]);
   };
 
-  const handlePaste = async () => {
-    try {
-      const text = await navigator.clipboard.readText();
-      if (text) {
-        handleInputChange(text.trim());
-      }
-    } catch {
-      /* ignore */
-    }
+  const handleOpenSearchModal = () => {
+    setIsSearchModalOpen(true);
+  };
+
+  const handleCloseSearchModal = () => {
+    setIsSearchModalOpen(false);
+  };
+
+  const handleTokenSelect = (token: MockTokenData) => {
+    navigate(`/tokens/${token.address}`);
   };
 
   return (
@@ -519,8 +512,6 @@ const HomePage: React.FC = () => {
         suggestions={suggestions}
         onInputChange={handleInputChange}
         onSuggestionClick={handleSuggestionClick}
-        onScan={handleScan}
-        onPaste={handlePaste}
         onFocus={() => {
           if (input.trim().length > 0 && suggestions.length > 0) {
             setShowSuggestions(true);
@@ -530,35 +521,29 @@ const HomePage: React.FC = () => {
           setTimeout(() => setShowSuggestions(false), 200);
         }}
         onCloseSuggestions={() => setShowSuggestions(false)}
+        onOpenSearchModal={handleOpenSearchModal}
         searchRef={searchRef}
+      />
+
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={isSearchModalOpen}
+        onClose={handleCloseSearchModal}
+        onTokenSelect={handleTokenSelect}
       />
 
       {/* Activity Feed & Leaderboard - Show when not scanned */}
       {!scanned && (
         <section className="relative z-10 pb-20 xl:pb-24 flex-1">
           <div className="    mx-auto px-4  lg:px-20 xl:px-20 2xl:px-44">
-            {/* Mobile Toggle */}
-            <FeedToggle
-              activeView={activeFeedView}
-              onToggle={setActiveFeedView}
-            />
-
             {/* Desktop: Side by side layout */}
-            <div className="hidden lg:grid lg:grid-cols-2 xl:gap-8 gap-6">
+            <div className="hidden lg:grid lg:grid-cols-1  ">
               <ActivityFeed activities={activities} feedRef={activityFeedRef} />
-              <AllTimeLeaderboard feedRef={leaderboardRef} />
             </div>
 
             {/* Mobile: Toggle between views */}
             <div className="lg:hidden">
-              {activeFeedView === "activity" ? (
-                <ActivityFeed
-                  activities={activities}
-                  feedRef={activityFeedRef}
-                />
-              ) : (
-                <AllTimeLeaderboard feedRef={leaderboardRef} />
-              )}
+              <ActivityFeed activities={activities} feedRef={activityFeedRef} />
             </div>
           </div>
         </section>

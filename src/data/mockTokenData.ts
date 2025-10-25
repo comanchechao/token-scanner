@@ -19,6 +19,12 @@ export interface MockTokenData {
   circulatingSupply: string;
   fullyDilutedValuation: string;
   description: string;
+  chain: {
+    name: string;
+    symbol: string;
+    logo: string;
+    explorerUrl: string;
+  };
   socialLinks: {
     website?: string;
     twitter?: string;
@@ -59,6 +65,16 @@ export interface MockTokenData {
   sellTrades?: number;
   rank?: number;
   uniqueKOLs?: number;
+  // Transaction data
+  transactions?: Array<{
+    id: string;
+    type: "buy" | "sell";
+    timestamp: number;
+    amount: number;
+    price: number;
+    maker: string;
+    txHash: string;
+  }>;
 }
 
 // Default/General mock token data
@@ -82,6 +98,12 @@ export const GENERAL_MOCK_TOKEN: MockTokenData = {
   fullyDilutedValuation: "$99.6M",
   description:
     "Revolutionary AI-native infrastructure token powering secure, low-latency inference across decentralized on-chain agents. Built for developers who demand speed, security, and scalability.",
+  chain: {
+    name: "Solana",
+    symbol: "SOL",
+    logo: "token-branded:solana",
+    explorerUrl: "https://solscan.io/token/",
+  },
   socialLinks: {
     website: "https://neuralprotocol.io",
     twitter: "https://twitter.com/neuralprotocol",
@@ -151,6 +173,188 @@ export const GENERAL_MOCK_TOKEN: MockTokenData = {
   sellTrades: 324,
   rank: 1,
   uniqueKOLs: 127,
+  transactions: [
+    {
+      id: "1",
+      type: "buy",
+      timestamp: Date.now() - 0,
+      amount: 39.86,
+      price: 2.2889,
+      maker: "A3dbEF",
+      txHash: "0x1234567890abcdef1234567890abcdef12345678",
+    },
+    {
+      id: "2",
+      type: "buy",
+      timestamp: Date.now() - 1000,
+      amount: 405.3,
+      price: 2.2873,
+      maker: "98EBBC",
+      txHash: "0x234567890abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "3",
+      type: "sell",
+      timestamp: Date.now() - 2000,
+      amount: 114.33,
+      price: 2.2706,
+      maker: "058F46",
+      txHash: "0x34567890abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "4",
+      type: "buy",
+      timestamp: Date.now() - 3000,
+      amount: 466.0,
+      price: 2.216,
+      maker: "480e30",
+      txHash: "0x4567890abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "5",
+      type: "sell",
+      timestamp: Date.now() - 4000,
+      amount: 59.0,
+      price: 2.1972,
+      maker: "C51c40",
+      txHash: "0x567890abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "6",
+      type: "buy",
+      timestamp: Date.now() - 5000,
+      amount: 389.0,
+      price: 2.1995,
+      maker: "dFA8F0",
+      txHash: "0x67890abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "7",
+      type: "sell",
+      timestamp: Date.now() - 6000,
+      amount: 348.0,
+      price: 2.1839,
+      maker: "E2B9C1",
+      txHash: "0x7890abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "8",
+      type: "buy",
+      timestamp: Date.now() - 7000,
+      amount: 7.0,
+      price: 2.1979,
+      maker: "F3C0D2",
+      txHash: "0x890abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "9",
+      type: "sell",
+      timestamp: Date.now() - 8000,
+      amount: 97.0,
+      price: 2.1977,
+      maker: "04D1E3",
+      txHash: "0x90abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "10",
+      type: "buy",
+      timestamp: Date.now() - 9000,
+      amount: 4.0,
+      price: 2.1937,
+      maker: "15E2F4",
+      txHash: "0x0abcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "11",
+      type: "sell",
+      timestamp: Date.now() - 10000,
+      amount: 786.0,
+      price: 2.1935,
+      maker: "26F3G5",
+      txHash: "0xabcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "12",
+      type: "buy",
+      timestamp: Date.now() - 11000,
+      amount: 94.0,
+      price: 2.1619,
+      maker: "37G4H6",
+      txHash: "0xbcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "13",
+      type: "sell",
+      timestamp: Date.now() - 12000,
+      amount: 7.0,
+      price: 2.1657,
+      maker: "48H5I7",
+      txHash: "0xcdef1234567890abcdef1234567890",
+    },
+    {
+      id: "14",
+      type: "buy",
+      timestamp: Date.now() - 13000,
+      amount: 256.0,
+      price: 2.1654,
+      maker: "59I6J8",
+      txHash: "0xdef1234567890abcdef1234567890",
+    },
+    {
+      id: "15",
+      type: "sell",
+      timestamp: Date.now() - 14000,
+      amount: 38.0,
+      price: 2.1757,
+      maker: "6AJ7K9",
+      txHash: "0xef1234567890abcdef1234567890",
+    },
+    {
+      id: "16",
+      type: "buy",
+      timestamp: Date.now() - 15000,
+      amount: 194.0,
+      price: 2.1742,
+      maker: "7BK8L0",
+      txHash: "0xf1234567890abcdef1234567890",
+    },
+    {
+      id: "17",
+      type: "sell",
+      timestamp: Date.now() - 16000,
+      amount: 317.0,
+      price: 2.1664,
+      maker: "8CL9M1",
+      txHash: "0x1234567890abcdef1234567890",
+    },
+    {
+      id: "18",
+      type: "buy",
+      timestamp: Date.now() - 17000,
+      amount: 177.0,
+      price: 2.1537,
+      maker: "9DM0N2",
+      txHash: "0x234567890abcdef1234567890",
+    },
+    {
+      id: "19",
+      type: "sell",
+      timestamp: Date.now() - 18000,
+      amount: 700.0,
+      price: 2.1608,
+      maker: "0EN1O3",
+      txHash: "0x34567890abcdef1234567890",
+    },
+    {
+      id: "20",
+      type: "buy",
+      timestamp: Date.now() - 19000,
+      amount: 25.0,
+      price: 2.1329,
+      maker: "1FO2P4",
+      txHash: "0x4567890abcdef1234567890",
+    },
+  ],
 };
 
 // Collection of all mock tokens (can add more as needed)
@@ -171,6 +375,12 @@ export const MOCK_TOKENS: { [address: string]: MockTokenData } = {
     tradesCount: 634,
     buyTrades: 412,
     sellTrades: 222,
+    chain: {
+      name: "Binance Smart Chain",
+      symbol: "BNB",
+      logo: "cryptocurrency-color:bnb",
+      explorerUrl: "https://bscscan.com/token/",
+    },
   },
   "0x5a4b3c2d1e0f9876543210fedcba0987654321ab": {
     ...GENERAL_MOCK_TOKEN,
@@ -188,6 +398,12 @@ export const MOCK_TOKENS: { [address: string]: MockTokenData } = {
     tradesCount: 456,
     buyTrades: 289,
     sellTrades: 167,
+    chain: {
+      name: "Solana",
+      symbol: "SOL",
+      logo: "token-branded:solana",
+      explorerUrl: "https://solscan.io/token/",
+    },
   },
   "0x7c8d9e0f1a2b3c4d5e6f7890abcdef1234567890": {
     ...GENERAL_MOCK_TOKEN,
@@ -205,6 +421,12 @@ export const MOCK_TOKENS: { [address: string]: MockTokenData } = {
     tradesCount: 312,
     buyTrades: 198,
     sellTrades: 114,
+    chain: {
+      name: "Binance Smart Chain",
+      symbol: "BNB",
+      logo: "cryptocurrency-color:bnb",
+      explorerUrl: "https://bscscan.com/token/",
+    },
   },
   "0x3e4f5a6b7c8d9e0f1a2b3c4d5e6f7890abcdef12": {
     ...GENERAL_MOCK_TOKEN,
@@ -222,6 +444,12 @@ export const MOCK_TOKENS: { [address: string]: MockTokenData } = {
     tradesCount: 289,
     buyTrades: 178,
     sellTrades: 111,
+    chain: {
+      name: "Solana",
+      symbol: "SOL",
+      logo: "token-branded:solana",
+      explorerUrl: "https://solscan.io/token/",
+    },
   },
   "0x8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c": {
     ...GENERAL_MOCK_TOKEN,
@@ -239,6 +467,12 @@ export const MOCK_TOKENS: { [address: string]: MockTokenData } = {
     tradesCount: 234,
     buyTrades: 145,
     sellTrades: 89,
+    chain: {
+      name: "Binance Smart Chain",
+      symbol: "BNB",
+      logo: "cryptocurrency-color:bnb",
+      explorerUrl: "https://bscscan.com/token/",
+    },
   },
   "0x9f8e7d6c5b4a39281f0e1d2c3b4a5968778899aa": {
     ...GENERAL_MOCK_TOKEN,
@@ -256,6 +490,12 @@ export const MOCK_TOKENS: { [address: string]: MockTokenData } = {
     tradesCount: 198,
     buyTrades: 124,
     sellTrades: 74,
+    chain: {
+      name: "Solana",
+      symbol: "SOL",
+      logo: "token-branded:solana",
+      explorerUrl: "https://solscan.io/token/",
+    },
   },
   "0xa1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0": {
     ...GENERAL_MOCK_TOKEN,
@@ -273,6 +513,12 @@ export const MOCK_TOKENS: { [address: string]: MockTokenData } = {
     tradesCount: 167,
     buyTrades: 103,
     sellTrades: 64,
+    chain: {
+      name: "Binance Smart Chain",
+      symbol: "BNB",
+      logo: "cryptocurrency-color:bnb",
+      explorerUrl: "https://bscscan.com/token/",
+    },
   },
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 
@@ -15,11 +15,10 @@ interface HeroSearchProps {
   suggestions: Suggestion[];
   onInputChange: (value: string) => void;
   onSuggestionClick: (suggestion: Suggestion) => void;
-  onScan: () => void;
-  onPaste: () => void;
   onFocus: () => void;
   onBlur: () => void;
   onCloseSuggestions?: () => void;
+  onOpenSearchModal: () => void;
   searchRef?: React.RefObject<HTMLDivElement>;
 }
 
@@ -30,14 +29,31 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
   suggestions,
   onInputChange,
   onSuggestionClick,
-  onScan,
-  onPaste,
   onFocus,
   onBlur,
   onCloseSuggestions: _onCloseSuggestions,
+  onOpenSearchModal,
   searchRef,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const activeElement = document.activeElement;
+        if (
+          activeElement?.tagName !== "INPUT" &&
+          activeElement?.tagName !== "TEXTAREA"
+        ) {
+          e.preventDefault();
+          onOpenSearchModal();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onOpenSearchModal]);
   return (
     <section
       className={`relative z-10 flex-1 flex flex-col justify-center transition-all duration-500 ${
@@ -105,6 +121,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 onInputChange(e.target.value)
               }
+              onClick={onOpenSearchModal}
               onFocus={() => {
                 setIsFocused(true);
                 onFocus();
@@ -115,24 +132,17 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
               }}
               placeholder={
                 !scanned
-                  ? "Search by token name or paste address..."
-                  : "Paste token address or search by name..."
+                  ? "Click to search tokens or press / to open search..."
+                  : "Click to search tokens or press / to open search..."
               }
-              className="w-full pl-14 pr-40 py-4 xl:py-5 bg-transparent text-main-text placeholder:text-base xl:placeholder:text-lg placeholder-main-light-text/60 font-display text-base xl:text-lg focus:outline-none"
+              className="w-full pl-14 pr-20 py-4 xl:py-5 bg-transparent text-main-text placeholder:text-base xl:placeholder:text-lg placeholder-main-light-text/60 font-display text-base xl:text-lg focus:outline-none cursor-pointer"
+              readOnly
             />
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
-              <button
-                onClick={onPaste}
-                className="px-3 py-2 xl:px-4 xl:py-2.5 rounded-lg bg-main-accent/10 hover:bg-main-accent/20 border border-main-accent/30 text-main-accent text-sm xl:text-base cursor-pointer"
-              >
-                Paste
-              </button>
-              <button
-                onClick={onScan}
-                className="px-4 py-2 xl:px-5 xl:py-2.5 rounded-lg bg-main-accent hover:bg-main-highlight text-main-bg font-display text-sm xl:text-base cursor-pointer transition-colors"
-              >
-                {!scanned ? "Analyze" : "Analyze"}
-              </button>
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+              <div className="flex items-center gap-1 px-2 py-1 bg-surface border border-subtle rounded text-xs text-main-light-text/60">
+                <Icon icon="material-symbols:keyboard" className="w-3 h-3" />
+                <span>/</span>
+              </div>
             </div>
           </div>
 
