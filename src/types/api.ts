@@ -270,3 +270,33 @@ export interface DefiTrade {
   profileImage: string;
   solSpent: number;
 }
+
+export interface LeaderboardItem {
+  rank: number;
+  traderName: string;
+  handle: string;
+  wallet: string;
+  pnl: number;
+  followers: number;
+  winRate: number;
+  profit: number;
+  totalPoints: number;
+  weeklyPoints: number;
+  avatar: string;
+}
+
+export interface Mission {
+  id: number;
+  title: string;
+  points: number;
+  completed: boolean;
+}
+
+export interface userState {
+  ranking: string;
+  totalPoints: number;
+  weeklyPoints: number;
+  tradingVolume: number;
+  traderReferrals: number;
+  CherryShares: number;
+}
