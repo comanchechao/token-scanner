@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import HomePage from "./pages/homepage";
 import TradesPage from "./pages/trades";
 import TokensPage from "./pages/tokens";
-import TokenDetailPage from "./pages/tokens/token";
+import TokenDetailPage from "./pages/tokens/token-detail";
 import LeaderboardPage from "./pages/leaderboard";
 import AccountsPage from "./pages/accounts";
 import ProfilePage from "./pages/profile";
