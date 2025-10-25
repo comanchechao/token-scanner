@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
 import tradingService from "../../../api/tradingService";
-import { CopyTradeRequest, ExecutionSettings } from "../../../types/trading";
+import {
+  CopyTradeRequest,
+  BuySettings,
+  SellSettings,
+} from "../../../types/trading";
 import ButtonOption from "./ButtonOption";
 interface CopyTradeModalProps {
   open: boolean;
@@ -158,7 +162,24 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
     //   return;
     // }
 
-    const settings: ExecutionSettings = {
+    const buySettings: BuySettings = {
+      slippage: parseFloat(formData.slippage),
+      priorityFee: parseFloat(formData.priorityFee),
+      bribeAmount: parseFloat(formData.bribeAmount),
+      maxFee:
+        formData.autoFee && formData.maxFee
+          ? parseFloat(formData.maxFee)
+          : null,
+      autoFee: formData.autoFee,
+      mevMode: formData.mevMode,
+      broadcastService: formData.broadcastService,
+      serviceConfig:
+        formData.broadcastService === "normal" && formData.serviceConfig
+          ? formData.serviceConfig
+          : null,
+    };
+
+    const sellSettings: SellSettings = {
       slippage: parseFloat(formData.slippage),
       priorityFee: parseFloat(formData.priorityFee),
       bribeAmount: parseFloat(formData.bribeAmount),
@@ -186,24 +207,16 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
       fixedBuyAmount: buyMethod === "fixedBuy" ? formData.buyAmount : null,
       copySells: sellMethod === "copy",
       minBuyAmount: formData.minBuyAmount ? formData.minBuyAmount : null,
-      maxBuyAmount: formData.maxBuyAmount
-        ? parseFloat(formData.maxBuyAmount)
-        : null,
-      minLiquidity: formData.minLiquidity
-        ? parseFloat(formData.minLiquidity)
-        : null,
-      minMarketCap: formData.minMarketCap
-        ? parseFloat(formData.minMarketCap)
-        : null,
-      maxMarketCap: formData.maxMarketCap
-        ? parseFloat(formData.maxMarketCap)
-        : null,
+      maxBuyAmount: formData.maxBuyAmount ? formData.maxBuyAmount : null,
+      minLiquidity: formData.minLiquidity ? formData.minLiquidity : null,
+      minMarketCap: formData.minMarketCap ? formData.minMarketCap : null,
+      maxMarketCap: formData.maxMarketCap ? formData.maxMarketCap : null,
       allowDuplicateBuys: sellMethod === "duplicate",
       onlyRenounced: onlyRenounced,
       excludePumpfunTokens: excludePumpFun,
       mintBlackList: formData.mintBlackList,
-      buySettings: settings,
-      sellSettings: settings, // Assuming same settings for buy and sell
+      buySettings: buySettings,
+      sellSettings: sellSettings,
     };
 
     try {

@@ -1,16 +1,10 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 
 interface Props {
   activeTab: "leaderboard" | "missions";
-  setActiveTab: Dispatch<SetStateAction<"leaderboard" | "missions">>;
 }
 
-const LeaderBoardTab: FC<Props> = ({ activeTab, setActiveTab }) => {
-  const tabs = [
-    { id: "leaderboard", label: "Leaderboard" },
-    { id: "missions", label: "Missions" },
-  ] as const;
-
+const LeaderBoardTab: FC<Props> = ({ activeTab }) => {
   return (
     <div className=" ">
       {activeTab === "leaderboard" && (

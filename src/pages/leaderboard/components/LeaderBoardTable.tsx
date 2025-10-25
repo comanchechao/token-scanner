@@ -1,6 +1,7 @@
 import Pagination from "../../../components/ui/Pagination";
 import { FC, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { LeaderboardItem } from "../../../types/api";
 
 interface Props {
   content: LeaderboardItem[];
