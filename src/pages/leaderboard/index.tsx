@@ -5,7 +5,7 @@ import TopThreeCards from "./components/TopThreeCards.tsx";
 import CopyTradeModal from "./components/CopyTradeModal.tsx";
 import Navbar from "../../layouts/Navbar.tsx";
 import Footer from "../../layouts/Footer.tsx";
-import { LeaderboardItem, userState, Mission } from "../../types/api";
+import { LeaderboardItem } from "../../types/api";
 
 const seedData: LeaderboardItem[] = [
   {
