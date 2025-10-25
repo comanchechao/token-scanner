@@ -174,23 +174,10 @@ const TokenMetricsModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
 
 const TokenInfo: React.FC<TokenInfoProps> = ({ data }) => {
   const [isMetricsModalOpen, setIsMetricsModalOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const generateRandomPrice = () => {
-    return Math.random() * (0.0005 - 0.0001) + 0.0001;
-  };
-
-  const [tokenPrice] = useState(() => generateRandomPrice());
-
-  const marketCap = tokenPrice * data.supply;
-
-  const formatMarketCap = (value: number) => {
-    if (value >= 1_000_000) {
-      return `$${(value / 1_000_000).toFixed(2)}M`;
-    } else if (value >= 1_000) {
-      return `$${(value / 1_000).toFixed(0)}K`;
-    } else {
-      return `$${value.toFixed(2)}`;
-    }
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
   };
 
   const openMetricsModal = () => {
@@ -202,21 +189,24 @@ const TokenInfo: React.FC<TokenInfoProps> = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col h-fit bg-[#0e0f13]  rounded-sm text-white">
+    <div className="flex flex-col h-fit bg-[#0e0f13] border-x border-subtle text-white">
       <TokenMetricsModal
         isOpen={isMetricsModalOpen}
         onClose={closeMetricsModal}
       />
 
-      {/* Header with Token Info */}
-      <div className="flex items-center justify-between p-4">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-full bg-[#333333] flex items-center justify-center overflow-hidden">
+      {/* Header */}
+      <div
+        className="flex items-center justify-between p-4 border-b border-subtle cursor-pointer hover:bg-white/5 transition-colors"
+        onClick={toggleCollapse}
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-[#333333] flex items-center justify-center overflow-hidden">
             <img
               src={data?.image || ""}
               alt={data?.name || "Token"}
-              width={40}
-              height={40}
+              width={32}
+              height={32}
               className="w-full h-full object-cover"
             />
           </div>
@@ -224,71 +214,20 @@ const TokenInfo: React.FC<TokenInfoProps> = ({ data }) => {
             <h2 className="text-sm font-medium text-white">{data?.name}</h2>
             <div className="text-xs text-white/50">${data?.symbol}</div>
           </div>
-          {/* Center Section - All Metrics */}
-          <div className="flex items-center gap-6 ml-10">
-            {/* Price SOL */}
-            <div className="text-center">
-              <div className="text-xs text-white/50">Price</div>
-              <div className="text-sm font-medium text-white">
-                {data.solBalance.toFixed(5)}
-              </div>
-            </div>
-
-            {/* Liquidity */}
-            <div className="text-center">
-              <div className="text-xs text-white/50">Liquidity</div>
-              <div className="text-sm font-medium text-white">
-                ${data.usdBalance.toFixed(1)}K
-              </div>
-            </div>
-
-            {/* Supply */}
-            <div className="text-center">
-              <div className="text-xs text-white/50">Supply</div>
-              <div className="text-sm font-medium text-white flex items-center gap-1">
-                {`${(data.supply / 1_000_000_000).toFixed(0)}B`}
-                <Icon
-                  icon="lucide:circle"
-                  width={12}
-                  height={12}
-                  className="text-white/50"
-                />
-              </div>
-            </div>
-
-            {/* Global Fees Paid */}
-            <div className="text-center">
-              <div className="text-xs text-white/50">Global Fees Paid</div>
-              <div className="text-sm font-medium text-white flex items-center gap-1">
-                0.621
-                <Icon
-                  icon="lucide:menu"
-                  width={12}
-                  height={12}
-                  className="text-white/50"
-                />
-              </div>
-            </div>
-
-            {/* B.Curve */}
-            <div className="text-center">
-              <div className="text-xs text-white/50">B.Curve</div>
-              <div className="text-sm font-medium text-red-400">0%</div>
-            </div>
-
-            {/* Tax */}
-            <div className="text-center">
-              <div className="text-xs text-white/50">Tax</div>
-              <div className="text-sm font-medium text-white">1.5%+</div>
-            </div>
-          </div>
+          <Icon
+            icon="lucide:chevron-down"
+            width={16}
+            height={16}
+            className={`text-white/50 transition-transform duration-200 ${
+              isCollapsed ? "rotate-180" : ""
+            }`}
+          />
         </div>
-
-        {/* Right Section - Action Buttons */}
         <div className="flex items-center gap-2">
           <button
             className="p-1 hover:bg-white/10 rounded-sm cursor-pointer transition-colors"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               // Copy functionality
             }}
           >
@@ -301,7 +240,8 @@ const TokenInfo: React.FC<TokenInfoProps> = ({ data }) => {
           </button>
           <button
             className="p-1 hover:bg-white/10 rounded-sm cursor-pointer transition-colors"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               // Share functionality
             }}
           >
@@ -314,7 +254,10 @@ const TokenInfo: React.FC<TokenInfoProps> = ({ data }) => {
           </button>
           <button
             className="p-1 hover:bg-white/10 rounded-sm cursor-pointer transition-colors"
-            onClick={openMetricsModal}
+            onClick={(e) => {
+              e.stopPropagation();
+              openMetricsModal();
+            }}
           >
             <Icon
               icon="lucide:shield-check"
@@ -323,16 +266,131 @@ const TokenInfo: React.FC<TokenInfoProps> = ({ data }) => {
               className="text-white/50"
             />
           </button>
-          <button className="p-2 hover:bg-white/10 rounded-sm transition-colors">
-            <Icon
-              icon="lucide:settings"
-              width={16}
-              height={16}
-              className="text-white/50"
-            />
-          </button>
         </div>
       </div>
+
+      {/* Collapsible Content */}
+      {!isCollapsed && (
+        <>
+          {/* Token Metrics */}
+          <div className="p-4 border-b border-subtle">
+            <div className="grid grid-cols-2 sm:grid-cols-6 gap-4">
+              {/* Price */}
+              <div className="bg-white/5 rounded-sm p-3 flex items-center gap-2">
+                <Icon
+                  icon="lucide:dollar-sign"
+                  width={16}
+                  height={16}
+                  className="text-white/50"
+                />
+                <div className="flex flex-col">
+                  <div className="text-xs text-white/50">Price</div>
+                  <div className="text-sm font-medium text-white">
+                    {data.solBalance.toFixed(5)}
+                  </div>
+                </div>
+              </div>
+
+              {/* Liquidity */}
+              <div className="bg-white/5 rounded-sm p-3 flex items-center gap-2">
+                <Icon
+                  icon="lucide:droplets"
+                  width={16}
+                  height={16}
+                  className="text-white/50"
+                />
+                <div className="flex flex-col">
+                  <div className="text-xs text-white/50">Liquidity</div>
+                  <div className="text-sm font-medium text-white">
+                    ${data.usdBalance.toFixed(1)}K
+                  </div>
+                </div>
+              </div>
+
+              {/* Supply */}
+              <div className="bg-white/5 rounded-sm p-3 flex items-center gap-2">
+                <Icon
+                  icon="lucide:circle"
+                  width={16}
+                  height={16}
+                  className="text-white/50"
+                />
+                <div className="flex flex-col">
+                  <div className="text-xs text-white/50">Supply</div>
+                  <div className="text-sm font-medium text-white">
+                    {`${(data.supply / 1_000_000_000).toFixed(0)}B`}
+                  </div>
+                </div>
+              </div>
+
+              {/* Tax */}
+              <div className="bg-white/5 rounded-sm p-3 flex items-center gap-2">
+                <Icon
+                  icon="lucide:percent"
+                  width={16}
+                  height={16}
+                  className="text-white/50"
+                />
+                <div className="flex flex-col">
+                  <div className="text-xs text-white/50">Tax</div>
+                  <div className="text-sm font-medium text-white">1.5%+</div>
+                </div>
+              </div>
+
+              {/* Global Fees Paid */}
+              <div className="bg-white/5 rounded-sm p-3 flex items-center gap-2">
+                <Icon
+                  icon="lucide:menu"
+                  width={16}
+                  height={16}
+                  className="text-white/50"
+                />
+                <div className="flex flex-col">
+                  <div className="text-xs text-white/50">Global Fees Paid</div>
+                  <div className="text-sm font-medium text-white">0.621</div>
+                </div>
+              </div>
+
+              {/* B.Curve */}
+              <div className="bg-white/5 rounded-sm p-3 flex items-center gap-2">
+                <Icon
+                  icon="lucide:trending-up"
+                  width={16}
+                  height={16}
+                  className="text-red-400"
+                />
+                <div className="flex flex-col">
+                  <div className="text-xs text-white/50">B.Curve</div>
+                  <div className="text-sm font-medium text-red-400">0%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Contract Address */}
+          <div className="p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Icon
+                  icon="lucide:file-text"
+                  width={16}
+                  height={16}
+                  className="text-white/50"
+                />
+                <span className="text-sm text-gray-300">
+                  CA: {data.mint.slice(0, 6)}...{data.mint.slice(-4)}
+                </span>
+              </div>
+              <Icon
+                icon="lucide:external-link"
+                width={14}
+                height={14}
+                className="text-white/50 cursor-pointer hover:text-white transition-colors"
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
