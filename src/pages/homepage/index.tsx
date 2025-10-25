@@ -424,7 +424,7 @@ const HomePage: React.FC = () => {
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsNavSticky(scrollTop + 100 > originalNavTop);
+      setIsNavSticky(scrollTop > originalNavTop);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -536,7 +536,7 @@ const HomePage: React.FC = () => {
       {/* Activity Feed & Leaderboard - Show when not scanned */}
       {!scanned && (
         <section className="relative z-10 pb-20 xl:pb-24 flex-1">
-          <div className="    mx-auto px-4  lg:px-20 xl:px-24 2xl:px-44">
+          <div className="    mx-auto px-4  lg:px-20 xl:px-20 2xl:px-44">
             {/* Mobile Toggle */}
             <FeedToggle
               activeView={activeFeedView}
@@ -567,7 +567,7 @@ const HomePage: React.FC = () => {
       {/* Results - Only show after search */}
       {scanned && (
         <section className="relative z-10 pb-20 xl:pb-24 flex-1">
-          <div className="mx-auto px-4  lg:px-96 xl:px-96">
+          <div className="mx-auto px-4  lg:px-24 2xl:px-24">
             <div className="flex flex-col md:flex-row xl:gap-10 gap-4 md:gap-8">
               {/* Navigation Sidebar - Hidden on mobile, visible on md+ */}
               <div className="hidden md:block">

@@ -91,23 +91,7 @@ const TokenDetailPage: React.FC = () => {
             <div className="lg:col-span-3 overflow-y-auto  ">
               {/* <BuySellPanel address={token.address} /> */}
 
-              <TokenStats
-                timeframes={{
-                  "5M": { percentage: 10 },
-                  "1H": { percentage: "N/A" },
-                  "6H": { percentage: -20 },
-                  "24h": { percentage: "N/A" },
-                }}
-                transactions={{
-                  total: 100,
-                  buys: 50,
-                  sells: 50,
-                  buyVolume: 1000,
-                  sellVolume: 1000,
-                  buyers: 100,
-                  sellers: 100,
-                }}
-              />
+              <TokenStats />
 
               <KOLTraction
                 kolData={{

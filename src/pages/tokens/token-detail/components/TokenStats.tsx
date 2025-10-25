@@ -1,28 +1,9 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 
-interface TokenStatsProps {
-  timeframes: {
-    [key: string]: {
-      percentage: number | "N/A";
-      color?: string;
-    };
-  };
-  transactions: {
-    total: number;
-    buys: number;
-    sells: number;
-    buyVolume: number;
-    sellVolume: number;
-    buyers: number;
-    sellers: number;
-  };
-}
+interface TokenStatsProps {}
 
-const TokenStats: React.FC<TokenStatsProps> = ({
-  timeframes,
-  transactions,
-}) => {
+const TokenStats: React.FC<TokenStatsProps> = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleCollapse = () => {
