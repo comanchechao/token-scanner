@@ -197,7 +197,6 @@ const CopyTradeModal: React.FC<CopyTradeModalProps> = ({
     };
 
     const request: CopyTradeRequest = {
-      telegramId: null,
       tag: formData.tag || null,
       targetWallet: walletData.walletAddress,
       buyPercentage:

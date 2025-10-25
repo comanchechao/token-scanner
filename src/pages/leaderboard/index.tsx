@@ -2,11 +2,10 @@
 import { FC, useCallback, useState } from "react";
 import LeaderBoardTable from "./components/LeaderBoardTable.tsx";
 import TopThreeCards from "./components/TopThreeCards.tsx";
-// import Missions from "./components/Missions";
-// import State from "./components/State";
 import CopyTradeModal from "./components/CopyTradeModal.tsx";
 import Navbar from "../../layouts/Navbar.tsx";
 import Footer from "../../layouts/Footer.tsx";
+import { LeaderboardItem, userState, Mission } from "../../types/api";
 
 const seedData: LeaderboardItem[] = [
   {
@@ -155,21 +154,6 @@ const seedData: LeaderboardItem[] = [
 ];
 
 const leaderboardData: LeaderboardItem[] = seedData;
-
-const userStats: userState = {
-  ranking: "N/A",
-  totalPoints: 20,
-  weeklyPoints: 0,
-  tradingVolume: 0.0,
-  traderReferrals: 0,
-  CherryShares: 0,
-};
-
-const initialMissions: Mission[] = [
-  { id: 1, title: "Make your first trade", points: 10, completed: false },
-  { id: 2, title: "Refer a friend", points: 5, completed: false },
-  { id: 3, title: "Like and RT this tweet", points: 5, completed: false },
-];
 
 const LeaderboardPage: FC = () => {
   const [isCopyTradeModalOpen, setIsCopyTradeModalOpen] = useState(false);

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { LeaderboardItem } from "../../../types/api";
 
 interface Props {
   topThree: LeaderboardItem[];
@@ -21,7 +22,7 @@ const TopThreeCards: FC<Props> = ({ topThree }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      {topThree.map((trader, index) => {
+      {topThree.map((trader) => {
         const rankIcon = getRankIcon(trader.rank);
         return (
           <div
