@@ -1,18 +1,21 @@
 import React, { useMemo } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../../../layouts/Navbar";
 import Footer from "../../../layouts/Footer";
 import TokenInfo from "./components/TokenInfo";
 import TokenStats from "./components/TokenStats";
 import DataSecurityCard from "./components/DataSecurityCard";
-import BuySellPanel from "./components/BuySellPanel";
+// import BuySellPanel from "./components/BuySellPanel";
+import KOLTraction from "./components/KOLTraction";
+import TelegramCalls from "./components/TelegramCalls";
+import SecurityAnalysis from "./components/SecurityAnalysis";
+import DeveloperEcosystem from "./components/DeveloperEcosystem";
 import { getTokenData } from "../../../data/mockTokenData";
 import { Icon } from "@iconify/react";
 
 const TokenDetailPage: React.FC = () => {
   const { address } = useParams<{ address: string }>();
   const navigate = useNavigate();
-  const query = new URLSearchParams(useLocation().search);
 
   const token = useMemo(
     () => (address ? getTokenData(address) : null),
@@ -85,9 +88,10 @@ const TokenDetailPage: React.FC = () => {
               />
             </div>
 
-            {/* Right: Minimal info & analytics */}
-            <div className="lg:col-span-3  overflow-y-auto">
-              <BuySellPanel address={token.address} />
+            {/* Right: Token information & analytics */}
+            <div className="lg:col-span-3 overflow-y-auto  ">
+              {/* <BuySellPanel address={token.address} /> */}
+
               <TokenStats
                 timeframes={{
                   "5M": { percentage: 10 },
@@ -104,6 +108,78 @@ const TokenDetailPage: React.FC = () => {
                   buyers: 100,
                   sellers: 100,
                 }}
+              />
+
+              <KOLTraction
+                kolData={{
+                  count: token.kolActivity.totalKOLs,
+                  totalInvested: token.kolActivity.totalInvested,
+                  top: token.kolActivity.topKOLs.map((kol) => ({
+                    name: kol.name,
+                    avatar: kol.avatar,
+                    amount: kol.balance,
+                    invested: kol.invested,
+                    followers: "12.5K", // Mock followers data
+                  })),
+                }}
+              />
+
+              <TelegramCalls
+                telegramData={{
+                  count: 8,
+                  totalMembers: "2.4M",
+                  top: [
+                    {
+                      name: "Crypto Signals Pro",
+                      members: "450K",
+                      mentions: 23,
+                      sentiment: "Bullish",
+                    },
+                    {
+                      name: "DeFi Alpha",
+                      members: "320K",
+                      mentions: 18,
+                      sentiment: "Bullish",
+                    },
+                    {
+                      name: "Token Tracker",
+                      members: "280K",
+                      mentions: 15,
+                      sentiment: "Neutral",
+                    },
+                  ],
+                }}
+              />
+
+              <SecurityAnalysis securityData={token.security.checks} />
+
+              <DeveloperEcosystem
+                devTokens={[
+                  {
+                    name: "Neural SDK",
+                    symbol: "NSDK",
+                    address: "0x123...abc",
+                    link: "#",
+                    marketCap: "$5.2M",
+                    performance: "+12.5%",
+                  },
+                  {
+                    name: "AI Protocol",
+                    symbol: "AIP",
+                    address: "0x456...def",
+                    link: "#",
+                    marketCap: "$3.8M",
+                    performance: "+8.2%",
+                  },
+                  {
+                    name: "Smart Contracts",
+                    symbol: "SC",
+                    address: "0x789...ghi",
+                    link: "#",
+                    marketCap: "$2.1M",
+                    performance: "-3.1%",
+                  },
+                ]}
               />
 
               <DataSecurityCard />

@@ -8,7 +8,13 @@
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: "Cambria";
+  src: url("../fonts/RedHatDisplayVariableFont_wght.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 /* Set default font */
 body {
   font-family: "Red Hat Display", sans-serif;

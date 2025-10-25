@@ -424,7 +424,7 @@ const HomePage: React.FC = () => {
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsNavSticky(scrollTop > originalNavTop);
+      setIsNavSticky(scrollTop + 100 > originalNavTop);
     };
 
     window.addEventListener("scroll", handleScroll);

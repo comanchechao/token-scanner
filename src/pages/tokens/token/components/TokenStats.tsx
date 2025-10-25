@@ -30,7 +30,7 @@ const TokenStats: React.FC<TokenStatsProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-fit bg-[#0e0f13]  border-x border-subtle text-white">
+    <div className="flex flex-col h-fit bg-[#0e0f13]  border-x border-t border-subtle text-white">
       {/* Header */}
       <div
         className="flex items-center justify-between p-4 border-b border-subtle cursor-pointer hover:bg-white/5 transition-colors"

@@ -93,7 +93,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
           ref={navRef}
           className={`w-64 xl:w-72 bg-surface border border-subtle rounded-sm p-4 xl:p-5 transition-all duration-200 ${
             isNavSticky
-              ? "fixed top-24 z-40 max-h-[calc(100vh-1rem)] overflow-y-auto"
+              ? "fixed top-96 z-40 max-h-[calc(100vh-1rem)] overflow-y-auto"
               : "relative"
           }`}
         >
