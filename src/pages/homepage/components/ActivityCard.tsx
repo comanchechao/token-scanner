@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useSettings } from "../../../contexts/SettingsContext";
 import { useAuth } from "../../../components/AuthProvider";
@@ -28,6 +28,7 @@ interface ActivityCardProps {
 
 const ActivityCard: React.FC<ActivityCardProps> = React.memo(
   ({ activity, isFirst }) => {
+    const navigate = useNavigate();
     const { quickBuyAmount, quickSellPercentage } = useSettings();
     const { user } = useAuth();
     const { showSuccess, showError } = useToastContext();
@@ -35,12 +36,13 @@ const ActivityCard: React.FC<ActivityCardProps> = React.memo(
     const [buyLoading, setBuyLoading] = useState(false);
     const [sellLoading, setSellLoading] = useState(false);
 
-    const handleTokenClick = useCallback(() => {
-      window.open(
-        `https://dexscreener.com/solana/${activity.tokenAddress}`,
-        "_blank"
-      );
-    }, [activity.tokenAddress]);
+    const handleTokenClick = useCallback(
+      (e: React.MouseEvent) => {
+        e.stopPropagation();
+        navigate(`/tokens/${activity.tokenAddress}`);
+      },
+      [activity.tokenAddress, navigate]
+    );
 
     const handleTransactionClick = useCallback(() => {
       window.open(

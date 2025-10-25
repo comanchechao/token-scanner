@@ -11,6 +11,7 @@ import TelegramCalls from "./components/TelegramCalls";
 import SecurityAnalysis from "./components/SecurityAnalysis";
 import DeveloperEcosystem from "./components/DeveloperEcosystem";
 import NavigationSidebar from "./components/NavigationSidebar";
+import TrendingRibbon from "../../components/TrendingRibbon";
 import "../../css/index.css";
 
 type KolBuyer = {
@@ -507,6 +508,9 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen bg-main-bg !overflow-x-hidden bg-grid flex flex-col">
       <Navbar />
 
+      {/* Trending Ribbon */}
+      <TrendingRibbon />
+
       {/* Hero + Search */}
       <HeroSearch
         scanned={scanned}
@@ -532,7 +536,7 @@ const HomePage: React.FC = () => {
       {/* Activity Feed & Leaderboard - Show when not scanned */}
       {!scanned && (
         <section className="relative z-10 pb-20 xl:pb-24 flex-1">
-          <div className="    mx-auto px-4  lg:px-96 xl:px-96">
+          <div className="    mx-auto px-4  lg:px-20 2xl:px-72">
             {/* Mobile Toggle */}
             <FeedToggle
               activeView={activeFeedView}

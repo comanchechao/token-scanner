@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import HomePage from "./pages/homepage";
 import TradesPage from "./pages/trades";
 import TokensPage from "./pages/tokens";
+import TokenDetailPage from "./pages/tokens/token";
 import LeaderboardPage from "./pages/leaderboard";
 import AccountsPage from "./pages/accounts";
 import ProfilePage from "./pages/profile";
@@ -59,6 +60,14 @@ function App() {
                           element={
                             <PageLayout>
                               <TokensPage />
+                            </PageLayout>
+                          }
+                        />
+                        <Route
+                          path="/tokens/:address"
+                          element={
+                            <PageLayout>
+                              <TokenDetailPage />
                             </PageLayout>
                           }
                         />

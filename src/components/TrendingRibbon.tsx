@@ -1,23 +1,126 @@
-import React, {
-  useEffect,
-  useRef,
-  useCallback,
-  useState,
-  useMemo,
-} from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import TrendingRibbonItem from "./TrendingRibbonItem";
-import Skeleton from "./Skeleton";
-import { KOLService } from "../api";
 import { TrendingProject } from "../types/api";
+import { getAllTokens, MockTokenData } from "../data/mockTokenData";
 
-const TrendingRibbon: React.FC = React.memo(() => {
-  const [trendingProjects, setTrendingProjects] = useState<TrendingProject[]>(
-    []
+// Convert MockTokenData to TrendingProject format
+const convertToTrendingProject = (token: MockTokenData): TrendingProject => {
+  return {
+    tokenAddress: token.address,
+    tokenName: token.name,
+    tokenSymbol: token.symbol,
+    tokenImage: token.image,
+    lastTradeTimestamp: token.lastTradeTimestamp || Date.now(),
+    firstAddedTimestamp: token.firstAddedTimestamp || Date.now(),
+    totalTrades: token.totalTrades || 0,
+    marketCap: token.marketCapRaw,
+    firstTradeMarketCap: token.firstTradeMarketCap || 0,
+    marketCapGain: token.marketCapGain || 0,
+    bracket: token.bracket || "low",
+    tradesCount: token.tradesCount || 0,
+    buyTrades: token.buyTrades || 0,
+    sellTrades: token.sellTrades || 0,
+    rank: token.rank,
+    uniqueKOLs: token.uniqueKOLs,
+  };
+};
+
+interface TrendingRibbonItemProps {
+  project: TrendingProject;
+}
+
+const TrendingRibbonItem: React.FC<TrendingRibbonItemProps> = ({ project }) => {
+  const navigate = useNavigate();
+
+  const formatMarketCap = (marketCap: number) => {
+    if (marketCap >= 1000000) {
+      return `$${(marketCap / 1000000).toFixed(1)}M`;
+    } else if (marketCap >= 1000) {
+      return `$${(marketCap / 1000).toFixed(1)}K`;
+    }
+    return `$${marketCap.toFixed(0)}`;
+  };
+
+  const formatGain = (gain: number) => {
+    return `+${gain.toFixed(1)}%`;
+  };
+
+  const handleClick = () => {
+    navigate(`/tokens/${project.tokenAddress}`);
+  };
+
+  return (
+    <div
+      onClick={handleClick}
+      className="flex-shrink-0 bg-[#161616] border border-white/[0.08] rounded-sm p-3 hover:bg-white/[0.06] hover:border-main-accent/30 transition-all duration-300 min-w-[280px] mx-2 cursor-pointer"
+    >
+      <div className="flex items-center justify-between">
+        {/* Token Info */}
+        <div className="flex items-center space-x-3 flex-1 min-w-0">
+          <div className="relative flex-shrink-0">
+            <div className="w-8 h-8 rounded-full overflow-hidden">
+              <img
+                src={project.tokenImage}
+                alt={project.tokenName}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "/dogLogo.webp"; // Fallback image
+                }}
+              />
+            </div>
+            <div className="absolute -top-1 -right-1 bg-gradient-to-r from-main-accent to-main-highlight text-main-bg text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
+              {project.bracket === "high"
+                ? "🔥"
+                : project.bracket === "mid"
+                ? "📈"
+                : "💎"}
+            </div>
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center space-x-2">
+              <h3 className="font-tiktok text-sm font-semibold text-main-text truncate">
+                {project.tokenSymbol}
+              </h3>
+              <span className="font-tiktok text-xs text-main-light-text">
+                #{project.rank}
+              </span>
+            </div>
+            <p className="font-tiktok text-xs text-main-light-text truncate">
+              {project.tokenName}
+            </p>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="flex flex-col items-end space-y-1">
+          <div className="flex items-center space-x-2">
+            <span className="font-tiktok text-sm font-semibold text-main-text">
+              {formatMarketCap(project.marketCap)}
+            </span>
+            <span className="font-tiktok text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded">
+              {formatGain(project.marketCapGain)}
+            </span>
+          </div>
+          <div className="flex items-center space-x-3 text-xs text-main-light-text">
+            <span className="flex items-center space-x-1">
+              <Icon icon="material-symbols:group" className="w-3 h-3" />
+              <span>{project.uniqueKOLs}</span>
+            </span>
+            <span className="flex items-center space-x-1">
+              <Icon icon="material-symbols:trending-up" className="w-3 h-3" />
+              <span>{project.totalTrades}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+};
 
+const TrendingRibbon: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<"left" | "right">(
@@ -25,62 +128,11 @@ const TrendingRibbon: React.FC = React.memo(() => {
   );
   const wasScrollingRef = useRef(false);
 
-  const fetchTrendingProjects = useCallback(async (isInitialLoad = false) => {
-    try {
-      if (isInitialLoad) {
-        setLoading(true);
-      }
-      setError(null);
-      const response = await KOLService.getTrendingProjects({
-        limit: 50,
-      });
-
-      if (!response || !response.success || !response.data) {
-        console.warn("Invalid trending projects data received:", response);
-        setError("Invalid data received from server");
-        if (isInitialLoad) {
-          setTrendingProjects([]);
-        }
-        return;
-      }
-
-      const newProjects = response.data || [];
-
-      if (isInitialLoad) {
-        setTrendingProjects(newProjects);
-      } else {
-        setTrendingProjects((prevProjects) => {
-          const existingTokens = new Set(
-            prevProjects.map((p) => p.tokenAddress)
-          );
-          const trulyNewProjects = newProjects.filter(
-            (p) => !existingTokens.has(p.tokenAddress)
-          );
-
-          if (trulyNewProjects.length > 0) {
-            const updatedProjects = [...trulyNewProjects, ...prevProjects];
-            console.log("New trending projects added:", trulyNewProjects);
-            return updatedProjects;
-          }
-
-          return prevProjects;
-        });
-      }
-    } catch (err) {
-      console.error("Failed to fetch trending projects:", err);
-      setError("Failed to load trending projects");
-      if (isInitialLoad) {
-        setTrendingProjects([]);
-      }
-    } finally {
-      if (isInitialLoad) {
-        setLoading(false);
-      }
-    }
-  }, []);
+  // Get all tokens and convert to trending format
+  const trendingTokens = getAllTokens().map(convertToTrendingProject);
 
   useEffect(() => {
-    if (!scrollContainerRef.current || trendingProjects.length === 0) return;
+    if (!scrollContainerRef.current || trendingTokens.length === 0) return;
 
     const container = scrollContainerRef.current;
     let animationId: number;
@@ -130,7 +182,7 @@ const TrendingRibbon: React.FC = React.memo(() => {
         cancelAnimationFrame(animationId);
       }
     };
-  }, [trendingProjects, isScrolling, scrollDirection]);
+  }, [trendingTokens, isScrolling, scrollDirection]);
 
   const handleMouseEnter = useCallback(() => {
     wasScrollingRef.current = isScrolling;
@@ -156,92 +208,8 @@ const TrendingRibbon: React.FC = React.memo(() => {
     setIsScrolling(false);
   }, []);
 
-  useEffect(() => {
-    fetchTrendingProjects(true);
-
-    const interval = setInterval(() => {
-      fetchTrendingProjects(false);
-    }, 30000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [fetchTrendingProjects]);
-
-  const memoizedProjects = useMemo(() => trendingProjects, [trendingProjects]);
-
-  if (loading) {
-    return (
-      <div className="w-full bg-white/[0.02] border-b border-white/[0.05] py-3">
-        <div className="flex overflow-x-auto scrollbar-hide space-x-0 px-4">
-          {/* Create 5 skeleton items to simulate the loading state */}
-          {Array.from({ length: 5 }).map((_, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 bg-[#161616]  border border-white/[0.08] rounded-sm p-3 min-w-[400px] mx-2"
-            >
-              <div className="flex items-center justify-between">
-                {/* Token Info Skeleton */}
-                <div className="flex items-center space-x-3 flex-1 min-w-0">
-                  <div className="relative flex-shrink-0">
-                    <Skeleton width={32} height={32} className="rounded-full" />
-                    <Skeleton
-                      width={16}
-                      height={16}
-                      className="absolute -top-1 -right-1 rounded-full"
-                    />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <Skeleton width={80} height={16} className="mb-2" />
-                    <div className="flex items-center space-x-2">
-                      <Skeleton width={40} height={12} />
-                      <Skeleton width={40} height={12} />
-                      <Skeleton width={60} height={12} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Action Buttons Skeleton */}
-                <div className="flex items-center gap-1 flex-shrink-0">
-                  <Skeleton width={50} height={24} className="rounded-lg" />
-                  <Skeleton width={50} height={24} className="rounded-lg" />
-                  <Skeleton width={24} height={24} className="rounded-lg" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (error || memoizedProjects.length === 0) {
-    return (
-      <div className="w-full bg-white/[0.02] border-b border-white/[0.05] py-3">
-        <div className="flex items-center justify-between px-6">
-          <div className="flex items-center space-x-2">
-            <Icon
-              icon="material-symbols:error"
-              className="w-4 h-4 text-red-400"
-            />
-            <span className="font-tiktok text-sm text-red-400">
-              {error || "No trending tokens available"}
-            </span>
-          </div>
-          <button
-            onClick={() => fetchTrendingProjects(true)}
-            className="px-3 py-1 bg-main-accent/10 hover:bg-main-accent/20 text-main-accent font-tiktok text-xs rounded-lg transition-all duration-300"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="  top-16 left-0 w-full bg-main-bg/95 backdrop-blur-sm border-b border-white/[0.05] py-3 overflow-hidden z-40">
+    <div className="w-full bg-main-bg/95 backdrop-blur-sm border-b border-white/[0.05] py-3 overflow-hidden z-40">
       {/* Scrolling Container */}
       <div
         ref={scrollContainerRef}
@@ -253,12 +221,12 @@ const TrendingRibbon: React.FC = React.memo(() => {
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchCancel}
       >
-        {memoizedProjects.map((project) => (
+        {trendingTokens.map((project) => (
           <TrendingRibbonItem key={project.tokenAddress} project={project} />
         ))}
       </div>
     </div>
   );
-});
+};
 
 export default TrendingRibbon;
