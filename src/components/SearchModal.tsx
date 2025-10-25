@@ -100,10 +100,6 @@ const SearchModal: React.FC<SearchModalProps> = ({
     return /^0x[a-fA-F0-9]{40}$/.test(str);
   };
 
-  const getTokenFromAddress = (address: string): MockTokenData | null => {
-    return getTokenData(address);
-  };
-
   const renderTokenResult = (token: MockTokenData, index: number) => {
     const isSelected = index === selectedIndex;
     const isAddressMatch =
