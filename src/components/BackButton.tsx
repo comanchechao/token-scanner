@@ -21,7 +21,7 @@ const BackButton: React.FC<BackButtonProps> = ({ className = "", onClick }) => {
   return (
     <button
       onClick={handleClick}
-      className={`group relative flex items-center gap-2 px-4 py-2   bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/10 cursor-pointer before:absolute before:inset-0 before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:-z-10 ${className}`}
+      className={`group relative flex items-center gap-2 px-4 py-2   bg-surface  hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-sm transition-all duration-300 hover:shadow-lg hover:shadow-main-accent/10 cursor-pointer before:absolute before:inset-0 before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:-z-10 ${className}`}
     >
       <Icon
         icon="material-symbols:arrow-back-ios"

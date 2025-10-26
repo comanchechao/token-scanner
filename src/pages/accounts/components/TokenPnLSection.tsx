@@ -118,7 +118,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
 
   return (
     <div
-      className={`  bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 ${
+      className={`  bg-surface  hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 ${
         isRefreshing ? "opacity-80" : "opacity-100"
       }`}
     >
@@ -151,7 +151,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
                   ${
                     filter === f.value
                       ? "bg-main-accent/20 border-main-accent text-main-accent shadow"
-                      : "bg-white/[0.05] border-white/[0.1] text-main-text hover:bg-main-accent/10 hover:border-main-accent/40"
+                      : "bg-surface border-subtle text-main-text hover:bg-main-accent/10 hover:border-main-accent/40"
                   }
                 `}
               >
@@ -164,7 +164,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
 
       {/* PnL Summary */}
       <div
-        className={`flex items-center justify-between mb-4 lg:mb-6 p-3 lg:p-4 bg-white/[0.02] border border-white/[0.05] rounded-sm transition-all duration-300 ${
+        className={`flex items-center justify-between mb-4 lg:mb-6 p-3 lg:p-4 bg-main-accent/5 border border-subtle rounded-sm transition-all duration-300 ${
           isRefreshing ? "opacity-70" : "opacity-100"
         }`}
       >
@@ -206,7 +206,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
         {tokens.map((token) => (
           <div
             key={token.tokenAddress}
-            className="flex items-center justify-between p-4 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-sm transition-all duration-300"
+            className="flex items-center justify-between p-4 bg-main-accent/5 hover:bg-main-accent/10 border border-subtle hover:border-main-accent/20 rounded-sm transition-all duration-300"
           >
             {/* Token Info */}
             <div className="flex items-center gap-3 flex-1">
@@ -317,7 +317,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
         {tokens.map((token) => (
           <div
             key={token.tokenAddress}
-            className="bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-sm p-3 transition-all duration-300"
+            className="bg-main-accent/5 hover:bg-main-accent/10 border border-subtle hover:border-main-accent/20 rounded-sm p-3 transition-all duration-300"
           >
             {/* Token Info and PnL */}
             <div className="flex items-center justify-between mb-3">
@@ -367,7 +367,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
             {/* Trade Details Grid */}
             <div className="grid grid-cols-2 gap-3 text-xs">
               {/* Bought */}
-              <div className="bg-white/[0.01] p-2 rounded-lg">
+              <div className="bg-main-accent/3 p-2 rounded-lg">
                 <div className="font-tiktok text-main-light-text/60 mb-1">
                   Bought
                 </div>
@@ -380,7 +380,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
               </div>
 
               {/* Sold */}
-              <div className="bg-white/[0.01] p-2 rounded-lg">
+              <div className="bg-main-accent/3 p-2 rounded-lg">
                 <div className="font-tiktok text-main-light-text/60 mb-1">
                   Sold
                 </div>
@@ -393,7 +393,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
               </div>
 
               {/* Realized ROI */}
-              <div className="bg-white/[0.01] p-2 rounded-lg">
+              <div className="bg-main-accent/3 p-2 rounded-lg">
                 <div className="font-tiktok text-main-light-text/60 mb-1">
                   Realized ROI
                 </div>
@@ -407,7 +407,7 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
               </div>
 
               {/* Duration */}
-              <div className="bg-white/[0.01] p-2 rounded-lg">
+              <div className="bg-main-accent/3 p-2 rounded-lg">
                 <div className="font-tiktok text-main-light-text/60 mb-1">
                   Duration
                 </div>
@@ -429,8 +429,8 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
             flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-200
             ${
               currentPage <= 1
-                ? "border-white/[0.05] bg-white/[0.02] text-main-light-text/30 cursor-not-allowed"
-                : "border-white/[0.1] bg-white/[0.05] text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
+                ? "border-subtle bg-surface text-main-light-text/30 cursor-not-allowed"
+                : "border-subtle bg-main-accent/5 text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
             }
           `}
         >
@@ -450,8 +450,8 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
             flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-200
             ${
               totalPages > 0 && currentPage >= totalPages
-                ? "border-white/[0.05] bg-white/[0.02] text-main-light-text/30 cursor-not-allowed"
-                : "border-white/[0.1] bg-white/[0.05] text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
+                ? "border-subtle bg-surface text-main-light-text/30 cursor-not-allowed"
+                : "border-subtle bg-main-accent/5 text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
             }
           `}
         >

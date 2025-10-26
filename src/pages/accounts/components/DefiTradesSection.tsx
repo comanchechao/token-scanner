@@ -197,7 +197,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
   };
 
   return (
-    <div className="    max-h-[410px] overflow-y-auto scrollbar-hide bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 mb-6">
+    <div className="    max-h-[410px] overflow-y-auto scrollbar-hide bg-surface  hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 mb-6">
       {/* Header with search */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-2 gap-4 lg:gap-0">
         <div className="flex items-center gap-3">
@@ -224,7 +224,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
                 trade.transactionHash ||
                 `${trade.timestamp}-${index}`
               }
-              className="flex items-center justify-between py-1 px-3 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-lg transition-all duration-300"
+              className="flex items-center justify-between py-1 px-3 bg-main-accent/5 hover:bg-main-accent/10 border border-subtle hover:border-main-accent/20 rounded-lg transition-all duration-300"
             >
               {/* Trade Type */}
               <div className="w-12">
@@ -363,7 +363,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
               trade.transactionHash ||
               `${trade.timestamp}-${index}`
             }
-            className="bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-lg p-3 transition-all duration-300"
+            className="bg-main-accent/5 hover:bg-main-accent/10 border border-subtle hover:border-main-accent/20 rounded-lg p-3 transition-all duration-300"
           >
             <div className="flex justify-between items-center mb-2">
               {/* Trade Type */}
@@ -507,7 +507,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
         <button
           onClick={onPrevPage}
           disabled={currentPage === 1}
-          className="w-7 h-7 cursor-pointer rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-main-accent/30 flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white/[0.05] disabled:hover:border-white/[0.1]"
+          className="w-7 h-7 cursor-pointer rounded-lg bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-surface disabled:hover:border-subtle"
         >
           <Icon
             icon="mdi:chevron-left"
@@ -515,7 +515,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
           />
         </button>
 
-        <div className="px-3 py-1 bg-[#161616]  border border-white/[0.08] rounded-lg">
+        <div className="px-3 py-1 bg-surface border border-subtle rounded-lg">
           <span className="font-tiktok text-xs text-main-light-text/80">
             {currentPage}
           </span>
@@ -524,7 +524,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
         <button
           onClick={onNextPage}
           disabled={currentPage === totalPages}
-          className="w-7 h-7 cursor-pointer rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-main-accent/30 flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white/[0.05] disabled:hover:border-white/[0.1]"
+          className="w-7 h-7 cursor-pointer rounded-lg bg-surface hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-surface disabled:hover:border-subtle"
         >
           <Icon
             icon="mdi:chevron-right"

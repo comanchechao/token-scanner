@@ -500,7 +500,7 @@ const AccountsPage: React.FC = () => {
                   {/* Stats/Holdings/Overall Combined Skeleton */}
                   <div className="bg-light-bg/5   rounded-sm p-6 ring-1 ring-white/10">
                     {/* Tab Headers Skeleton */}
-                    <div className="flex mb-6 border-b border-white/[0.08]">
+                    <div className="flex mb-6 border-b border-subtle">
                       <Skeleton width={60} height={30} className="mr-6" />
                       <Skeleton width={60} height={30} className="mr-6" />
                       <Skeleton width={60} height={30} />

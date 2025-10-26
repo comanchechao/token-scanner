@@ -197,9 +197,9 @@ const StatsHoldingsSection: React.FC<StatsHoldingsSectionProps> = ({
   }, [holdings, holdingsPage, holdingsPerPage]);
 
   return (
-    <div className="backdrop-blur-lg min-h-auto overflow-y-auto bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
+    <div className="backdrop-blur-lg min-h-auto overflow-y-auto bg-surface  hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-sm p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
       {/* Tab Headers */}
-      <div className="flex mb-6 border-b border-white/[0.08]">
+      <div className="flex mb-6 border-b border-subtle">
         <button
           onClick={() => setActiveTab("stats")}
           className={`font-algance cursor-pointer text-lg pb-2 px-1 mr-6 transition-all duration-300 border-b-2 ${
@@ -250,7 +250,7 @@ const StatsHoldingsSection: React.FC<StatsHoldingsSectionProps> = ({
               />
             </div>
           </div>
-          <div className="mt-16 border-t border-white/[0.08]"></div>
+          <div className="mt-16 border-t border-subtle"></div>
           <div className="flex justify-between items-center">
             <span className="font-tiktok text-main-light-text/80">
               Win Rate
@@ -390,14 +390,14 @@ const StatsHoldingsSection: React.FC<StatsHoldingsSectionProps> = ({
 
           {/* Pagination Controls */}
           {paginatedHoldings.totalPages > 1 && (
-            <div className="flex items-center justify-between pt-4 border-t border-white/[0.08]">
+            <div className="flex items-center justify-between pt-4 border-t border-subtle">
               <button
                 onClick={() => setHoldingsPage((prev) => Math.max(1, prev - 1))}
                 disabled={holdingsPage === 1}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-200 cursor-pointer ${
                   holdingsPage === 1
                     ? "text-main-light-text/40 cursor-not-allowed"
-                    : "text-main-light-text/80 hover:text-main-text hover:bg-white/[0.05]"
+                    : "text-main-light-text/80 hover:text-main-text hover:bg-main-accent/5"
                 }`}
               >
                 <Icon
@@ -422,7 +422,7 @@ const StatsHoldingsSection: React.FC<StatsHoldingsSectionProps> = ({
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-200 cursor-pointer ${
                   holdingsPage === paginatedHoldings.totalPages
                     ? "text-main-light-text/40 cursor-not-allowed"
-                    : "text-main-light-text/80 hover:text-main-text hover:bg-white/[0.05]"
+                    : "text-main-light-text/80 hover:text-main-text hover:bg-main-accent/5"
                 }`}
               >
                 <Icon

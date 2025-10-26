@@ -315,7 +315,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
   };
 
   return (
-    <div className="  bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
+    <div className="  bg-surface  hover:bg-main-accent/5 border border-subtle hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -360,11 +360,11 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
           {orders.map((order) => (
             <div
               key={order?.id || Math.random()}
-              className="bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-main-accent/20 rounded-sm p-3 transition-all duration-300"
+              className="bg-main-accent/5 hover:bg-main-accent/10 border border-subtle hover:border-main-accent/20 rounded-sm p-3 transition-all duration-300"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8   bg-white/[0.08] border border-white/[0.1] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8   bg-main-accent/10 border border-subtle rounded-lg flex items-center justify-center">
                     <Icon
                       icon={
                         order.status?.toLowerCase() === "active"
@@ -394,7 +394,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                   </div>
                 </div>
                 <span
-                  className={`font-tiktok text-xs px-2 py-1 rounded-full border border-white/10 ${getStatusColor(
+                  className={`font-tiktok text-xs px-2 py-1 rounded-full border border-subtle ${getStatusColor(
                     order.status || ""
                   )}`}
                 >
@@ -403,7 +403,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs mb-3">
-                <div className="bg-white/[0.01] p-2 rounded-lg">
+                <div className="bg-main-accent/3 p-2 rounded-lg">
                   <div className="font-tiktok text-main-light-text/60 mb-1">
                     Target Wallet
                   </div>
@@ -411,7 +411,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                     {order.targetWallet}
                   </div>
                 </div>
-                <div className="bg-white/[0.01] p-2 rounded-lg">
+                <div className="bg-main-accent/3 p-2 rounded-lg">
                   <div className="font-tiktok text-main-light-text/60 mb-1">
                     Buy Method
                   </div>
@@ -419,7 +419,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                     {getBuyMethodLabel(order)}
                   </div>
                 </div>
-                <div className="bg-white/[0.01] p-2 rounded-lg">
+                <div className="bg-main-accent/3 p-2 rounded-lg">
                   <div className="font-tiktok text-main-light-text/60 mb-1">
                     Sell Method
                   </div>
@@ -435,7 +435,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                   <button
                     onClick={() => handlePauseCopyTrade(order.id)}
                     disabled={pausingOrderId === order.id}
-                    className="  cursor-pointer bg-[#161616]  border border-yellow-400/20 hover:bg-yellow-400/10 hover:border-yellow-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+                    className="  cursor-pointer bg-surface  border border-yellow-400/20 hover:bg-yellow-400/10 hover:border-yellow-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
                   >
                     {pausingOrderId === order.id ? (
                       <Icon
@@ -460,7 +460,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                   <button
                     onClick={() => handleResumeCopyTrade(order.id)}
                     disabled={resumingOrderId === order.id}
-                    className="  cursor-pointer bg-[#161616]  border border-green-400/20 hover:bg-green-400/10 hover:border-green-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+                    className="  cursor-pointer bg-surface  border border-green-400/20 hover:bg-green-400/10 hover:border-green-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
                   >
                     {resumingOrderId === order.id ? (
                       <Icon
@@ -487,7 +487,7 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
                 <button
                   onClick={() => handleCloseCopyTrade(order.id)}
                   disabled={closingOrderId === order.id}
-                  className="  cursor-pointer bg-[#161616]  border border-red-400/20 hover:bg-red-400/10 hover:border-red-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+                  className="  cursor-pointer bg-surface  border border-red-400/20 hover:bg-red-400/10 hover:border-red-400/30 rounded-lg px-3 py-1.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
                 >
                   {closingOrderId === order.id ? (
                     <Icon
@@ -527,8 +527,8 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
               flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-200
               ${
                 pagination.pageNumber <= 1
-                  ? "border-white/[0.05] bg-white/[0.02] text-main-light-text/30 cursor-not-allowed"
-                  : "border-white/[0.1] bg-white/[0.05] text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
+                  ? "border-subtle bg-surface text-main-light-text/30 cursor-not-allowed"
+                  : "border-subtle bg-main-accent/5 text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
               }
             `}
             >
@@ -554,8 +554,8 @@ const CopyTradeOrdersSection: React.FC<CopyTradeOrdersSectionProps> = ({
               flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-200
               ${
                 pagination.isLastPage
-                  ? "border-white/[0.05] bg-white/[0.02] text-main-light-text/30 cursor-not-allowed"
-                  : "border-white/[0.1] bg-white/[0.05] text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
+                  ? "border-subtle bg-surface text-main-light-text/30 cursor-not-allowed"
+                  : "border-subtle bg-main-accent/5 text-main-light-text/70 hover:border-main-accent/40 hover:bg-main-accent/10 hover:text-main-accent cursor-pointer"
               }
             `}
             >

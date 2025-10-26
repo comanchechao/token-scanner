@@ -53,7 +53,7 @@ const TrendingRibbonItem: React.FC<TrendingRibbonItemProps> = ({ project }) => {
   return (
     <div
       onClick={handleClick}
-      className="flex-shrink-0 bg-[#161616] border border-white/[0.08] rounded-sm p-3 hover:bg-white/[0.06] hover:border-main-accent/30 transition-all duration-300 min-w-[280px] mx-2 cursor-pointer"
+      className="flex-shrink-0 bg-surface border border-subtle rounded-sm p-3 hover:bg-main-accent/5 hover:border-main-accent/30 transition-all duration-300 min-w-[280px] mx-2 cursor-pointer"
     >
       <div className="flex items-center justify-between">
         {/* Token Info */}
@@ -209,7 +209,7 @@ const TrendingRibbon: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full bg-main-bg/95 backdrop-blur-sm border-b border-white/[0.05] py-3 overflow-hidden z-40">
+    <div className="w-full bg-main-bg/95 backdrop-blur-sm border-b border-subtle py-3 overflow-hidden z-40">
       {/* Scrolling Container */}
       <div
         ref={scrollContainerRef}
