@@ -146,13 +146,13 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 
       {/* Modal */}
       <div
-        className={`relative w-full max-w-md backdrop-blur-xl bg-[#161616]  border border-white/[0.1] shadow-2xl rounded-sm flex flex-col transition-all duration-300 transform 
+        className={`relative w-full max-w-md backdrop-blur-xl bg-surface  border border-subtle shadow-2xl rounded-sm flex flex-col transition-all duration-300 transform 
           ${open ? "modal-content-show" : "opacity-0 scale-95 translate-y-8"}
           before:absolute before:inset-0 before:rounded-sm before:bg-gradient-to-br before:from-white/[0.05] before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 before:-z-10`}
         style={{ minWidth: 400, maxHeight: "85vh" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.1]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-subtle">
           <div className="flex items-center gap-3">
             <div
               className={`w-8 h-8   ${actionConfig.bgColor} ${actionConfig.borderColor} rounded-lg flex items-center justify-center`}
@@ -169,7 +169,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           <button
             onClick={onClose}
             disabled={isLoading}
-            className="p-2 rounded-lg   bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-2 rounded-lg   bg-surface  hover:bg-main-accent/5 border border-subtle hover:border-[var(--color-red-400)]/30 transition-all duration-300 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Icon
               icon="iconamoon:close-fill"
@@ -208,7 +208,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             <button
               onClick={onClose}
               disabled={isLoading}
-              className="flex-1 cursor-pointer   bg-[#161616]  hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/[0.2] px-4 py-3 rounded-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+              className="flex-1 cursor-pointer   bg-surface  hover:bg-main-accent/5 border border-subtle hover:border-subtle px-4 py-3 rounded-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
             >
               <span className="font-tiktok text-sm text-main-light-text group-hover:text-main-text transition-colors duration-300">
                 {cancelText}

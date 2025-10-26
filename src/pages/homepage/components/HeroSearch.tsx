@@ -135,7 +135,7 @@ const HeroSearch: React.FC<HeroSearchProps> = ({
                   ? "Click to search tokens or press / to open search..."
                   : "Click to search tokens or press / to open search..."
               }
-              className="w-full pl-14 pr-20 py-4 xl:py-5 bg-transparent text-main-text placeholder:text-base xl:placeholder:text-lg placeholder-main-light-text/60 font-display text-base xl:text-lg focus:outline-none cursor-pointer"
+              className="w-full pl-14 pr-20 py-3 xl:py-5 bg-transparent h-14 text-main-text placeholder:text-sm xl:placeholder:text-base placeholder-main-light-text/60 font-display text-base xl:text-base focus:outline-none cursor-pointer"
               readOnly
             />
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
