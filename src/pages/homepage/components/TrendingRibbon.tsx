@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import { TrendingProject } from "../types/api";
-import { getAllTokens, MockTokenData } from "../data/mockTokenData";
+import { TrendingProject } from "../../../types/api";
+import { getAllTokens, MockTokenData } from "../../../data/mockTokenData";
 
 // Convert MockTokenData to TrendingProject format
 const convertToTrendingProject = (token: MockTokenData): TrendingProject => {

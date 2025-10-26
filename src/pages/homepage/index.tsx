@@ -10,7 +10,7 @@ import TelegramCalls from "./components/TelegramCalls";
 import SecurityAnalysis from "./components/SecurityAnalysis";
 import DeveloperEcosystem from "./components/DeveloperEcosystem";
 import NavigationSidebar from "./components/NavigationSidebar";
-import TrendingRibbon from "../../components/TrendingRibbon";
+import TrendingRibbon from "./components/TrendingRibbon";
 import SearchModal from "../../components/SearchModal";
 import { MockTokenData } from "../../data/mockTokenData";
 import "../../css/index.css";

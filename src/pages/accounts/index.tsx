@@ -16,35 +16,17 @@ import StatsHoldingsSection from "./components/StatsHoldingsSection";
 import DefiTradesSection from "./components/DefiTradesSection";
 import TokenPnLSection from "./components/TokenPnLSection";
 import CopyTradeOrdersSection from "./components/CopyTradeOrdersSection";
-import { useKOLData } from "../../hooks/useKOLData";
 import { useWebSocket } from "../../hooks/useWebSocket";
-import { KOLService } from "../../api/kolService";
 import { WebSocketMessage } from "../../types/websocket";
 import { DefiTrade } from "../../types/api";
 import { useAuth } from "../../components/AuthProvider";
-
-interface TokenPnLData {
-  tokenSymbol: string;
-  tokenName: string;
-  tokenImage: string;
-  tokenAddress: string;
-  totalBought: number;
-  totalSold: number;
-  tokensHeld: number;
-  totalInvestment: number;
-  realizedPnL: number;
-  realizedPnLSOL: number;
-  realizedRoi: number;
-  totalSalesValue: number;
-  totalSolBought: number;
-  totalSolSold: number;
-  firstTrade: string;
-  lastTrade: string;
-  totalDuration: string;
-  status: string;
-  isActive: boolean;
-  rank: number;
-}
+import {
+  getMockDefiTrades,
+  getMockTokenPnL,
+  MOCK_USER_METRICS,
+  MOCK_KOL_DATA,
+  TokenPnLData,
+} from "../../data/mockAccountsData";
 
 interface FetchState {
   loading: boolean;
@@ -55,11 +37,11 @@ interface FetchState {
 const AccountsPage: React.FC = () => {
   const { walletAddress } = useParams<{ walletAddress: string }>();
   const { isAuthenticated } = useAuth();
-  const {
-    kolData,
-    loading: kolLoading,
-    error: kolError,
-  } = useKOLData(walletAddress);
+
+  // Use mock data instead of API
+  const kolData = MOCK_KOL_DATA;
+  const kolLoading = false;
+  const kolError = null;
 
   const [tradesState, setTradesState] = useState<FetchState>({
     loading: false,
@@ -160,61 +142,29 @@ const AccountsPage: React.FC = () => {
           setTokenPnLState((prev) => ({ ...prev, loading: true, error: null }));
         }
 
-        let response;
-        switch (filter) {
-          case "highestPnl":
-            response = await KOLService.getHighestPnLTokens(
-              walletAddress,
-              safePageNumber,
-              tokensPerPage
-            );
-            break;
-          case "lowestPnl":
-            response = await KOLService.getLowestPnLTokens(
-              walletAddress,
-              safePageNumber,
-              tokensPerPage
-            );
-            break;
-          case "mostRecent":
-          default:
-            response = await KOLService.getTokenPnL(
-              walletAddress,
-              safePageNumber,
-              tokensPerPage
-            );
-            break;
-        }
+        // Use mock data instead of API
+        const mockData = getMockTokenPnL(safePageNumber, tokensPerPage, filter);
 
-        if (response?.success && response?.data) {
-          const { tokenPnL, userMetrics } = response.data;
-          const meta = response.meta || response.data.meta || {};
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 300));
 
-          console.log("Token PnL API Response:", response);
+        setTokenPnL(mockData.tokens);
+        tokenPnLRef.current = mockData.tokens;
 
-          setTokenPnL(tokenPnL || []);
-          tokenPnLRef.current = tokenPnL || [];
+        setUserMetrics(MOCK_USER_METRICS);
 
-          if (userMetrics) {
-            setUserMetrics(userMetrics);
-            console.log("User Metrics:", userMetrics);
-          }
+        setTokenPnLMeta({
+          totalTokens: mockData.total,
+          totalPages: mockData.totalPages,
+          currentPage: mockData.currentPage,
+        });
 
-          setTokenPnLMeta({
-            totalTokens: meta.total || 0,
-            totalPages: meta.totalPages || 0,
-            currentPage: Math.max(1, meta.page || safePageNumber),
-          });
-
-          setTokenPnLState((prev) => ({
-            ...prev,
-            loading: false,
-            error: null,
-            lastFetch: Date.now(),
-          }));
-        } else {
-          throw new Error(response?.error || "Failed to fetch token PnL data");
-        }
+        setTokenPnLState((prev) => ({
+          ...prev,
+          loading: false,
+          error: null,
+          lastFetch: Date.now(),
+        }));
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : "Unknown error occurred";
@@ -241,52 +191,29 @@ const AccountsPage: React.FC = () => {
       try {
         setTradesState((prev) => ({ ...prev, loading: true, error: null }));
 
-        const response = await KOLService.getWalletTrades(
-          walletAddress,
-          page,
-          tradesPerPage
-        );
+        // Use mock data instead of API
+        const mockData = getMockDefiTrades(page, tradesPerPage);
 
-        if (response?.success && response?.data) {
-          const transformedTrades: DefiTrade[] = response.data
-            .map((trade: any) => transformTradeData(trade))
-            .filter(
-              (trade: DefiTrade | null): trade is DefiTrade => trade !== null
-            );
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 200));
 
-          const uniqueTrades = transformedTrades.filter(
-            (trade: DefiTrade, index: number, array: DefiTrade[]) =>
-              array.findIndex(
-                (t: DefiTrade) => t.transactionHash === trade.transactionHash
-              ) === index
-          );
+        tradesRef.current = mockData.trades;
+        setTrades(mockData.trades);
 
-          tradesRef.current = uniqueTrades;
-          setTrades(uniqueTrades);
+        setTradesMeta({
+          totalTrades: mockData.total,
+          totalPages: mockData.totalPages,
+          currentPage: mockData.currentPage,
+        });
 
-          // Update pagination metadata
-          const meta = response.meta || {
-            total: 0,
-            totalPages: 0,
-            page: page,
-          };
-          setTradesMeta({
-            totalTrades: meta.total || 0,
-            totalPages: meta.totalPages || 0,
-            currentPage: Math.max(1, meta.page || page),
-          });
+        setCurrentPage(mockData.currentPage);
 
-          setCurrentPage(Math.max(1, meta.page || page));
-
-          setTradesState((prev) => ({
-            ...prev,
-            loading: false,
-            error: null,
-            lastFetch: Date.now(),
-          }));
-        } else {
-          throw new Error(response?.error || "Failed to fetch trades data");
-        }
+        setTradesState((prev) => ({
+          ...prev,
+          loading: false,
+          error: null,
+          lastFetch: Date.now(),
+        }));
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : "Unknown error occurred";
@@ -299,7 +226,7 @@ const AccountsPage: React.FC = () => {
         }));
       }
     },
-    [walletAddress, transformTradeData, tradesPerPage]
+    [walletAddress, tradesPerPage]
   );
 
   const handleWebSocketMessage = useCallback(

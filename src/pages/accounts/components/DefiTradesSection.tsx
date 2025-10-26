@@ -197,7 +197,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
   };
 
   return (
-    <div className="  min-h-[410px] max-h-[410px] overflow-y-auto scrollbar-hide bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 mb-6">
+    <div className="    max-h-[410px] overflow-y-auto scrollbar-hide bg-[#161616]  hover:bg-white/[0.06] border border-white/[0.08] hover:border-main-accent/30 rounded-sm p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-main-accent/5 mb-6">
       {/* Header with search */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-2 gap-4 lg:gap-0">
         <div className="flex items-center gap-3">
@@ -517,7 +517,7 @@ const DefiTradesSection: React.FC<DefiTradesSectionProps> = ({
 
         <div className="px-3 py-1 bg-[#161616]  border border-white/[0.08] rounded-lg">
           <span className="font-tiktok text-xs text-main-light-text/80">
-            {currentPage} / {totalPages}
+            {currentPage}
           </span>
         </div>
 

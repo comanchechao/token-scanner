@@ -192,6 +192,18 @@ const Navbar: React.FC = React.memo(() => {
                 <Icon icon="material-symbols:token" className="w-4 h-4 mr-2" />
                 <span>Tokens</span>
               </Link>
+              <Link
+                to="/accounts/0x1234567890123456789012345678901234567890"
+                className={getDesktopLinkClasses(
+                  "/accounts/0x1234567890123456789012345678901234567890"
+                )}
+              >
+                <Icon
+                  icon="material-symbols:account-circle"
+                  className="w-4 h-4 mr-2"
+                />
+                <span>Accounts</span>
+              </Link>
             </div>
 
             {/* Theme & Accent Controls */}
@@ -394,8 +406,17 @@ const Navbar: React.FC = React.memo(() => {
             <Link to="/tokens" className={getMobileLinkClasses("/tokens")}>
               <Icon icon="material-symbols:token" className="w-4 h-4 mr-2" />
               Tokens
+            </Link>{" "}
+            <Link
+              to="/accounts/:walletAddress"
+              className={getMobileLinkClasses("/accounts/:walletAddress")}
+            >
+              <Icon
+                icon="material-symbols:account-circle"
+                className="w-4 h-4 mr-2"
+              />
+              Accounts
             </Link>
-
             {/* Mobile Color Picker */}
             <div className="pt-4 border-t border-subtle">
               <div className="px-4 py-2">

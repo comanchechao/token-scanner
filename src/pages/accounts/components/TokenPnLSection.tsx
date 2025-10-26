@@ -438,12 +438,8 @@ const TokenPnLSection: React.FC<TokenPnLSectionProps> = ({
         </button>
 
         <div className="flex items-center gap-1 px-3">
-          <span className="font-tiktok text-sm text-main-text font-medium bg-main-accent/10 border border-main-accent/20 px-2 py-1 rounded">
+          <span className="font-tiktok text-lg text-main-text font-medium bg-main-accent/10     py-1 rounded">
             {currentPage}
-          </span>
-          <span className="font-tiktok text-sm text-main-light-text/40">/</span>
-          <span className="font-tiktok text-sm text-main-light-text/70">
-            {totalPages || 1}
           </span>
         </div>
 

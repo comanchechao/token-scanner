@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
+import {
+  sortBy,
+  toggleDirection,
+  type SortDirection,
+} from "../../../../utils/sort";
 
 interface Transaction {
   id: string;
@@ -17,6 +22,16 @@ interface TransactionsProps {
 
 const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  type SortKey =
+    | "timestamp"
+    | "type"
+    | "amount"
+    | "give"
+    | "weth"
+    | "price"
+    | "maker";
+  const [sortKey, setSortKey] = useState<SortKey>("timestamp");
+  const [direction, setDirection] = useState<SortDirection>("desc");
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -45,6 +60,40 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
   const formatPrice = (price: number) => {
     return `$${price.toFixed(4)}`;
   };
+
+  const handleSort = (key: SortKey) => {
+    if (key === sortKey) {
+      setDirection((d) => toggleDirection(d));
+    } else {
+      setSortKey(key);
+      // default to desc when switching keys
+      setDirection("desc");
+    }
+  };
+
+  const sortedTransactions = useMemo(() => {
+    const accessor = (tx: Transaction) => {
+      switch (sortKey) {
+        case "timestamp":
+          return tx.timestamp;
+        case "type":
+          return tx.type;
+        case "amount":
+          return tx.amount;
+        case "give":
+          return tx.amount / tx.price;
+        case "weth":
+          return (tx.amount / tx.price) * 0.1;
+        case "price":
+          return tx.price;
+        case "maker":
+          return tx.maker;
+        default:
+          return tx.timestamp;
+      }
+    };
+    return sortBy(transactions, accessor, direction);
+  }, [transactions, sortKey, direction]);
 
   return (
     <div className="flex flex-col h-fit bg-surface border-x border-t border-subtle text-main-text">
@@ -79,67 +128,165 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
               <table className="w-full">
                 <thead className="bg-main-accent/5">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-main-light-text uppercase tracking-wider">
+                    <th
+                      className="px-4 py-3 text-left text-xs font-medium text-main-light-text uppercase tracking-wider cursor-pointer select-none"
+                      onClick={() => handleSort("timestamp")}
+                    >
                       <div className="flex items-center gap-1">
                         DATE
-                        <Icon
-                          icon="material-symbols:filter-list"
-                          className="w-3 h-3"
-                        />
+                        {sortKey === "timestamp" ? (
+                          <Icon
+                            icon={
+                              direction === "asc"
+                                ? "lucide:arrow-up"
+                                : "lucide:arrow-down"
+                            }
+                            className="w-3 h-3"
+                          />
+                        ) : (
+                          <Icon
+                            icon="material-symbols:filter-list"
+                            className="w-3 h-3"
+                          />
+                        )}
                       </div>
                     </th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-main-light-text uppercase tracking-wider">
+                    <th
+                      className="px-4 py-3 text-left text-xs font-medium text-main-light-text uppercase tracking-wider cursor-pointer select-none"
+                      onClick={() => handleSort("type")}
+                    >
                       <div className="flex items-center gap-1">
                         TYPE
-                        <Icon
-                          icon="material-symbols:filter-list"
-                          className="w-3 h-3"
-                        />
+                        {sortKey === "type" ? (
+                          <Icon
+                            icon={
+                              direction === "asc"
+                                ? "lucide:arrow-up"
+                                : "lucide:arrow-down"
+                            }
+                            className="w-3 h-3"
+                          />
+                        ) : (
+                          <Icon
+                            icon="material-symbols:filter-list"
+                            className="w-3 h-3"
+                          />
+                        )}
                       </div>
                     </th>
-                    <th className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider">
+                    <th
+                      className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider cursor-pointer select-none"
+                      onClick={() => handleSort("amount")}
+                    >
                       <div className="flex items-center gap-1 justify-end">
                         USD
-                        <Icon
-                          icon="material-symbols:filter-list"
-                          className="w-3 h-3"
-                        />
+                        {sortKey === "amount" ? (
+                          <Icon
+                            icon={
+                              direction === "asc"
+                                ? "lucide:arrow-up"
+                                : "lucide:arrow-down"
+                            }
+                            className="w-3 h-3"
+                          />
+                        ) : (
+                          <Icon
+                            icon="material-symbols:filter-list"
+                            className="w-3 h-3"
+                          />
+                        )}
                       </div>
                     </th>
-                    <th className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider">
+                    <th
+                      className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider cursor-pointer select-none"
+                      onClick={() => handleSort("give")}
+                    >
                       <div className="flex items-center gap-1 justify-end">
                         GIVE
-                        <Icon
-                          icon="material-symbols:filter-list"
-                          className="w-3 h-3"
-                        />
+                        {sortKey === "give" ? (
+                          <Icon
+                            icon={
+                              direction === "asc"
+                                ? "lucide:arrow-up"
+                                : "lucide:arrow-down"
+                            }
+                            className="w-3 h-3"
+                          />
+                        ) : (
+                          <Icon
+                            icon="material-symbols:filter-list"
+                            className="w-3 h-3"
+                          />
+                        )}
                       </div>
                     </th>
-                    <th className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider">
+                    <th
+                      className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider cursor-pointer select-none"
+                      onClick={() => handleSort("weth")}
+                    >
                       <div className="flex items-center gap-1 justify-end">
                         WETH
-                        <Icon
-                          icon="material-symbols:filter-list"
-                          className="w-3 h-3"
-                        />
+                        {sortKey === "weth" ? (
+                          <Icon
+                            icon={
+                              direction === "asc"
+                                ? "lucide:arrow-up"
+                                : "lucide:arrow-down"
+                            }
+                            className="w-3 h-3"
+                          />
+                        ) : (
+                          <Icon
+                            icon="material-symbols:filter-list"
+                            className="w-3 h-3"
+                          />
+                        )}
                       </div>
                     </th>
-                    <th className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider">
+                    <th
+                      className="px-4 py-3 text-right text-xs font-medium text-main-light-text uppercase tracking-wider cursor-pointer select-none"
+                      onClick={() => handleSort("price")}
+                    >
                       <div className="flex items-center gap-1 justify-end">
                         PRICE
-                        <Icon
-                          icon="material-symbols:info-outline"
-                          className="w-3 h-3"
-                        />
+                        {sortKey === "price" ? (
+                          <Icon
+                            icon={
+                              direction === "asc"
+                                ? "lucide:arrow-up"
+                                : "lucide:arrow-down"
+                            }
+                            className="w-3 h-3"
+                          />
+                        ) : (
+                          <Icon
+                            icon="material-symbols:info-outline"
+                            className="w-3 h-3"
+                          />
+                        )}
                       </div>
                     </th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-main-light-text uppercase tracking-wider">
+                    <th
+                      className="px-4 py-3 text-left text-xs font-medium text-main-light-text uppercase tracking-wider cursor-pointer select-none"
+                      onClick={() => handleSort("maker")}
+                    >
                       <div className="flex items-center gap-1">
                         MAKER
-                        <Icon
-                          icon="material-symbols:filter-list"
-                          className="w-3 h-3"
-                        />
+                        {sortKey === "maker" ? (
+                          <Icon
+                            icon={
+                              direction === "asc"
+                                ? "lucide:arrow-up"
+                                : "lucide:arrow-down"
+                            }
+                            className="w-3 h-3"
+                          />
+                        ) : (
+                          <Icon
+                            icon="material-symbols:filter-list"
+                            className="w-3 h-3"
+                          />
+                        )}
                       </div>
                     </th>
                     <th className="px-4 py-3 text-center text-xs font-medium text-main-light-text uppercase tracking-wider">
@@ -148,7 +295,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-subtle">
-                  {transactions.slice(0, 10).map((tx) => (
+                  {sortedTransactions.slice(0, 10).map((tx) => (
                     <tr
                       key={tx.id}
                       className="hover:bg-main-accent/5 transition-colors"
@@ -215,8 +362,44 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
 
           {/* Mobile Table */}
           <div className="lg:hidden">
+            <div className="flex items-center justify-between px-2 py-2 border-b border-subtle">
+              <div className="flex items-center gap-2 overflow-x-auto">
+                {[
+                  { label: "Date", key: "timestamp" as SortKey },
+                  { label: "USD", key: "amount" as SortKey },
+                  { label: "Price", key: "price" as SortKey },
+                  { label: "Maker", key: "maker" as SortKey },
+                ].map((opt) => (
+                  <button
+                    key={opt.key}
+                    className={`text-xs px-2 py-1 rounded border ${
+                      sortKey === opt.key
+                        ? "border-main-accent text-main-accent bg-main-accent/10"
+                        : "border-subtle text-main-light-text"
+                    }`}
+                    onClick={() => handleSort(opt.key)}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+              <button
+                className="ml-2 p-1 rounded hover:bg-main-accent/10"
+                onClick={() => setDirection((d) => toggleDirection(d))}
+                aria-label="Toggle sort direction"
+              >
+                <Icon
+                  icon={
+                    direction === "asc"
+                      ? "lucide:arrow-up"
+                      : "lucide:arrow-down"
+                  }
+                  className="w-4 h-4 text-main-light-text"
+                />
+              </button>
+            </div>
             <div className="space-y-1 p-2">
-              {transactions.slice(0, 19).map((tx) => (
+              {sortedTransactions.slice(0, 19).map((tx) => (
                 <div
                   key={tx.id}
                   className="flex items-center justify-between py-2 px-3 hover:bg-main-accent/5 transition-colors"
